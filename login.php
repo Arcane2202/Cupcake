@@ -4,12 +4,13 @@ session_start();
     include("loginUser.php");
     $email = "";
     $password = "";
+    $error = "";
     if($_SERVER['REQUEST_METHOD']=='POST') {
         $enter = new loginUser();
         $error = "";
-        $attemptStore = $store->validateData($_POST);
-        if($attemptStore!="") {
-            $error = $attemptStore;
+        $attemptLogin = $enter->validateData($_POST);
+        if($attemptLogin!="") {
+            $error = $attemptLogin;
         } else {
             $error = "";
             header("Location:ProfilePage.php");
@@ -72,21 +73,28 @@ session_start();
             ">
                 <div class="form-box" align="center" >
                     <h1 align="center">Login Form</h1>
+                    <form method="post" action="">
                     <div class="input-box">
                         <i class="fa fa-envelope"></i>
-                        <input type="email" value="<?php echo $email ?>" placeholder="Email ID">
+                        <input type="email" name="email" value="<?php echo $email ?>" placeholder="Email ID">
                     </div>
                     <div class="input-box">
                         <i class="fa fa-key"></i>
-                        <input type="password" placeholder="Password" id="myInput">
+                        <input type="password" name="password" value="<?php echo $password ?>" placeholder="Password" id="myInput">
                         <span class="eye" onclick="hidetoggle()">
                             <i id="hide1" class="fa fa-eye"></i>
                             <i id="hide2" class="fa fa-eye-slash"></i>
                         </span>
                     </div>
+                    <div style="padding-top: 5%;">
+                        <span class="error start" style="font-size: 95%; color:red"> <?php echo $error?></span>
+                  
+                        <input type="submit" id="button" class="login-btn" value="LOG IN">
+                        
+                    </div>
 
-                    <button type="button" value="<?php echo $password ?>" class="login-btn">LOG IN</button>
-                    <br>
+                    
+                    </form>
                     <a class="hyper" href="#">Forgotten password</a>
 
                     <div class="input-box"></div>

@@ -12,8 +12,7 @@
                         $this->errorMessage .= "*Invalid First Name! <br>";
                 } elseif($key=="surName" && (is_numeric($val)||strstr($val," "))) {
                         $this->errorMessage .= "*Invalid Sur Name! <br>";
-                }
-                elseif($key=="surName" && is_numeric($val)) {
+                } elseif($key=="surName" && is_numeric($val)) {
                         $this->errorMessage .= "*Invalid Sur Name! <br>";
                 } elseif($key=="email" && !preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$val)) {
                         $this->errorMessage .= "*Invalid Email! <br>";
@@ -22,7 +21,16 @@
                 }
             }
             if($this->errorMessage=="") {
-                $this->storeData($value);
+                $email = $value['email'];
+                $quer = "SELECT * FROM USERS WHERE email = '$email'";
+                $database = new connectDatabase();
+                $get = $database->read($quer);
+                if($get) {
+                    $this->errorMessage .= "*Email Already In Use!";
+                    return $this->errorMessage;
+                } else {
+                     $this->storeData($value);
+                }
             } else {
                 return $this->errorMessage;
             }
@@ -35,7 +43,7 @@
             $email=$value['email'];
             $phone=$value['phone'];
             $gender=$value['flexRadioDefault'];
-            $password=$value['password'];
+            $password=password_hash($value['password'],PASSWORD_ARGON2I);
             $urlAdress=$this->urlGenearate($firstName,$lastName);
             $quer = "INSERT INTO USERS(userID,firstName,lastName,email,phone,gender,password,urlAdress)
             VALUES('$userID','$firstName','$lastName','$email','$phone','$gender','$password','$urlAdress')";

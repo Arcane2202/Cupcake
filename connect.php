@@ -1,46 +1,49 @@
 <?php
 
-    
-   
-    class connectDatabase {
 
-        private $host = "localhost";
-        private  $username = "root";
-        private $password = "";
-        private $database = "cubcake";
 
-        function cnct() {
-            $con = mysqli_connect($this->host,$this->username,$this->password,$this->database);
-            return $con;
+class connectDatabase
+{
+
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $database = "cubcake";
+
+    function cnct()
+    {
+        $con = mysqli_connect($this->host, $this->username, $this->password, $this->database);
+        return $con;
+    }
+
+    function read($quer)
+    {
+        $con = $this->cnct();
+        $res = mysqli_query($con, $quer);
+        if (!$res) {
+            return false;
         }
-
-        function read($quer) {
-            $con = $this->cnct();
-            $res = mysqli_query($con,$quer);
-            if(!$res) {
-                return false;
-            } else {
-                $val = [];
-                while($row = mysqli_fetch_assoc($res)) {
-                    $val[] = $row;
-                }
-                return $val;
+        else {
+            $val = [];
+            while ($row = mysqli_fetch_assoc($res)) {
+                $val[] = $row;
             }
-        }
-
-        function write($quer) {
-            $con = $this->cnct();
-            $res = mysqli_query($con,$quer);
-
-            if(!$res) {
-                return false;
-            } else {
-                return true;
-            }
+            return $val;
         }
     }
 
-    $connectDB = new connectDatabase();
+    function write($quer)
+    {
+        $con = $this->cnct();
+        $res = mysqli_query($con, $quer);
 
+        if (!$res) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+}
 
-    
+$connectDB = new connectDatabase();

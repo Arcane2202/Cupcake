@@ -136,7 +136,7 @@
                         <span class="error start" style="font-size: 95%; color:red"> <?php echo $error?></span>
                   
                     
-                        <br><input type="submit" id="button" class="login-btn" value="Sign Up">
+                        <input type="submit" id="button" class="login-btn" value="Sign Up">
 
                     </div>
                     </form>
