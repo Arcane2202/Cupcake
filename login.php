@@ -1,3 +1,25 @@
+<?php
+session_start();
+    include("connect.php");
+    include("loginUser.php");
+    $email = "";
+    $password = "";
+    if($_SERVER['REQUEST_METHOD']=='POST') {
+        $enter = new loginUser();
+        $error = "";
+        $attemptStore = $store->validateData($_POST);
+        if($attemptStore!="") {
+            $error = $attemptStore;
+        } else {
+            $error = "";
+            header("Location:ProfilePage.php");
+            die;
+        }
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+    }
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -52,7 +74,7 @@
                     <h1 align="center">Login Form</h1>
                     <div class="input-box">
                         <i class="fa fa-envelope"></i>
-                        <input type="email" placeholder="Email ID">
+                        <input type="email" value="<?php echo $email ?>" placeholder="Email ID">
                     </div>
                     <div class="input-box">
                         <i class="fa fa-key"></i>
@@ -63,7 +85,7 @@
                         </span>
                     </div>
 
-                    <button type="button" class="login-btn">LOG IN</button>
+                    <button type="button" value="<?php echo $password ?>" class="login-btn">LOG IN</button>
                     <br>
                     <a class="hyper" href="#">Forgotten password</a>
 

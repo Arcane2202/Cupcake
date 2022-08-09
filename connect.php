@@ -20,7 +20,7 @@
             if(!$res) {
                 return false;
             } else {
-                $val = false;
+                $val = [];
                 while($row = mysqli_fetch_assoc($res)) {
                     $val[] = $row;
                 }

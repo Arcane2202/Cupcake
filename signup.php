@@ -1,6 +1,32 @@
 <?php
+    include("connect.php");
+    include("storeUser.php");
+    $fName = "";
+    $sName = "";
+    $email = "";
+    $phone = "";
+    $password = "";
+    $dob = "";
+    $error = "";
+    if($_SERVER['REQUEST_METHOD']=='POST') {
+        $store = new createUser();
+        $error = "";
+        $attemptStore = $store->validateData($_POST);
+        if($attemptStore!="") {
+            $error = $attemptStore;
+        } else {
+            $error = "";
+            header("Location:ProfilePage.php");
+            die;
+        }
+        $fName = $_POST['firstName'];
+        $sName = $_POST['surName'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $password = $_POST['password'];
+        $dob = $_POST['dob'];
+    }
 
-    print_r($_POST);
 
 ?>
 
@@ -30,46 +56,48 @@
                     <div style="display: flex;">
                         <div style="flex:1">
                             <div class="input-box">
-                                <input name="firstName" type="text" placeholder="First Name">
+                                <input name="firstName" value="<?php echo $fName?>" type="text" placeholder="First Name">
                             </div>  
                         </div>
 
                         <div style="flex:1">
                             <div class="input-box">
-                                <input name="surName" type="text" placeholder="Sur Name">
+                                <input name="surName" value="<?php echo $sName?>" type="text" placeholder="Sur Name">
                             </div> 
                         </div>
                     </div>
-
+                    
                     <div style="display: flex;">
                         <div style="flex:1">
                             <div class="input-box2">
-                                <input name="email" type="email" placeholder="Email Address">
+                                <input name="email" type="email" value="<?php echo $email?>" placeholder="Email Address">
                             </div>  
                         </div>
 
-                        <div style="flex:0.2; padding-top:35px;">
+                        <!--<div style="flex:0.2; padding-top:35px;">
                             OR 
-                        </div>
+                        </div>--->
 
                         <div style="flex:1">
                             <div class="input-box2">
-                                <input name="phone" type="number" placeholder="Mobile Number">
+                                <input name="phone" value="<?php echo $phone?>" type="number" placeholder="Mobile Number">
                             </div> 
                         </div>
                     </div>
-
-                    
+                    <div style="display: flex;">
+                   
                     <div class="input-box">
-                        <input name="password" type="password" placeholder="Password" id="myInput">
+                        <input name="password"value="<?php echo $password?>" type="password" placeholder="Password" id="myInput">
                         <span class="eye" onclick="hidetoggle()">
                             <i id="hide1" class="fa fa-eye"></i>
                             <i id="hide2" class="fa fa-eye-slash"></i>
                         </span>
                     </div>
+                  
+                    </div>
 
                     <label style="color:#c6c9d8bf">Birth Date : </label>
-                    <input name="dob" type="date" placeholder="Birth Date" >
+                    <input name="dob" value="<?php echo $dob?>" type="date" placeholder="Birth Date" >
 
                     <div style="display: flex; padding-top:25px;" >
                         <div style="flex: 0.2; color:#c6c9d8bf;">Sex : </div>
@@ -104,7 +132,13 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" id="button" class="login-btn" value="Sign Up">
+                    <div style="padding-top: 5%;">
+                        <span class="error start" style="font-size: 95%; color:red"> <?php echo $error?></span>
+                  
+                    
+                        <br><input type="submit" id="button" class="login-btn" value="Sign Up">
+
+                    </div>
                     </form>
 
                     
