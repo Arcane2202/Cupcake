@@ -11,16 +11,20 @@
             if($this->errorMsg!="") {
                 return $this->errorMsg;
             }
-            $email=addslashes($value['email']);
-            $password=addslashes($value['password']);
+            $email=$value['email'];
+            $password=$value['password'];
             $quer = "SELECT *FROM USERS WHERE email = '$email' limit 1";
             $database = new connectDatabase();
             $res = $database->read($quer);
             if($res) {
                 $val = $res[0];
-                if($password==password_hash($val['password'],PASSWORD_ARGON2I)) {
+                //if($val['password']==password_hash($paspassword_verify($password, $val['password'])sword,PASSWORD_ARGON2I)) {
+                $storedPass = $val['password'];
+                $check = password_verify($password, $storedPass);
+                if($check) {
                     $this->errorMsg="";
                     $_SESSION['user'] = $val['userID'];
+                    echo "HI!";
                     return;
                 } else {
                     $this->errorMsg.="Wrong Password!<br>";

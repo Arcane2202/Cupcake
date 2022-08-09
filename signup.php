@@ -16,7 +16,7 @@
             $error = $attemptStore;
         } else {
             $error = "";
-            header("Location:ProfilePage.php");
+            header("Location:login.php");
             die;
         }
         $fName = $_POST['firstName'];

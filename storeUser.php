@@ -43,7 +43,8 @@
             $email=$value['email'];
             $phone=$value['phone'];
             $gender=$value['flexRadioDefault'];
-            $password=password_hash($value['password'],PASSWORD_ARGON2I);
+           
+            $password=password_hash($value['password'],PASSWORD_BCRYPT);
             $urlAdress=$this->urlGenearate($firstName,$lastName);
             $quer = "INSERT INTO USERS(userID,firstName,lastName,email,phone,gender,password,urlAdress)
             VALUES('$userID','$firstName','$lastName','$email','$phone','$gender','$password','$urlAdress')";
