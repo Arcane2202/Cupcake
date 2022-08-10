@@ -8,6 +8,7 @@
     $password = "";
     $dob = "";
     $error = "";
+    $gender = "";
     if($_SERVER['REQUEST_METHOD']=='POST') {
         $store = new createUser();
         $error = "";
@@ -25,9 +26,8 @@
         $phone = $_POST['phone'];
         $password = $_POST['password'];
         $dob = $_POST['dob'];
+        $gender = $_POST['flexRadioDefault'];
     }
-
-
 ?>
 
 <!DOCTYPE html>
