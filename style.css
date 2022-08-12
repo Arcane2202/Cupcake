@@ -8,17 +8,6 @@
   --col7: #777777;
   --col8: #999999;
   --col10: #7e7e7e;
-  --gradient-color: linear-gradient(
-    -224deg,
-    var(--primary-color) 0,
-    #337dff 100%
-  );
-  --gradient-text: linear-gradient(
-    120deg,
-    #1c99fe 20.69%,
-    #7644ff 50.19%,
-    var(--primary-color) 79.69%
-  );
   --primary-font: "Poppins", sans-serif;
   --primary-text: #fd4766;
   --text-gray: #c6c9d8bf;
@@ -29,6 +18,39 @@ body {
   background-color: var(--col4);
   color: antiquewhite;
 }
+
+.menu-bar {
+  background: black;
+  text-align: center;
+}
+.menu-bar ul{
+  display: inline-flex;
+  list-style: none;
+}
+.menu-bar ul li{
+  margin: 15px;
+  padding: 0.5vw;
+}
+.sub-menu {
+  display: none;
+  font-size: calc(0.125em + 0.5vw);
+  text-decoration: none;
+}
+
+.menu-bar ul li:hover .sub-menu{
+  display:block;
+  position: absolute;
+  background-color: black;
+  margin-top: 40px;
+  margin-left: -80px;
+  font-size: calc(0.125em + 0.5vw);
+}
+.menu-bar ul li:hover .sub-menu ul{
+  display: block;
+  margin: 10px;
+  font-size: calc(0.125em + 0.5vw);
+}
+
 
 .textsizeCorrect {
   font-size: calc(0.25em + 0.5vw);
@@ -62,12 +84,28 @@ body {
   text-align: center;
 }
 
+
 #navBar {
-  height: 7vh;
-  display: flex;
   background-color: black;
   color: antiquewhite;
-  align-items: center;
+  text-align: center;
+}
+
+.navBar {
+  background-color: black;
+  color: antiquewhite;
+  text-align: center;
+}
+
+.ulnav {
+  display: inline-flex;
+  list-style: none;
+}
+.linav{
+
+  width: 120px;
+  margin: 15px;
+  padding: 15px;
 }
 
 #containMake {

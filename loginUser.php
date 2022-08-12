@@ -34,5 +34,15 @@
             }
             return $this->errorMsg;
         }
+
+        public function loginCheck($userID) {
+           $quer = "SELECT userID FROM USERS WHERE userID = '$userID' limit 1";
+           $database = new connectDatabase();
+           $res = $database->read($quer);
+           if($res) {
+            return true;
+           } 
+           return false;
+        }
     }
 ?>
