@@ -28,7 +28,8 @@ body {
   list-style: none;
 }
 .menu-bar ul li{
-  margin: 15px;
+  margin: 5px;
+  margin-bottom: -8px;
   padding: 0.5vw;
 }
 .sub-menu {
@@ -49,7 +50,23 @@ body {
   display: block;
   margin: 10px;
   font-size: calc(0.125em + 0.5vw);
+  text-decoration: none;
 }
+.menu-bar ul li:hover .sub-menu ul li a{
+  font-size: calc(0.125em + 0.5vw);
+  text-decoration: none;
+  color: antiquewhite;
+}
+.menu-bar ul li:hover .sub-menu ul li a:hover{
+  font-size: calc(0.125em + 0.5vw);
+  text-decoration: none;
+  color: antiquewhite;
+  font-weight: bold;
+  color: var(--col8);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 
 
 .textsizeCorrect {

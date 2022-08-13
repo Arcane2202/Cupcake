@@ -116,8 +116,9 @@ session_start();
 
                     <div class="input-box"></div>
                     <div align="center">
+                        <a href="signup.php">
                         <button type="submit" id="signup_btn">Create a New Account</button>
-
+                        </a>
                     </div>
                     
 

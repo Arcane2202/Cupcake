@@ -43,14 +43,31 @@
 <body class="textsizeCorrect">
 
 
-    <div id="navBar">
+    <div class="menu-bar textsizeCorrect">
         <div id="containMake">
-            <a href="" style="color: antiquewhite; text-decoration:none"><img src="images/logo.png"
-                    style="width: 5%; padding: -10%" alt="profilepic">Cupcake</a>
-            <input type="text" id="searchBar" placeholder="Search...">
-            <a href=""><img src="images/profilepic.jpg" id="profilepic" alt="profilepic"></a>
-            <a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a>
-            <a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a>
+            <ul>
+                <li>
+                    <a href="" style="color: antiquewhite; text-decoration:none">
+                        Cupcake
+                    </a>
+                </li>
+                <li><input type="text" id="searchBar" placeholder="Search..."></li>
+
+
+                <li><a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a></li>
+                <li><a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a></li>
+                <li><a href="">
+                        <img src="images/profilepic.jpg" id="profilepic" alt="profilepic"></a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li> <a href=""> Profile</a> </li>
+                            <li> <a href=""> Help</a> </li>
+                            <li> <a href="logout.php"> Logout</a> </li>
+                        </ul>
+                        <div>
+
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -67,11 +84,16 @@
                 <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
             </div>
             <br>
-            <div id="profButtons"> <a href="" class="texthover" style="color: var(--col8); text-decoration:none"> Timeline </a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">About</a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Friends</a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Photos</a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Settings</a> </div>
+            <div id="profButtons"> <a href="" class="texthover" style="color: var(--col8); text-decoration:none">
+                    Timeline </a> </div>
+            <div id="profButtons"><a href="" class="texthover"
+                    style="color: var(--col8); text-decoration:none">About</a> </div>
+            <div id="profButtons"><a href="" class="texthover"
+                    style="color: var(--col8); text-decoration:none">Friends</a> </div>
+            <div id="profButtons"><a href="" class="texthover"
+                    style="color: var(--col8); text-decoration:none">Photos</a> </div>
+            <div id="profButtons"><a href="" class="texthover"
+                    style="color: var(--col8); text-decoration:none">Settings</a> </div>
 
         </div>
 
@@ -85,19 +107,19 @@
                     <div id="friendLister">
                         <a href="" style="color: antiquewhite; text-decoration:none">
                             <img src="images/friend1.jpg" id="friendimgcontainer" alt="Friend 1"> <br>
-                            <span class="texthover">Kakashi</span> 
+                            <span class="texthover">Kakashi</span>
                         </a>
                     </div>
                     <div id="friendLister">
                         <a href="" style="color: antiquewhite; text-decoration:none">
                             <img src="images/friend1.jpg" id="friendimgcontainer" alt="Friend 1"> <br>
-                            <span class="texthover">Kakashi</span> 
+                            <span class="texthover">Kakashi</span>
                         </a>
                     </div>
                     <div id="friendLister">
                         <a href="" style="color: antiquewhite; text-decoration:none">
                             <img src="images/friend1.jpg" id="friendimgcontainer" alt="Friend 1"> <br>
-                            <span class="texthover">Kakashi</span> 
+                            <span class="texthover">Kakashi</span>
                         </a>
                     </div>
                 </div>
@@ -108,10 +130,10 @@
 
                     <textarea placeholder="What's on your mind?"></textarea>
                     <button class="btn btn-with-hover">
-                         <img src="images/addpic.png" width="20" />
+                        <img src="images/addpic.png" width="20" />
                     </button>
                     <button class="btn btn-with-hover">
-                         <img src="images/addvdo.png" width="20" />
+                        <img src="images/addvdo.png" width="20" />
                     </button>
                     <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
                     <br>
@@ -132,9 +154,13 @@
 
                             <div class="texthover" id="NameHeader" style="color: var(--col9);">
                                 <a href="" style="color: antiquewhite; text-decoration:none">
-                                <span class="texthover">Lelouch Lamperouge</span> 
+                                    <span class="texthover">Lelouch Lamperouge</span>
                                     <br>
                                 </a>
+                            </div>
+                            <div class="smallerText" id="time" style="color: var(--col9);">
+                                    August 13, 2022
+                                    <br> <br>
                             </div>
                             <div style="margin-left: 2%;">
                                 Lelouch is a handsome young man with black hair and violet eyes, which he inherited from
@@ -173,18 +199,22 @@
                     <div id="status">
 
                         <div>
-                            <a href=""  style="color: antiquewhite; text-decoration:none">
+                            <a href="" style="color: antiquewhite; text-decoration:none">
                                 <img src="images/profilepic.jpg" style=" width: 55%; margin-top:5%; margin-right: 1%;">
                             </a>
                         </div>
 
                         <div>
 
-                            <div " id="NameHeader" style="color: var(--col9);">
-                                <a  href="" style="color: antiquewhite; text-decoration:none">
-                                    <span class="texthover">Lelouch Lamperouge</span> 
+                            <div " id=" NameHeader" style="color: var(--col9);">
+                                <a href="" style="color: antiquewhite; text-decoration:none">
+                                    <span class="texthover">Lelouch Lamperouge</span>
                                     <br>
                                 </a>
+                            </div>
+                            <div class="smallerText" id="time" style="color: var(--col9);">
+                                    August 13, 2022
+                                    <br> <br>
                             </div>
                             <div style="margin-left: 2%;">
                                 Lelouch is a handsome young man with black hair and violet eyes, which he inherited from
@@ -220,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
 
                 </div>
 
@@ -228,6 +258,7 @@
         </div>
 
     </div>
+
 
 </body>
 
