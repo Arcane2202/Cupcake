@@ -87,7 +87,7 @@
                         <br>
                     </div>
                     <div class="mb-5">
-                        <input id="submitbutton" type="submit" name="submit" class=" main-btn"></button>
+                        <input id="submitbutton" type="submit" name="submit" class="addhover main-btn"></button>
                     </div>
                 </form>
             </div>
