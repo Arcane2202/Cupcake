@@ -6,26 +6,8 @@
     include("userInformation.php");
     include("createPost.php");
     
-    if(isset($_SESSION['user']) && is_numeric($_SESSION['user'])) {
-        $userID = $_SESSION['user'];
-        $log = new loginUser();
-        $check = $log->loginCheck($userID);
-        if($check) {
-            $user = new userData();
-            $userData = $user->fetchData($userID);
-            if(!$userData) {
-              header("Location: login.php");
-              die;  
-            }
-        } else {
-            header("Location: login.php");
-            die;
-        }
-    } else {
-        header("Location: login.php");
-        die;
-    }
-
+    $log = new loginUser();
+    $userData=$log->loginCheck($_SESSION['user']);
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         print_r($_POST);
         $userId = $_SESSION['user'];
@@ -62,33 +44,7 @@
 <body class="textsizeCorrect">
 
 
-    <div class="menu-bar textsizeCorrect">
-        <div id="containMake">
-            <ul>
-                <li>
-                    <a href="" style="color: antiquewhite; text-decoration:none">
-                        Cupcake
-                    </a>
-                </li>
-                <li><input type="text" id="searchBar" placeholder="Search..."></li>
-
-
-                <li><a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a></li>
-                <li><a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a></li>
-                <li><a href="">
-                        <img src="images/profilepic.jpg" id="profilepic" alt="profilepic"></a>
-                    <div class="sub-menu">
-                        <ul>
-                            <li> <a href=""> Profile</a> </li>
-                            <li> <a href=""> Help</a> </li>
-                            <li> <a href="logout.php"> Logout</a> </li>
-                        </ul>
-                        <div>
-
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php include('navBar.php');?>
 
     <div id="bodyContainer">
 
@@ -103,7 +59,7 @@
                 <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
             </div>
             <br>
-            <div id="profButtons"> <a href="" class="texthover" style="color: var(--col8); text-decoration:none">
+            <div id="profButtons"> <a href="HomePage.php" class="texthover" style="color: var(--col8); text-decoration:none">
                     Timeline </a> </div>
             <div id="profButtons"><a href="" class="texthover"
                     style="color: var(--col8); text-decoration:none">About</a> </div>

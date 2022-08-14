@@ -1,3 +1,33 @@
+<?php
+session_start();
+//unset($_SESSION['user']);
+include("connect.php");
+include("loginUser.php");
+include("userInformation.php");
+include("createPost.php");
+
+$log = new loginUser();
+$userData = $log->loginCheck($_SESSION['user']);
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    print_r($_POST);
+    $userId = $_SESSION['user'];
+    $poster = new createPosts();
+    $res = $poster->createPost($_POST, $userId);
+
+    if ($res == "") {
+        header("Location: ProfilePage.php");
+        die;
+    }
+}
+$userId = $_SESSION['user'];
+$poster = new createPosts();
+$userPosts = $poster->getPosts($userId);
+
+$use = new userData();
+$friends = $use->getFriendData($userId);
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -15,33 +45,7 @@
 </head>
 
 <body class="textsizeCorrect">
-<div class="menu-bar textsizeCorrect">
-        <div id="containMake">
-            <ul>
-                <li>
-                    <a href="" style="color: antiquewhite; text-decoration:none">
-                        Cupcake
-                    </a>
-                </li>
-                <li><input type="text" id="searchBar" placeholder="Search..."></li>
-
-
-                <li><a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a></li>
-                <li><a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a></li>
-                <li><a href="">
-                        <img src="images/profilepic.jpg" id="profilepic" alt="profilepic"></a>
-                    <div class="sub-menu">
-                        <ul>
-                            <li> <a href=""> Profile</a> </li>
-                            <li> <a href=""> Help</a> </li>
-                            <li> <a href="logout.php"> Logout</a> </li>
-                        </ul>
-                        <div>
-
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php include('navBar.php');?>
     <div id="bodyContainer">
         <div style="display: flex;">
 
@@ -49,31 +53,29 @@
                 <div id="content">
 
                     <div id="rowAdd">
-                        <a href=""  style="color: antiquewhite; text-decoration:none">
+                        <a href="ProfilePage.php" style="color: antiquewhite; text-decoration:none">
                             <img src="images/profilepic.jpg" id="homeProfileImage" alt="Friend 1"> <br>
-                            <span class="texthover">Lelouch VI</span> 
+                            <span class="texthover"><?php echo $userData['firstName']." ".$userData['lastName'] ?></span>
                         </a>
                     </div>
 
                     <div id="rowAdd">
                         <a href="" style="color: antiquewhite; text-decoration:none">
                             <i class="fas fa-user-friends fa-2x" style="padding-left: 5%; padding-right: 5%"></i>
-                            <span class="texthover">Friends</span> 
+                            <span class="texthover">Friends</span>
                         </a>
                     </div>
                     <div id="rowAdd">
                         <a href="" style="color: antiquewhite; text-decoration:none">
-                            <i class="fa fa-users fa-2x" aria-hidden="true"
-                                style="padding-left: 5%; padding-right: 5%"></i>
-                            <span class="texthover">Groups</span> 
+                            <i class="fa fa-users fa-2x" aria-hidden="true" style="padding-left: 5%; padding-right: 5%"></i>
+                            <span class="texthover">Groups</span>
                         </a>
                     </div>
 
                     <div id="rowAdd">
                         <a href="" style="color: antiquewhite; text-decoration:none">
-                            <i class="fa fa-caret-down fa-2x" aria-hidden="true"
-                                style="padding-left: 8%; padding-right:8%"></i>
-                                <span class="texthover">See More</span> 
+                            <i class="fa fa-caret-down fa-2x" aria-hidden="true" style="padding-left: 8%; padding-right:8%"></i>
+                            <span class="texthover">See More</span>
                         </a>
                     </div>
                 </div>
@@ -84,10 +86,10 @@
 
                     <textarea placeholder="What's on your mind?"></textarea>
                     <button class="btn btn-with-hover">
-                         <img src="images/addpic.png" width="20" />
+                        <img src="images/addpic.png" width="20" />
                     </button>
                     <button class="btn btn-with-hover">
-                         <img src="images/addvdo.png" width="20" />
+                        <img src="images/addvdo.png" width="20" />
                     </button>
                     <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
                     <br>
@@ -108,7 +110,7 @@
 
                             <div class="texthover" id="NameHeader" style="color: var(--col9);">
                                 <a href="" style="color: antiquewhite; text-decoration:none">
-                                <span class="texthover">Lelouch Lamperouge</span> 
+                                    <span class="texthover">Lelouch Lamperouge</span>
                                     <br>
                                 </a>
                             </div>
@@ -149,16 +151,16 @@
                     <div id="status">
 
                         <div>
-                            <a href=""  style="color: antiquewhite; text-decoration:none">
+                            <a href="" style="color: antiquewhite; text-decoration:none">
                                 <img src="images/profilepic.jpg" style=" width: 55%; margin-top:5%; margin-right: 1%;">
                             </a>
                         </div>
 
                         <div>
 
-                            <div " id="NameHeader" style="color: var(--col9);">
-                                <a  href="" style="color: antiquewhite; text-decoration:none">
-                                    <span class="texthover">Lelouch Lamperouge</span> 
+                            <div " id=" NameHeader" style="color: var(--col9);">
+                                <a href="" style="color: antiquewhite; text-decoration:none">
+                                    <span class="texthover">Lelouch Lamperouge</span>
                                     <br>
                                 </a>
                             </div>
@@ -196,7 +198,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
 
                 </div>
 
