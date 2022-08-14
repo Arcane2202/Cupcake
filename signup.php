@@ -88,7 +88,7 @@
                    
                     <div class="input-box3">
                         <input name="password"value="<?php echo $password?>" type="password" placeholder="Password" id="myInput">
-                        <span class="eye" onclick="hidetoggle()">
+                        <span class="eye" onclick="hidetoggle()" style="margin-left: -1%;">
                             <i id="hide1" class="fa fa-eye"></i>
                             <i id="hide2" class="fa fa-eye-slash"></i>
                         </span>

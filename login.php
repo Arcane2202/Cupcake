@@ -81,7 +81,7 @@ session_start();
                     <div class="input-box">
                         <i class="fa fa-key"></i>
                         <input type="password" name="password" value="<?php echo $password ?>" placeholder="Password" id="myInput">
-                        <span class="eye" onclick="hidetoggle()">
+                        <span class="eye" onclick="hidetoggle()" style="margin-left: -2%;">
                             <i id="hide1" class="fa fa-eye"></i>
                             <i id="hide2" class="fa fa-eye-slash"></i>
                         </span>
