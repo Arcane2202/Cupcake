@@ -86,7 +86,7 @@
                     </div>
                     <div style="display: flex;">
                    
-                    <div class="input-box">
+                    <div class="input-box3">
                         <input name="password"value="<?php echo $password?>" type="password" placeholder="Password" id="myInput">
                         <span class="eye" onclick="hidetoggle()">
                             <i id="hide1" class="fa fa-eye"></i>
@@ -100,9 +100,9 @@
                     <input name="dob" value="<?php echo $dob?>" type="date" placeholder="Birth Date" >
 
                     <div style="display: flex; padding-top:25px;" >
-                        <div style="flex: 0.2; color:#c6c9d8bf;">Sex : </div>
+                        <div style="flex: 0.25; color:#c6c9d8bf;">Gender : </div>
 
-                        <div style="flex:1;">
+                        <div style="flex:0.9;">
                             <div style="display: flex;" align="left">
                                 <div style="flex: 0.3;">
                                     <div class="form-check">

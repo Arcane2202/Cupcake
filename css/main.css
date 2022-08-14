@@ -198,3 +198,46 @@ body{
     border-radius: 20px;
     border: 2px solid #fff;
 }
+
+.input-box3{
+    margin:30px auto;
+    width: 90%;
+    border-bottom: 1px solid #fff;
+    padding-top:10px;
+    padding-bottom: 5px;
+
+}
+.input-box3 input{
+    width: 95%;
+    border:none;
+    outline: none;
+    background:transparent;
+    color: #fff;
+}
+input[type="date"]{
+    background-color:rgba(15, 7, 6,0.8);
+    width: 75%;
+    color: #fff;
+    border-bottom: #fff solid 1px;
+    outline: none;
+    padding: 10px;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: #fff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+input[type="radio"]{
+    background-color: rgba(15, 7, 6,0.8);
+    border: 1px solid #fff;
+}
+
+input[type='radio']:checked{
+    background-color: rgba(15, 7, 6,0.8);
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+}
