@@ -48,10 +48,25 @@
     <body style="background-color: var(--col4);
     color: antiquewhite;">
 
+<div style="overflow: hidden; display:flex;">
+            <div style="flex:3;">
 
-            <div class="form-box2" align="center" style="margin: 6% auto;">
-                <h1 style="color:#9a463d;">CupCake</h1>
-                    <h2 align="center"><i>Sign Up Form</i></h2>
+<!--
+            <img src="./img/logo.png" style="width:30% ; height:30%;
+            margin-top:20%; margin-left:10%;">
+-->
+                <div style="margin-top:20%; padding-left:20%;">         
+                    <h1 class="tubelight"> Cupcake </h1>
+                    <p style="color:#c6c9d8bf;">A platform for the yooth to resurrect the friendship</p>
+
+
+                </div>
+    
+            </div>
+
+            <div style="flex:1; padding:5%;">
+                <div class="form-box" align="center" >
+                <h1 align="center">Sign Up Form</h1>
                     <form method="post" action="">
                     <div style="display: flex;">
                         <div style="flex:1">
@@ -95,11 +110,13 @@
                     </div>
                   
                     </div>
+                    <div style="padding-left: 5%; padding-right:5%;">
+                        <label style="color:#c6c9d8bf">Birth Date : </label>
+                        <input name="dob" value="<?php echo $dob?>" type="date" placeholder="Birth Date" >
+                    </div>
+                    
 
-                    <label style="color:#c6c9d8bf">Birth Date : </label>
-                    <input name="dob" value="<?php echo $dob?>" type="date" placeholder="Birth Date" >
-
-                    <div style="display: flex; padding-top:25px;" >
+                    <div style="display: flex; padding-top:25px; padding-left: 5%; padding-right:5%;" >
                         <div style="flex: 0.25; color:#c6c9d8bf;">Gender : </div>
 
                         <div style="flex:0.9;">
@@ -166,8 +183,13 @@
                     
 
 
-
                 </div>
+
+
+
+
+            </div>
+
     
         
 

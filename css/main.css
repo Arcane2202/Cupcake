@@ -241,3 +241,36 @@ input[type='radio']:checked{
         visibility: visible;
         border: 2px solid white;
 }
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
+
+.tubelight{
+    position: relative;
+    font-size: 6em;
+    color:#9a463d;
+    text-align: left;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+    outline: none;
+    line-height: 0.70em;
+    animation: animate 4s linear infinite;
+    font-family: 'Bad Script', cursive;
+
+}
+
+@keyframes animate
+{
+    0%,18%,20%,88%,92%
+    {   
+        color:#9a463d;
+        text-shadow: none;
+    }
+    19%,21%,27%,77%
+    {
+        color: #fff;
+        text-shadow: 0 0 10px #9a463d,
+                     0 0 20px #9a463d,
+                     0 0 40px #9a463d,
+                     0 0 80px #9a463d,
+                     0 0 160px #9a463d,
+                     0 0 240px #9a463d,
+    }
+}

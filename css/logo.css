@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
+
+body
+{
+    font-family: 'Bad Script', cursive;
+    background: #111111;
+}
+
+/*
+.logo{
+    margin: 0;
+    padding:0;
+    color: #111;
+    font-size:10em;
+
+}
+
+.logo .logo-child{
+    display: table-cell;
+    margin:0;
+    padding: 0;
+    animation: animate 2s linear infinite;
+
+}
+
+.logo .logo-child:nth-child(1){
+    animation-delay: 0s;
+}
+.logo .logo-child:nth-child(2){
+    animation-delay: 0.2s;
+}
+.logo .logo-child:nth-child(3){
+    animation-delay: 0.4s;
+}
+.logo .logo-child:nth-child(4){
+    animation-delay: 0.6s;
+}
+.logo .logo-child:nth-child(5){
+    animation-delay: 0.8s;
+}
+.logo .logo-child:nth-child(6){
+    animation-delay: 01s;
+}
+.logo .logo-child:nth-child(7){
+    animation-delay: 01.2s;
+}
+
+@keyframes animate{
+    0%,100%
+    {
+        color: #fff;
+        filter:blur(2px);
+        text-shadow: 0 0 10px #9a463d,
+                    0 0 20px #9a463d,
+                    0 0 40px #9a463d,
+                    0 0 80px #9a463d,
+                    0 0 120px #9a463d,
+                    0 0 240px #9a463d,
+                    0 0 360px #9a463d;
+                    
+
+    }
+    5%,95%{
+        color: #111;
+        filter: blur(0px);
+        text-shadow: 0 0 10px none;
+    }
+}
+*/
+
+.tubelight{
+    position: relative;
+    font-size: 6em;
+    color:#9a463d;
+    text-align: center;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+    outline: none;
+    line-height: 0.70em;
+    animation: animate 4s linear infinite;
+
+}
+
+@keyframes animate
+{
+    0%,18%,20%,46%,58%,67%,78%,88%,92%
+    {   
+        color:#9a463d;
+        text-shadow: none;
+    }
+    19%,21%,27%,50%,60%,77%,89%,96%
+    {
+        color: #fff;
+        text-shadow: 0 0 10px #9a463d,
+                     0 0 20px #9a463d,
+                     0 0 40px #9a463d,
+                     0 0 80px #9a463d,
+                     0 0 160px #9a463d,
+                     0 0 240px #9a463d,
+    }
+}

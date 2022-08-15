@@ -33,7 +33,6 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
         
-
     </head>
 
     <body style="background-color: var(--col4);
@@ -55,7 +54,7 @@ session_start();
             margin-top:20%; margin-left:10%;">
 -->
             <div style="margin-top:20%; padding-left:20%;">         
-                <h1 style="color:#9a463d;">Cup Cake</h1>
+                <h1 class="tubelight"> Cupcake </h1>
                 <p style="color:#c6c9d8bf;">A platform for the yooth to resurrect the friendship</p>
 
 
