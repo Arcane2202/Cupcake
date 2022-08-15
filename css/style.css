@@ -166,6 +166,37 @@ body {
   color: antiquewhite;
 }
 
+.imgPrevDiv{
+  width: 46vw;
+  min-height: 200px;
+  margin-top: 2px;
+  margin-bottom:20px;
+  border: 1px solid antiquewhite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: antiquewhite;
+}
+.imgPrevPost{
+  display: none;
+  width: 34vw;
+  min-height: 200px;
+  margin-top: 2px;
+  margin-bottom:20px;
+  border: 1px solid antiquewhite;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: antiquewhite;
+}
+.imgPrevImg {
+  display: none;
+  width: 100%;
+}
+.showNone {
+  display: none;
+}
 #profilepicmain {
   width: 10vw;
   margin-top: -11%;
@@ -241,7 +272,7 @@ textarea {
 }
 
 #statusBar {
-  margin-top: 5%;
+  /*margin-top: 5%;*/
   background-color: var(--col5);
   padding: 4%;
 }

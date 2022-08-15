@@ -6,12 +6,12 @@ include("loginUser.php");
 include("userInformation.php");
 include("createPost.php");
 include("media.php");
-
+$media = new media();
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_FILES['dp']['name']) && $_FILES['dp']['name'] != "") {
-        if ($_FILES['dp']['type'] == "image/jpeg"||$_FILES['dp']['type'] == "image/png") {
+        if ($_FILES['dp']['type'] == "image/jpeg") {
             $directory = "mediaStorage/".$userData['userID']."/";
             if(!file_exists($directory)) {
                 mkdir($directory,0777,true);
@@ -25,14 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             move_uploaded_file($_FILES['dp']['tmp_name'], $mediaName);
             if($change == "dp") {
                 $quer = "UPDATE USERS SET dp = '$mediaName' WHERE userID = '$userData[userID]' limit 1";
-                $med->cropMedia($mediaName, $mediaName, 1280, 1280);
+                $med->resizeMedia($mediaName, $mediaName, 4000, 4000);
+                $_POST['dp'] = 1;
             } else {
                 $quer = "UPDATE USERS SET cover = '$mediaName' WHERE userID = '$userData[userID]' limit 1";
-                $med->cropMedia($mediaName, $mediaName, 3840, 1442);
+                $med->resizeMedia($mediaName, $mediaName, 4000, 4000);
+                $_POST['cover'] = 1;
             }
             if (file_exists($mediaName)) {
                 $database = new connectDatabase();
                 $database->write($quer);
+                $postPic = new createPosts();
+                $postPic->createPost($_POST,$userData['userID'],$mediaName);
+
                 header("Location:ProfilePage.php");
                 die;
             }
@@ -69,16 +74,47 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div id="condivcontainer2">
                 <form method="post" enctype="multipart/form-data">
                 <div id="containposter">
-                    <input type="file" name="dp">
+                    <div class="imgPrevDiv" id = "imgPrevDiv">
+                        <img src="" class="imgPrevImg" id="imgPrevImg" alt="img">
+                        <span class="imgPrevtext">Selected Image will appear here!</span>
+                    </div>
+                    <input type="file" name="dp" id="dp">
                     <input class="btn-with-hover" id="submitButton" type="submit" value="Upload">
                     <br>
-
                 </div>
                 </form>
 
             </div>
         </div>
     </div>
+
+    <script>
+
+        const dp = document.getElementById("dp");
+        const div = document.getElementById("imgPrevDiv");
+        const img = div.querySelector(".imgPrevImg");
+        const txt = div.querySelector(".imgPrevtext");
+
+        dp.addEventListener("change",function() {
+            const file = this.files[0];
+            if(file) {
+                const reader = new FileReader();
+                img.style.display = "block";
+                txt.style.display = "none";
+
+                reader.addEventListener("load",function() {
+                    img.setAttribute("src",this.result);
+                });
+                reader.readAsDataURL(file);
+            } else {
+                img.setAttribute("src","");
+                img.style.display = null;
+                txt.style.display = null;
+            }
+        });
+
+    </script>
+
 </body>
 
 </html>

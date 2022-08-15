@@ -26,7 +26,6 @@ class loginUser
             if ($check) {
                 $this->errorMsg = "";
                 $_SESSION['user'] = $val['userID'];
-                echo "HI!";
                 return;
             } else {
                 $this->errorMsg .= "Wrong Password!<br>";

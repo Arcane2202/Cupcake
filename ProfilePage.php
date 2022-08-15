@@ -1,31 +1,44 @@
 <?php
+
+
     session_start();
     //unset($_SESSION['user']);
     include("connect.php");
     include("loginUser.php");
     include("userInformation.php");
     include("createPost.php");
+    include("media.php");
+    include("getProfile.php");
     
+    $user = $_SESSION['user'];
+    $media = new media();
     $log = new loginUser();
     $userData=$log->loginCheck($_SESSION['user']);
+   if(isset($_GET['id'])) {
+    $prof = new getProfile();
+    $profData = $prof->getData($_GET['id']);
+    if(is_array($profData)) {
+        $userData = $profData[0];
+    }
+   }
+    
+    
     if($_SERVER['REQUEST_METHOD'] == "POST") {
-        print_r($_POST);
         $userId = $_SESSION['user'];
         $poster = new createPosts();
-        $res = $poster->createPost($_POST,$userId);
+        $res = $poster->createPost($_POST,$userId,$_FILES);
 
         if($res == "") {
             header("Location: ProfilePage.php");
             die;
         }
     }
-    $userId = $_SESSION['user'];
+    $userId = $userData['userID'];
     $poster = new createPosts();
     $userPosts = $poster->getPosts($userId);
 
     $use = new userData();
     $friends = $use->getFriendData($userId);
-
 ?>
 <!DOCTYPE html>
 
@@ -46,44 +59,64 @@
 
     <?php include('navBar.php');?>
 
+    <?php 
+        if(isset($_GET['id'])) {
+            $prof = new getProfile();
+            $profData = $prof->getData($_GET['id']);
+            if(is_array($profData)) {
+                $userData = $profData[0];
+            }
+        }
+    ?>
+
     <div id="bodyContainer">
 
         <div id="profileImagesContainer">
 
             <a href="" style="color: antiquewhite; text-decoration:none">
                 <span>
-                  
-                  <?php
-                      $cover = "";
+                    <?php
                       if(file_exists($userData['cover'])) {
-                          $cover = $userData['cover'];
+                          $cover = $media->preview($userData['cover'],'cover');
+                          echo "<img src=$cover style='margin-bottom:-2%; width: 100%;' alt='coverpic'> </a>";
                       }
-                  ?>
-                    <img src=<?php echo $cover?> style="margin-bottom:-2%; width: 100%;" alt="coverpic"> </a>
-                    <a href="changeDP.php?change=cover"><i class="fa fa-camera" style="font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%"></i></a> <br>
-                </span>
-                
+                      if($userData['userID'] == $_SESSION['user']) {
+                        echo "<a href='changeDP.php?change=cover'><i class='fa fa-camera'
+                        style='font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%'></i></a> <br>";
+                      }
+                    ?>
+                    
+                    <!--<a href="changeDP.php?change=cover"><i class="fa fa-camera"
+                    style="font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%"></i></a> <br>-->
+            </span>
+
             <a href="" style="color: antiquewhite; text-decoration:none">
                 <span>
-                  
-                <?php
-                    $dp = "";
-                    if(file_exists($userData['dp'])) {
-                        $dp = $userData['dp'];
-                    }
-                ?>
-                
-                <img id="profilepicmain" src=<?php echo $dp?> style="margin-bottom:-2%" alt="profilepic"> </a> <br>
-                   
-                
-                <a href="changeDP.php?change=dp"><i class="fa fa-camera" style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>
-                </span>
+
+                    <?php
+                        if(file_exists($userData['dp'])) {
+                            $dp = $media->preview($userData['dp'],'dp');
+                            echo "<img id='profilepicmain' src=$dp style='margin-bottom:-2%' alt='profilepic'> </a> <br>";
+                        }
+                        if($userData['userID'] == $_SESSION['user']) {
+                            echo "<a href='changeDP.php?change=dp'><i class='fa fa-camera'style='font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%'></i></a>";
+                        }
+
+                    ?>
+
+                   <!--<a href="changeDP.php?change=dp"><i class="fa fa-camera"
+                    style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>-->
+
+
+            
+            </span>
             <br>
             <div style="font-size: 1.5vw">
                 <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
             </div>
             <br>
-            <div id="profButtons"> <a href="HomePage.php" class="texthover" style="color: var(--col8); text-decoration:none">
+            <div id="profButtons"> <a href="HomePage.php" class="texthover"
+                    style="color: var(--col8); text-decoration:none">
                     Timeline </a> </div>
             <div id="profButtons"><a href="" class="texthover"
                     style="color: var(--col8); text-decoration:none">About</a> </div>
@@ -109,30 +142,36 @@
                             }
                         }    
                     ?>
-                    
-                    
+
+
                 </div>
             </div>
             <div id="divcontainer2">
+                <?php 
+                    if($userData['userID'] == $_SESSION['user']) {   
+                        echo "<div id='containposter' style='margin-bottom:3%'>
+                            <form method='post' enctype='multipart/form-data'>
+                                <textarea name='posts' placeholder='What is on your mind?'></textarea>
+                                
+                                <div class='imgPrevPost' id='imgPrevPost'>
+                                    <img src='' class='imgPrevImg' id='imgPrevImg' alt='img'>
+                                </div>
+                                
+                                <label for='dp'>
+                                        <img src='images/addpic.png' width='20' />
+                                    </label>
+                                    <input type='file' name='dp' id='dp' class='showNone'></input>
+                                    <input class='btn-with-hover' id='submitButton' type='submit' value='Post'>
+                                <br> 
+                            </form>
 
-                <div id="containposter">
-                    <form method="post">
-                        <textarea name="posts" placeholder="What's on your mind?"></textarea>
-                        <button class="btn btn-with-hover">
-                            <img src="images/addpic.png" width="20" />
-                        </button>
-                        <button class="btn btn-with-hover">
-                            <img src="images/addvdo.png" width="20" />
-                        </button>
-                        <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
-                        <br>
-                    </form>
-
-                </div>
+                        </div>";
+                    }
+                ?>
 
                 <div id="statusBar">
 
-                   <?php
+                    <?php
 
                         if($userPosts) {
                             foreach($userPosts as $val) {
@@ -149,6 +188,33 @@
         </div>
 
     </div>
+    <script>
+
+        const dp = document.getElementById("dp");
+        const div = document.getElementById("imgPrevPost");
+        const img = div.querySelector(".imgPrevImg");
+        const txt = div.querySelector(".imgPrevtext");
+
+        dp.addEventListener("change",function() {
+            const file = this.files[0];
+            if(file) {
+                const reader = new FileReader();
+                img.style.display = "block";
+                div.style.display = "flex";
+
+
+                reader.addEventListener("load",function() {
+                    img.setAttribute("src",this.result);
+                });
+                reader.readAsDataURL(file);
+            } else {
+                img.setAttribute("src","");
+                img.style.display = null;
+                div.style.display = null;
+            }
+        });
+
+    </script>
 
 
 </body>

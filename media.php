@@ -1,6 +1,50 @@
 <?php
 
     class media {
+
+        public function resizeMedia($media, $rMedia, $width, $height) {
+
+            if(file_exists($media)) {
+                $med = imagecreatefromjpeg($media);
+                $sw = imagesx($med);
+                $sh = imagesy($med);
+                if($sh > $sw) {
+                    $rat = $width/$sw;
+                    $cWidth = $width;
+                    $cHeight = $sh*$rat;
+                } else {
+                    $rat = $height/$sh;
+                    $cHeight = $height;
+                    $cWidth = $sw*$rat;
+                }
+            }
+            /*if($width != $height) {
+                if($height>$width) {
+                    if($height>$cHeight) {
+                        $adj = $height/$cHeight;
+                    } else {
+                        $adj = $cHeight/$height;
+                    }
+                    $cHeight *= $adj;
+                    $cWidth *= $adj;
+                } else {
+                    if($width>$cWidth) {
+                        $adj = $width/$cWidth;
+                    } else {
+                        $adj = $cWidth/$width;
+                    }
+                    $cHeight *= $adj;
+                    $cWidth *= $adj;
+                }
+            }*/
+            $nImg = imagecreatetruecolor($cWidth,$cHeight);
+            imagecopyresampled($nImg,$med,0,0,0,0,$cWidth,$cHeight,$sw,$sh);
+            imagedestroy($med);
+            
+            imagejpeg($nImg,$rMedia,100);
+            imagedestroy($nImg);
+        }
+
         public function cropMedia($media, $cropMedia, $width, $height) {
 
             if(file_exists($media)) {
@@ -69,6 +113,23 @@
                 $name.=rand(0,9);
             }
             return $name;
+        }
+        public function preview($media,$type) {
+            $prev = $media."_coverPrev.jpg";
+            if(file_exists($prev)) {
+                return $prev;
+            }
+            if($type=='cover') {
+                $this->cropMedia($media,$prev,3840,1442);
+            } else {
+                $this->cropMedia($media,$prev,1280,1280);
+            }
+           
+            if(file_exists($prev)) {
+                return $prev;
+            } else {
+                return $media;
+            }
         }
     }
 ?>

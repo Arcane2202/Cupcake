@@ -13,7 +13,7 @@ session_start();
             $error = $attemptLogin;
         } else {
             $error = "";
-            header("Location:ProfilePage.php");
+            header("Location: ProfilePage.php");
             die;
         }
         $email = $_POST['email'];

@@ -1,41 +1,113 @@
 <?php
 
-    class createPosts {
-        private $errorMessage="";
-        
-        public function createPost($data,$userId) {
-            if(empty($data['posts'])) {
-                $this->errorMessage.="Cannot create empty posts!!!";
+class createPosts {
+    private $errorMessage = "";
+
+    public function createPost($data, $userId, $media) {
+        if (empty($data['posts']) && empty($media['dp']['name']) && !isset($data['dp']) && !isset($data['cover'])) {
+            $this->errorMessage .= "Cannot create empty posts!!!";
+        }
+        else {
+
+            $image = "";
+            $hasImage = 0;
+            $dp = 0;
+            $cover = 0;
+            if(!isset($data['dp'])&&!isset($data['cover'])) {
+
+                if (!empty($media['dp']['name'])) {
+                    $hasImage = 1;
+                    $directory = "mediaStorage/" . $userId . "/";
+                    if (!file_exists($directory)) {
+                        mkdir($directory, 0777, true);
+                    }
+                    $med = new media();
+                    $mediaName = $directory . $med->mediaName($userId,'post') . ".jpg";
+                    move_uploaded_file($_FILES['dp']['tmp_name'], $mediaName);
+                    $med->resizeMedia($mediaName, $mediaName, 4000, 4000);
+                }
             } else {
-                $post = addslashes($data['posts']);
-                $postId = $this->postIdGenerate();
-
-                $quer = "INSERT INTO POSTS(postId,userId,post) VALUES('$postId','$userId','$post')";
-                $database = new connectDatabase();
-                $database->write($quer);
-            
+                $mediaName = $media;
+                $hasImage = 1;
+                if(isset($data['dp'])) {
+                    $dp = 1;
+                } else{
+                    $cover = 1;
+                }
             }
-            return $this->errorMessage;
-        }
-
-        private function postIdGenerate() {
-            $len = rand(10,30); //DevSkim: ignore DS148264  
-            $id = "";
-            for($i=1;$i<=$len;$i++) {
-                $id .= rand(0,9); //DevSkim: ignore DS148264 
-            }
-            return $id;
-        }
-
-        public function getPosts($userId){
-            $quer = "SELECT * FROM POSTS WHERE userId = '$userId' ORDER BY id DESC";
+            $post = "";
+            $post .= addslashes($data['posts']);
+            $postId = $this->postIdGenerate();
+            $quer = "INSERT INTO POSTS(postId,userId,post,hasImage,image,dp,cover) VALUES('$postId','$userId','$post','$hasImage','$mediaName','$dp','$cover')";
             $database = new connectDatabase();
+            $database->write($quer);
+        }
+        return $this->errorMessage;
+    }
+
+    private function postIdGenerate() {
+        $len = rand(1, 30); //DevSkim: ignore DS148264  
+        $id = "";
+        $ar = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        for ($i = 1; $i <= $len; $i++) {
+            $id .= rand(0, 9); //DevSkim: ignore DS148264
+            $id .= $ar[rand(0,25)];
+        }
+        return $id;
+    }
+
+    public function getPosts($userId) {
+        $quer = "SELECT * FROM POSTS WHERE userId = '$userId' ORDER BY id DESC";
+        $database = new connectDatabase();
+        $res = $database->read($quer);
+        if ($res) {
+            return $res;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function reactPost($postid,$type,$reactor) {
+        if($type=='post') {
+            $database = new connectDatabase;
+
+            $quer = "SELECT reacts FROM reacts WHERE type = 'post' && postid = $postid limit 1";
             $res = $database->read($quer);
-            if($res) {
-                return $res;
+
+            if(!is_array($res[0])) {
+                $ar['reactor'] = $reactor;
+                $ar['timestamp'] = date("Y-m-d H:i:s");
+                $resAr[] = $ar;
+                $reactors = json_encode($resAr);
+                $quer = "INSERT INTO reacts (type,postid,reacts) VALUES ('$type', $postid, '$reactors')";
+                $database->write($quer);
+                $quer = "UPDATE posts SET reacts = reacts + 1 WHERE postId = $postid limit 1";
+                $database->write($quer);
             } else {
-                return false;
+                $resAr = json_decode($res[0]['reacts'],true);
+                $reactorIDs = array_column($resAr,'reactor');
+                if(!in_array($reactor,$reactorIDs)) {
+                    $ar['reactor'] = $reactor;
+                    $ar['timestamp'] = date("Y-m-d H:i:s");
+                    $resAr[] = $ar;
+                    $reactors = json_encode($resAr);
+                    $quer = "UPDATE reacts set reacts = '$reactors' WHERE type = 'post' && postid = $postid limit 1";
+                    $database->write($quer);
+                    $quer = "UPDATE posts SET reacts = reacts + 1 WHERE postId = $postid limit 1";
+                    $database->write($quer);
+                } else {
+                    $index = array_search($reactor,$reactorIDs);
+                    unset($resAr[$index]);
+                    $reactors = json_encode($resAr);
+                    $quer = "UPDATE reacts set reacts = '$reactors' WHERE type = 'post' && postid = $postid limit 1";
+                    $database->write($quer);
+
+                    $quer = "UPDATE posts SET reacts = reacts - 1 WHERE postId = $postid limit 1";
+                    $database->write($quer);
+                }
             }
         }
-        
     }
+
+}

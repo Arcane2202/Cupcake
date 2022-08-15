@@ -1,15 +1,9 @@
 <?php
-
-    $img = "";
-    if($val['gender']=="Male") {
-        $img .= "images/manDummy.jpg";
-    } elseif($val['gender']=="Female") {
-        $img .= "images/girlDummy.jpg";
-    }
+$img = $media->preview($val['dp'],'dp');
 ?>
 
 <div id="friendLister">
-    <a href="" style="color: antiquewhite; text-decoration:none">
+    <a href="ProfilePage.php?id=<?php echo $val['userID']; ?>" style="color: antiquewhite; text-decoration:none">
         <img src="<?php echo $img ?>" id="friendimgcontainer" alt="Friend 1"> <br>
         <span class="texthover">
 

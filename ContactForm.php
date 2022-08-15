@@ -1,3 +1,25 @@
+<?php
+
+session_start();
+//unset($_SESSION['user']);
+include("connect.php");
+include("loginUser.php");
+include("userInformation.php");
+include("createPost.php");
+include("media.php");
+$media = new media();
+
+$log = new loginUser();
+$userData = $log->loginCheck($_SESSION['user']);
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    print_r($_POST);
+    if ($res == "") {
+        header("Location: ContactForm.php");
+        die;
+    }
+}
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -16,17 +38,7 @@
 <body class="textsizeCorrect">
 
 
-    <div id="navBar">
-
-        <div id="containMake">
-            <a href="" style="color: antiquewhite; text-decoration:none"><img src="images/logo.png"
-                    style="width: 5%; padding: -10%" alt="profilepic">Cupcake</a>
-            <input type="text" id="searchBar" placeholder="Search...">
-            <a href=""><img src="images/profilepic.jpg" id="profilepic" alt="profilepic"></a>
-            <a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a>
-            <a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a>
-        </div>
-    </div>
+    <?php include("navBar.php") ?>
     <div id="ContactbodyContainer">
 
         <div class="leftcol">

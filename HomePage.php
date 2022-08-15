@@ -5,6 +5,8 @@ include("connect.php");
 include("loginUser.php");
 include("userInformation.php");
 include("createPost.php");
+include("media.php");
+$media = new media();
 
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
@@ -12,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     print_r($_POST);
     $userId = $_SESSION['user'];
     $poster = new createPosts();
-    $res = $poster->createPost($_POST, $userId);
+    $res = $poster->createPost($_POST, $userId,$_FILES);
 
     if ($res == "") {
         header("Location: ProfilePage.php");
@@ -54,8 +56,14 @@ $friends = $use->getFriendData($userId);
 
                     <div id="rowAdd">
                         <a href="ProfilePage.php" style="color: antiquewhite; text-decoration:none">
-                            <img src="images/profilepic.jpg" id="homeProfileImage" alt="Friend 1"> <br>
-                            <span class="texthover"><?php echo $userData['firstName']." ".$userData['lastName'] ?></span>
+                            <?php
+                                if(file_exists($userData['dp'])) {
+                                    $dp = $media->preview($userData['dp'],'dp');
+                                }
+                            ?>
+                            <img src=<?php echo $dp ?> id="homeProfileImage" alt=""> <br>
+                            <span
+                                class="texthover"><?php echo $userData['firstName']." ".$userData['lastName'] ?></span>
                         </a>
                     </div>
 
@@ -67,14 +75,16 @@ $friends = $use->getFriendData($userId);
                     </div>
                     <div id="rowAdd">
                         <a href="" style="color: antiquewhite; text-decoration:none">
-                            <i class="fa fa-users fa-2x" aria-hidden="true" style="padding-left: 5%; padding-right: 5%"></i>
+                            <i class="fa fa-users fa-2x" aria-hidden="true"
+                                style="padding-left: 5%; padding-right: 5%"></i>
                             <span class="texthover">Groups</span>
                         </a>
                     </div>
 
                     <div id="rowAdd">
                         <a href="" style="color: antiquewhite; text-decoration:none">
-                            <i class="fa fa-caret-down fa-2x" aria-hidden="true" style="padding-left: 8%; padding-right:8%"></i>
+                            <i class="fa fa-caret-down fa-2x" aria-hidden="true"
+                                style="padding-left: 8%; padding-right:8%"></i>
                             <span class="texthover">See More</span>
                         </a>
                     </div>
@@ -84,15 +94,20 @@ $friends = $use->getFriendData($userId);
 
                 <div id="containposter">
 
-                    <textarea placeholder="What's on your mind?"></textarea>
-                    <button class="btn btn-with-hover">
-                        <img src="images/addpic.png" width="20" />
-                    </button>
-                    <button class="btn btn-with-hover">
-                        <img src="images/addvdo.png" width="20" />
-                    </button>
-                    <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
-                    <br>
+                    <form method="post" enctype="multipart/form-data">
+                        <textarea name="posts" placeholder="What's on your mind?"></textarea>
+                        
+                        <div class="imgPrevPost" id="imgPrevPost">
+                            <img src="" class="imgPrevImg" id="imgPrevImg" alt="img">
+                        </div>
+                        
+                        <label for="dp">
+                                <img src="images/addpic.png" width="20" />
+                            </label>
+                            <input type="file" name="dp" id="dp" class="showNone"></input>
+                            <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
+                        <br>
+                    </form>
 
                 </div>
 
@@ -202,6 +217,35 @@ $friends = $use->getFriendData($userId);
             </div>
         </div>
     </div>
+
+    <script>
+
+        const dp = document.getElementById("dp");
+        const div = document.getElementById("imgPrevPost");
+        const img = div.querySelector(".imgPrevImg");
+        const txt = div.querySelector(".imgPrevtext");
+
+        dp.addEventListener("change",function() {
+            const file = this.files[0];
+            if(file) {
+                const reader = new FileReader();
+                img.style.display = "block";
+                div.style.display = "flex";
+
+
+                reader.addEventListener("load",function() {
+                    img.setAttribute("src",this.result);
+                });
+                reader.readAsDataURL(file);
+            } else {
+                img.setAttribute("src","");
+                img.style.display = null;
+                div.style.display = null;
+            }
+        });
+
+    </script>
+
 </body>
 
 </html>
