@@ -68,6 +68,18 @@ class createPosts {
         }
     }
 
+    public function getParticularPost($postId) {
+        $quer = "SELECT * FROM posts WHERE postId = $postId limit 1";
+        $database = new connectDatabase();
+        $res = $database->read($quer);
+        if ($res) {
+            return $res[0];
+        }
+        else {
+            return false;
+        }
+    }
+
     public function reactPost($postid,$type,$reactor) {
         if($type=='post') {
             $database = new connectDatabase;

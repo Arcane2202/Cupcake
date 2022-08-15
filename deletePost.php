@@ -10,23 +10,15 @@ $media = new media();
 
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    print_r($_POST);
-    $userId = $_SESSION['user'];
-    $poster = new createPosts();
-    $res = $poster->createPost($_POST, $userId,$_FILES);
 
-    if ($res == "") {
+if(isset($_GET['postid'])) {
+    $database = new connectDatabase();
+    $post = new createPosts();
+    $val = $post->getParticularPost($_GET['postid']);
+    if(!$val) {
         header("Location: ProfilePage.php");
-        die;
     }
 }
-$userId = $_SESSION['user'];
-$poster = new createPosts();
-$userPosts = $poster->getPosts($userId);
-
-$use = new userData();
-$friends = $use->getFriendData($userId);
 
 ?>
 
@@ -59,6 +51,11 @@ $friends = $use->getFriendData($userId);
                     <form method="post" enctype="multipart/form-data">
                         
                         Are you sure you want to delete this post?
+                        <?php 
+                            $USER = new userData();
+                            $posterUs = $USER->fetchData($val['userId']);
+                            include("displayPostToDelete.php"); 
+                        ?>
                         <input class="btn-with-hover" id="submitButton" type="submit" value="Delete">
                         <br>
                     </form>
