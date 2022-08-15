@@ -53,7 +53,20 @@
             <a href="" style="color: antiquewhite; text-decoration:none">
                 <img src="images/cover.jpg" style="width: 100%;" alt="coverpic"> </a>
             <a href="" style="color: antiquewhite; text-decoration:none">
-                <img id="profilepicmain" src="images/profilepic.jpg" alt="profilepic"> </a>
+                <span>
+                  
+                <?php
+                    $dp = "";
+                    if(file_exists($userData['dp'])) {
+                        $dp = $userData['dp'];
+                    }
+                ?>
+                
+                <img id="profilepicmain" src=<?php echo $dp?> style="margin-bottom:-2%" alt="profilepic"> </a> <br>
+                   
+                
+                <a href="changeDP.php"><i class="fa fa-camera" style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>
+                </span>
             <br>
             <div style="font-size: 1.5vw">
                 <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
