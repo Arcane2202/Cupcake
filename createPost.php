@@ -37,7 +37,17 @@ class createPosts {
             }
             $post = "";
             $post .= addslashes($data['posts']);
-            $postId = $this->postIdGenerate();
+            $min=0;
+            $max=10;
+            $postId = $this->postIdGenerate($min,$max);
+            $quer = "SELECT * FROM posts WHERE postId = '$postId'";
+            $database = new connectDatabase();
+            $res = $database->read($quer);
+            while($res) {
+                $postId .= $this->postIdGenerate($min,$max);
+                $quer = "SELECT * FROM posts WHERE postId = '$postId'";
+                $res = $database->read($quer);
+            }
             $quer = "INSERT INTO POSTS(postId,userId,post,hasImage,image,dp,cover) VALUES('$postId','$userId','$post','$hasImage','$mediaName','$dp','$cover')";
             $database = new connectDatabase();
             $database->write($quer);
@@ -45,19 +55,20 @@ class createPosts {
         return $this->errorMessage;
     }
 
-    private function postIdGenerate() {
-        $len = rand(1, 30); //DevSkim: ignore DS148264  
+    private function postIdGenerate($min,$max) {
+        $len = rand($min,$max); //DevSkim: ignore DS148264  
         $id = "";
-        $ar = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        //$ar = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','xx','yy','zz'];
         for ($i = 1; $i <= $len; $i++) {
-            $id .= rand(0, 9); //DevSkim: ignore DS148264
-            $id .= $ar[rand(0,25)];
+            $id .= rand(8, 14); //DevSkim: ignore DS148264
+            $id .= rand(0, 8);
+            //$id .= $ar[rand(0,25)];
         }
         return $id;
     }
 
     public function getPosts($userId) {
-        $quer = "SELECT * FROM POSTS WHERE userId = '$userId' ORDER BY id DESC";
+        $quer = "SELECT * FROM posts WHERE userId = '$userId' ORDER BY id DESC";
         $database = new connectDatabase();
         $res = $database->read($quer);
         if ($res) {
@@ -78,6 +89,12 @@ class createPosts {
         else {
             return false;
         }
+    }
+    
+    public function deletePost($postId) {
+        $quer = "DELETE FROM posts WHERE postId = '$postId' limit 1";
+        $database = new connectDatabase();
+        $database->write($quer);
     }
 
     public function reactPost($postid,$type,$reactor) {
@@ -122,4 +139,16 @@ class createPosts {
         }
     }
 
+    public function getReactors($postId, $type) {
+        if($type=="post") {
+            $database = new connectDatabase;
+            $quer = "SELECT reacts FROM reacts WHERE type = 'post' && postid = $postId limit 1";
+            $res = $database->read($quer);
+            if(is_array($res)) {
+                $resAr = json_decode($res[0]['reacts'],true);
+                return $resAr;
+            }
+        }
+        return false;
+    }
 }

@@ -416,3 +416,26 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   border-radius: 10px;
 }
+
+
+
+#reactorLister {
+  width: 100%;
+  margin: 0%;
+  margin-bottom: 15px;
+}
+
+#reactorimgcontainer {
+  width: 6%;
+  border-radius: 45%;
+  margin-right: 10px;
+}
+
+#reactorLister {
+  clear: both;
+  font-weight: bold;
+}
+
+.reactor {
+  padding-top:125%
+}

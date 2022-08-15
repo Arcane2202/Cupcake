@@ -32,12 +32,21 @@
                 style="margin-top:5%; color: var(--col8); float:right"><?php echo $val['date'] ?></span>
             <br>
         </div>
-        <a href="editPost.php">
-        <span class="smallerText" id="editPost"
-                style="margin-left:13%;margin-top:-50%; color: var(--col8);">Edit</span></a>
-        <a href="deletePost.php?postid=<?php echo $val['postId']?>">
-        <span class="smallerText" id="deletePost"
-                style="margin-left:5px;margin-top:-50%; color: var(--col8);">Delete</span></a>
+                
+        <?php 
+
+            if($posterUs['userID']==$_SESSION['user']) {
+                $postId = $val['postId'];
+                echo "
+                <a href='editPost.php?postid=$postId'>
+                <span class='smallerText' id='editPost'
+                        style='margin-left:13%;margin-top:-50%; color: var(--col8);'>Edit</span></a>
+                <a href='deletePost.php?postid=$postId'>
+                <span class='smallerText' id='deletePost'
+                        style='margin-left:5px;margin-top:-50%; color: var(--col8);'>Delete</span></a>";
+            }
+
+        ?>                              
 
         <div style="margin-left: 2%; margin-top:5%">
             <?php echo htmlspecialchars($val['post']) ?>
@@ -53,14 +62,14 @@
                     <?php
                         $reactCount = "";
                         if($val['reacts']>0) {
-                            $reactCount = $val['reacts'];
+                            $reactCount = "(".$val['reacts'].")";
                         }
                     ?>
                     <a href="react.php?type=post&postid=<?php echo $val['postId']?>" class="btn-with-hover"
                         style="color: var(--col8); text-decoration:none;">
                         <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
                     </a>
-                    <a href="showReactors.php?type=post$postid=<?php echo $val['postId']?>" style="text-decoration: none; color: var(--col8)"> <span><?php echo '('.$reactCount.')' ?></span> </a>
+                    <a href="showReactors.php?type=post&postid=<?php echo $val['postId']?>" style="text-decoration: none; color: var(--col8)"> <span><?php echo $reactCount ?></span> </a>
                 </div>
                 <div id="flex">
                     <a href="" class="btn-with-hover" style="color: var(--col8);">

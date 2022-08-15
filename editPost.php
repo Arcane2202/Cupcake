@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Cupcake|Delete</title>
+    <title>Cupcake|Edit</title>
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
 
