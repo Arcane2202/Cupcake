@@ -245,25 +245,25 @@ input[type='radio']:checked{
 
 .tubelight{
     position: relative;
-    font-size: 6em;
+    font-size: 8vw;
     color:#9a463d;
     text-align: left;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
     outline: none;
     line-height: 0.70em;
-    animation: animate 4s linear infinite;
+    animation: animate 10s linear infinite;
     font-family: 'Bad Script', cursive;
 
 }
 
 @keyframes animate
 {
-    0%,18%,20%,88%,92%
+    0%,9%,11%,13%,26%,88%,92%
     {   
         color:#9a463d;
         text-shadow: none;
     }
-    19%,21%,27%,77%
+    9.5%,12%,26.5%,77%
     {
         color: #fff;
         text-shadow: 0 0 10px #9a463d,
@@ -273,4 +273,30 @@ input[type='radio']:checked{
                      0 0 160px #9a463d,
                      0 0 240px #9a463d,
     }
+}
+
+.marquee{
+    margin-top: 4vw;
+    width: 30vw;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    border-left: 5px solid #fff;
+    border-right: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+}
+
+.marquee div{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: slider 10s linear infinite;
+    padding-left: 100%;
+    display: inline-block;
+    color: #fff;
+}
+
+@keyframes slider {
+    100%{
+        transform: translate(-100%,0);
+    }
+    
 }

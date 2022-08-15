@@ -53,16 +53,14 @@ session_start();
             <img src="./img/logo.png" style="width:30% ; height:30%;
             margin-top:20%; margin-left:10%;">
 -->
-            <div style="margin-top:20%; padding-left:20%;">         
-                <h1 class="tubelight"> Cupcake </h1>
-                <p style="color:#c6c9d8bf;">A platform for the youth to resurrect the friendship</p>
+                <div style="margin-top:20%; padding-left:20%;">         
+                    <h1 class="tubelight"> Cupcake </h1>
 
+                    <div class="marquee">
+                        <div>A platform for the youth to resurrect the friendship</div>                 
+                    </div>
 
-            </div>
-
-            
-                
-                
+                </div>         
             </div>
 
             <div style="
