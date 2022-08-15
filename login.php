@@ -55,7 +55,7 @@ session_start();
 -->
             <div style="margin-top:20%; padding-left:20%;">         
                 <h1 class="tubelight"> Cupcake </h1>
-                <p style="color:#c6c9d8bf;">A platform for the yooth to resurrect the friendship</p>
+                <p style="color:#c6c9d8bf;">A platform for the youth to resurrect the friendship</p>
 
 
             </div>
