@@ -18,7 +18,7 @@
             <div class="sub-menu">
                 <ul>
                     <li> <a href="ProfilePage.php"> Profile</a> </li>
-                    <li> <a href=""> Help</a> </li>
+                    <li> <a href="./ContactForm.php"> Help</a> </li>
                     <li> <a href="logout.php"> Logout</a> </li>
                 </ul>
                 <div>

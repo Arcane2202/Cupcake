@@ -158,7 +158,7 @@ $friends = $use->getFriendData($userId);
 
                         <div>
 
-                            <div " id=" NameHeader" style="color: var(--col9);">
+                            <div id=" NameHeader" style="color: var(--col9);">
                                 <a href="" style="color: antiquewhite; text-decoration:none">
                                     <span class="texthover">Lelouch Lamperouge</span>
                                     <br>
@@ -198,10 +198,7 @@ $friends = $use->getFriendData($userId);
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
