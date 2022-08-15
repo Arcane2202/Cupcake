@@ -164,7 +164,7 @@
 
                     <!--<button type="button" class="login-btn">Sign Up</button>-->
                     <br>
-                    <a class="hyper" href="#">Already Got an account? Sign In</a>
+                    <a class="hyper" href="./login.php">Already Got an account? Sign In</a>
 
                     <div class="input-box"></div>
                     <h6>OR</h6><p>Sign Up with:</p><br>
