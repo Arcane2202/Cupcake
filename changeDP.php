@@ -5,17 +5,33 @@ include("connect.php");
 include("loginUser.php");
 include("userInformation.php");
 include("createPost.php");
+include("media.php");
 
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_FILES['dp']['name']) && $_FILES['dp']['name'] != "") {
-        if ($_FILES['dp']['type'] == "image/jpeg") {
-            $mediaName = "mediaStorage/" . $_FILES['dp']['name'];
+        if ($_FILES['dp']['type'] == "image/jpeg"||$_FILES['dp']['type'] == "image/png") {
+            $directory = "mediaStorage/".$userData['userID']."/";
+            if(!file_exists($directory)) {
+                mkdir($directory,0777,true);
+            }
+            $med = new media();     
+            $change = "dp";       
+            if(isset($_GET['change'])) {
+                $change = $_GET['change'];
+            }
+            $mediaName = $directory . $med->mediaName($userData['userID'],$change).".jpg";
             move_uploaded_file($_FILES['dp']['tmp_name'], $mediaName);
+            if($change == "dp") {
+                $quer = "UPDATE USERS SET dp = '$mediaName' WHERE userID = '$userData[userID]' limit 1";
+                $med->cropMedia($mediaName, $mediaName, 1280, 1280);
+            } else {
+                $quer = "UPDATE USERS SET cover = '$mediaName' WHERE userID = '$userData[userID]' limit 1";
+                $med->cropMedia($mediaName, $mediaName, 3840, 1442);
+            }
             if (file_exists($mediaName)) {
                 $database = new connectDatabase();
-                $quer = "UPDATE USERS SET dp = '$mediaName' WHERE userID = '$userData[userID]' limit 1";
                 $database->write($quer);
                 header("Location:ProfilePage.php");
                 die;

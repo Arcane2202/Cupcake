@@ -46,8 +46,14 @@
            
             $password=password_hash($value['password'],PASSWORD_BCRYPT);
             $urlAdress=$this->urlGenearate($firstName,$lastName);
-            $quer = "INSERT INTO USERS(userID,firstName,lastName,email,phone,gender,password,urlAdress)
-            VALUES('$userID','$firstName','$lastName','$email','$phone','$gender','$password','$urlAdress')";
+            if($gender=="Female") {
+                $dp = "images/girlDummy.jpg";
+            } else {
+                $dp = "images/manDummy.jpg";
+            }
+            $cover = "images/coverDummy.jpg";
+            $quer = "INSERT INTO USERS(userID,firstName,lastName,email,phone,gender,password,urlAdress,dp,cover)
+            VALUES('$userID','$firstName','$lastName','$email','$phone','$gender','$password','$urlAdress','$dp','$cover')";
             $database = new connectDatabase();
             $database->write($quer);
         }

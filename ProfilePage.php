@@ -51,7 +51,18 @@
         <div id="profileImagesContainer">
 
             <a href="" style="color: antiquewhite; text-decoration:none">
-                <img src="images/cover.jpg" style="width: 100%;" alt="coverpic"> </a>
+                <span>
+                  
+                  <?php
+                      $cover = "";
+                      if(file_exists($userData['cover'])) {
+                          $cover = $userData['cover'];
+                      }
+                  ?>
+                    <img src=<?php echo $cover?> style="margin-bottom:-2%; width: 100%;" alt="coverpic"> </a>
+                    <a href="changeDP.php?change=cover"><i class="fa fa-camera" style="font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%"></i></a> <br>
+                </span>
+                
             <a href="" style="color: antiquewhite; text-decoration:none">
                 <span>
                   
@@ -65,7 +76,7 @@
                 <img id="profilepicmain" src=<?php echo $dp?> style="margin-bottom:-2%" alt="profilepic"> </a> <br>
                    
                 
-                <a href="changeDP.php"><i class="fa fa-camera" style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>
+                <a href="changeDP.php?change=dp"><i class="fa fa-camera" style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>
                 </span>
             <br>
             <div style="font-size: 1.5vw">

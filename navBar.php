@@ -1,4 +1,7 @@
-
+<?php
+    $log = new loginUser();
+    $userData=$log->loginCheck($_SESSION['user']);
+?>
 
 <div class="menu-bar textsizeCorrect">
 <div id="containMake">
@@ -14,7 +17,7 @@
         <li><a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a></li>
         <li><a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a></li>
         <li><a href="">
-                <img src="images/profilepic.jpg" id="profilepic" alt="profilepic"></a>
+                <img src=<?php echo $userData['dp']?> style="border-radius:50%" id="profilepic" alt="profilepic"></a>
             <div class="sub-menu">
                 <ul>
                     <li> <a href="ProfilePage.php"> Profile</a> </li>
