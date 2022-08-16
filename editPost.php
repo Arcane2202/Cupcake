@@ -23,7 +23,7 @@ if(!is_array($val)) {
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $results = $post->deletePost($val['postId']);
+    $post->updatePost($_POST,$val['postId']);
     header("Location: ProfilePage.php");
     die;
 }
@@ -33,7 +33,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 <!DOCTYPE html>
 
 <html>
-
 
 
 <head>
@@ -51,27 +50,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     <div id="bodyContainer">
         <div style="display: flex;">
 
-            
+
             <div id="condivcontainer2">
 
                 <div id="containposter">
-                    <h4>Delete Post</h4><br>
+                    <h4>Edit Post</h4><br>
                     <form method="post" enctype="multipart/form-data">
-                        
-                        Are you sure you want to delete this post?
-                        <?php 
-                            $USER = new userData();
-                            $posterUs = $USER->fetchData($val['userId']);
-                            include("displayPostToDelete.php"); 
-                        ?>
-                        <input type="hidden" value="<?php echo $val['postId'] ?>" name="postId">
-                        <input class="btn-with-hover" id="submitButton" type="submit" value="Delete" style="margin-top: -5%;margin-right: 3%">
+                        <div id="containposter" style="margin-bottom:3%">
+
+                            <textarea name="posts" placeholder=""><?php echo $val['post']?></textarea>
+                            <?php 
+                                if(file_exists($val['image'])) {
+                                    $image = $media->preview($val['image'],'dp');
+                                    echo "<img src='$image' style='width:40vw; margin-bottom:15px'/>";
+                                }
+                            ?>
+                            <input class="btn-with-hover" id="submitButton" type="submit" value="Save">
+                            <br>
+                        </div>
                         <br>
                     </form>
 
                 </div>
 
-                
             </div>
         </div>
     </div>

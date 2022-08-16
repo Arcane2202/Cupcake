@@ -97,6 +97,14 @@ class createPosts {
         $database->write($quer);
     }
 
+    public function updatePost($data,$postId) {
+        $post = "";
+        $post .= addslashes($data['posts']);
+        $quer = "UPDATE posts SET post = '$post' WHERE postId = '$postId' limit 1";
+        $database = new connectDatabase();
+        $res = $database->write($quer);
+    }
+
     public function reactPost($postid,$type,$reactor) {
         if($type=='post') {
             $database = new connectDatabase;
