@@ -113,106 +113,32 @@ $friends = $use->getFriendData($userId);
 
                 <div id="statusBar">
 
-                    <div id="status">
+                <?php
 
-                        <div>
-                            <a href="" style="color: antiquewhite; text-decoration:none">
-                                <img src="images/profilepic.jpg" style=" width: 55%; margin-top:5%; margin-right: 1%;">
-                            </a>
-                        </div>
+                    $database = new connectDatabase();
+                    $user = new userData();
+                    $poster = new createPosts();
+                    $media = new media();
+                    $friends = $poster->getReactors($_SESSION['user'],"friendsCount");
+                    $friendId = "";
+                    if(is_array($friends)) {
+                        $friendId = array_column($friends,"reactor");
+                        $friendId = implode("','", $friendId);
+                        if($friendId) {
+                            $me = $_SESSION['user'];
+                            $quer = "SELECT * FROM posts WHERE userId in ('".$me."','" .$friendId. "') ORDER BY id DESC";
+                            $userPosts = $database->read($quer);
+                        }
+                    }
+                    if($userPosts) {
+                        foreach($userPosts as $val) {
+                            $us = new userData();
+                            $posterUs = $us->fetchData($val['userId']);
+                            include('postData.php');
+                        }
+                    }        
+                ?>
 
-                        <div>
-
-                            <div class="texthover" id="NameHeader" style="color: var(--col9);">
-                                <a href="" style="color: antiquewhite; text-decoration:none">
-                                    <span class="texthover">Lelouch Lamperouge</span>
-                                    <br>
-                                </a>
-                            </div>
-                            <div style="margin-left: 2%;">
-                                Lelouch is a handsome young man with black hair and violet eyes, which he inherited from
-                                his mother. Lelouch is somewhat scrawny, having little muscle, and like most characters
-                                in the series, is rather thin. In spite of this, Lelouch is considerably tall, standing
-                                at least a head taller than Kallen, and apparently being slightly taller than Suzaku.
-                                Lelouch usually wears the Ashford Academy uniform, or the Zero uniform. Outside of
-                                Ashford, his primary casual outfit is a red jacket with a black shirt underneath and
-                                grey trousers, though he has occasionally worn other clothing. As Emperor, he wears a
-                                white robe with gold accents and a matching hat; both sport a red eye motif, referencing
-                                his Geass power.
-
-                                <br> <br>
-                                <div id="reactSec">
-                                    <div id="flex" style="padding-left: 18%;">
-
-                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                            <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div id="flex">
-                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                            <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
-
-                                        </a>
-                                    </div>
-                                    <div id="flex">
-                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                            <i class="fa fa-share fa-2x" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="status">
-
-                        <div>
-                            <a href="" style="color: antiquewhite; text-decoration:none">
-                                <img src="images/profilepic.jpg" style=" width: 55%; margin-top:5%; margin-right: 1%;">
-                            </a>
-                        </div>
-
-                        <div>
-
-                            <div id=" NameHeader" style="color: var(--col9);">
-                                <a href="" style="color: antiquewhite; text-decoration:none">
-                                    <span class="texthover">Lelouch Lamperouge</span>
-                                    <br>
-                                </a>
-                            </div>
-                            <div style="margin-left: 2%;">
-                                Lelouch is a handsome young man with black hair and violet eyes, which he inherited from
-                                his mother. Lelouch is somewhat scrawny, having little muscle, and like most characters
-                                in the series, is rather thin. In spite of this, Lelouch is considerably tall, standing
-                                at least a head taller than Kallen, and apparently being slightly taller than Suzaku.
-                                Lelouch usually wears the Ashford Academy uniform, or the Zero uniform. Outside of
-                                Ashford, his primary casual outfit is a red jacket with a black shirt underneath and
-                                grey trousers, though he has occasionally worn other clothing. As Emperor, he wears a
-                                white robe with gold accents and a matching hat; both sport a red eye motif, referencing
-                                his Geass power.
-
-                                <br> <br>
-                                <div id="reactSec">
-                                    <div id="flex" style="padding-left: 18%;">
-
-                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                            <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div id="flex">
-                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                            <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
-
-                                        </a>
-                                    </div>
-                                    <div id="flex">
-                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                            <i class="fa fa-share fa-2x" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

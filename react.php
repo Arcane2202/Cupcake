@@ -17,10 +17,15 @@
     if(isset($_GET['postid'])&& isset($_GET['type']) && is_numeric($_GET['postid'])) {
         $ar[] = 'post';
         $ar[] = 'comment';
+        $ar[] = 'friendRequests';
+        $ar[] = 'friendsCount';
         if(in_array($_GET['type'],$ar)) {
             $storeReact = new createPosts();
             $storeReact->reactPost($_GET['postid'],$_GET['type'],$_SESSION['user']);
         }
+    }
+    if($_GET['type']=='friendsCount') {
+        $ret = "ProfilePage.php";
     }
     header("Location: ".$ret);
     die;
