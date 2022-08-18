@@ -1,6 +1,4 @@
 <?php
-
-
     session_start();
     //unset($_SESSION['user']);
     include("connect.php");
@@ -124,10 +122,13 @@
                             $text = "Add Friend";
                             $poster = new createPosts();
                             $friend = $poster->getReactors($_SESSION['user'],"friendsCount");
-                            $friendId = array_column($friend, 'reactor');
-                            if(in_array($userData['userID'],$friendId)) {
-                                $text = "Unfriend";
+                            if(is_array($friend)) {
+                                $friendId = array_column($friend, 'reactor');
+                                if(in_array($userData['userID'],$friendId)) {
+                                    $text = "Unfriend";
+                                }
                             }
+                            
                             
                             echo "
                             
@@ -215,7 +216,7 @@
                     }
                 ?>
 
-                <div id="statusBar">
+                <div id="statusBar" style="display:inline-block">
 
                     <?php
 

@@ -92,7 +92,7 @@ $friends = $use->getFriendData($userId);
             </div>
             <div id="condivcontainer2">
 
-                <div id="containposter">
+                <div id="containposter" style="margin-bottom:3%">
 
                     <form method="post" enctype="multipart/form-data">
                         <textarea name="posts" placeholder="What's on your mind?"></textarea>

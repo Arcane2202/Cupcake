@@ -97,7 +97,7 @@ body {
 }
 
 .rightcol {
-  background-color: var(--col5);
+  background-color: var(--col3);
   float: right;
   display: flex;
   align-items: center;
@@ -145,7 +145,7 @@ body {
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
-  background-color: var(--col5);
+  background-color: var(--col3);
   color: antiquewhite;
 }
 
@@ -161,7 +161,7 @@ body {
 }
 
 #profileImagesContainer {
-  background-color: var(--col5);
+  background-color: var(--col3);
   text-align: center;
   color: antiquewhite;
 }
@@ -228,7 +228,7 @@ body {
 }
 
 #friendscontainer {
-  background-color: var(--col5);
+  background-color: var(--col3);
   min-height: 94vh;
   margin-top: 10%;
   padding: 5%;
@@ -250,15 +250,15 @@ body {
 #containposter {
   border: solid thin;
   padding: 2%;
-  background-color: var(--col5);
-  border-color: var(--col5);
+  background-color: var(--col3);
+  border-color: var(--col3);
 }
 
 textarea {
   width: 100%;
   border: none;
   font-family: var(--primary-font);
-  background-color: var(--col5);
+  background-color: var(--col3);
   color: antiquewhite;
   resize: none;
 }
@@ -273,7 +273,7 @@ textarea {
 
 #statusBar {
   /*margin-top: 5%;*/
-  background-color: var(--col5);
+  background-color: var(--col3);
   padding: 4%;
 }
 
@@ -299,7 +299,7 @@ textarea {
 }
 
 #leftholder {
-  background-color: var(--col5);
+  background-color: var(--col3);
   min-height: 94vh;
   margin-top: 10%;
   padding: 5%;
@@ -331,7 +331,7 @@ textarea {
   width: 18vw;
   text-align: start;
   border: solid thin antiquewhite;
-  background-color: var(--col5);
+  background-color: var(--col3);
   padding: 1%;
 }
 
@@ -412,7 +412,7 @@ input::-webkit-inner-spin-button {
 }
 
 #containposter:hover {
-  border: solid thin;
+  border: solid #9a463d;;
   cursor: pointer;
   border-radius: 10px;
 }

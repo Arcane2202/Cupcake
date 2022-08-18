@@ -215,6 +215,9 @@ class createPosts
         $database = new connectDatabase;
         $quer = "SELECT reacts FROM reacts WHERE type = '$type' && postid = $postId limit 1";
         $res = $database->read($quer);
+        if(!$res) {
+            return false;
+        }
         if (is_array($res)) {
             $resAr = json_decode($res[0]['reacts'], true);
             return $resAr;

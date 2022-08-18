@@ -7,7 +7,7 @@
 <div id="containMake">
     <ul>
         <li>
-            <a href="HomePage.php" style="color: antiquewhite; text-decoration:none">
+            <a href="HomePage.php" style="color: #9a463d; text-decoration:none">
                 Cupcake
             </a>
         </li>
