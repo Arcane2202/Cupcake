@@ -54,7 +54,12 @@
             <?php 
                     if(file_exists($val['image'])) {
                         $image = $media->preview($val['image'],'dp');
-                        echo "<img src='$image' style='width:31vw; margin-bottom:15px'/>";
+                        if($wid=="prof") {
+                            echo "<img src='$image' style='width:45.5vw; margin-bottom:15px'/>";
+                        } else {
+                            echo "<img src='$image' style='width:48.5vw; margin-bottom:15px'/>";
+                        }
+                        
                     }
             ?>
             <div id="reactSec">

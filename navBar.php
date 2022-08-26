@@ -16,7 +16,7 @@
 
         <li><a href=""><img id="profilepic" src="images/messages.png" style="margin-right: 3%;"></a></li>
         <li><a href=""><img id="profilepic" src="images/notification.png" style="margin-right: 3%;"></a></li>
-        <li><a href="">
+        <li><a href="ProfilePage.php">
                 <img src=<?php echo $media->preview($userData['dp'],'dp') ?> style="border-radius:50%" id="profilepic" alt="profilepic"></a>
             <div class="sub-menu">
                 <ul>

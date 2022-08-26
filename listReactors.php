@@ -1,3 +1,4 @@
+
 <?php
     $img = $media->preview($val['dp'],'dp');
 ?>
@@ -17,9 +18,15 @@
             $id = $val['userID'];
 
             echo "
+                <a href=''>
+                    <input class='btn-with-hover' id='submitButton' type='submit' value='Delete'
+                        style='border-radius: 10px;margin-top:1.5%;margin-right:2%;'> </a>
+
                 <a href='react.php?type=friendsCount&postid=$id'>
                     <input class='btn-with-hover' id='submitButton' type='submit' value='Confirm'
-                        style='border-radius: 10px;margin-top:1.5%;margin-right:10%'>
+                        style='border-radius: 10px;margin-top:1.5%;margin-right:2%'> </a>
+
+                
             
             ";
         }

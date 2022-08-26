@@ -92,7 +92,7 @@ $friends = $use->getFriendData($userId);
             </div>
             <div id="condivcontainer2">
 
-                <div id="containposter" style="margin-bottom:3%">
+                <div id="containposter" style="margin-bottom:3%;">
 
                     <form method="post" enctype="multipart/form-data">
                         <textarea name="posts" placeholder="What's on your mind?"></textarea>
@@ -102,7 +102,7 @@ $friends = $use->getFriendData($userId);
                         </div>
                         
                         <label for="dp">
-                                <img src="images/addpic.png" width="20" />
+                                <img id='addPic' src="images/addpic.png" width="20" />
                             </label>
                             <input type="file" name="dp" id="dp" class="showNone"></input>
                             <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
@@ -133,6 +133,7 @@ $friends = $use->getFriendData($userId);
                     if($userPosts) {
                         foreach($userPosts as $val) {
                             $us = new userData();
+                            $wid = 'home';
                             $posterUs = $us->fetchData($val['userId']);
                             include('postData.php');
                         }

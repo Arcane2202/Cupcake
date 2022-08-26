@@ -117,6 +117,7 @@ class createPosts
     public function reactPost($postid, $type, $reactor) {
         $database = new connectDatabase;
         $valuk = "d";
+        $typo = $type;
         $quer = "SELECT reacts FROM reacts WHERE type = '$type' && postid = $postid limit 1";
         $res = $database->read($quer);
         if($type == "friendsCount") {
@@ -125,7 +126,7 @@ class createPosts
         }
         $quer = "SELECT reacts FROM reacts WHERE type = '$type' && postid = $postid limit 1";
         $res = $database->read($quer);
-        if (!is_array($res[0])) {
+        if (!$res) {
             $ar['reactor'] = $reactor;
             $ar['timestamp'] = date("Y-m-d H:i:s");
             $resAr[] = $ar;
@@ -183,6 +184,7 @@ class createPosts
             else {
                 $index = array_search($reactor, $reactorIDs);
                 unset($resAr[$index]);
+                $resAr = array_values($resAr);
                 $reactors = json_encode($resAr);
                 $quer = "UPDATE reacts set reacts = '$reactors' WHERE type = '$type' && postid = $postid limit 1";
                 $database->write($quer);
@@ -193,19 +195,37 @@ class createPosts
                 }
                 $quer = "UPDATE {$type}s SET $reacts = $reacts - 1 WHERE {$type}I{$valuk} = $postid limit 1";
                 $database->write($quer);
-                if($reacts == "friendsCount") {
+                if($reacts == "friendsCount" && $res2) {
                     $resAr2 = json_decode($res2[0]['reacts'], true);
                     $reactorIDs2 = array_column($resAr2, 'reactor');
                     if(in_array($postid, $reactorIDs2)) {
                         $index2 = array_search($postid, $reactorIDs2);
                         unset($resAr2[$index2]);
-                        $reactors2 = json_encode($resAr);
+                        $resAr2 = array_values($resAr2);
+                        $reactors2 = json_encode($resAr2);
                         $quer = "UPDATE reacts set reacts = '$reactors2' WHERE type = '$reacts' && postid = $reactor limit 1";
                         $database->write($quer);
                         $quer = "UPDATE {$type}s SET $reacts = $reacts - 1 WHERE {$type}I{$valuk} = $reactor limit 1";
                         $database->write($quer);
                     }
                 }
+            }
+        }
+        if($typo == "friendsCount") {
+            $quer3 = "SELECT reacts FROM reacts WHERE type = 'friendRequests' && postid = '$reactor' limit 1";
+            $res3 = $database->read($quer3);
+            if($res3) {
+                $resAr3 = json_decode($res3[0]['reacts'], true);
+            $reactorIDs3 = array_column($resAr3, 'reactor');
+            if(in_array($postid, $reactorIDs3)) {
+                $index3 = array_search($postid, $reactorIDs3);
+                unset($resAr3[$index3]);
+                $resAr3 = array_values($resAr3);
+                $reactors3 = json_encode($resAr3);
+                print_r($reactors3);
+                $quer = "UPDATE reacts set reacts = '$reactors3' WHERE type = 'friendRequests' && postid = '$reactor' limit 1";
+                $database->write($quer);
+            }
             }
         }
     }
@@ -215,14 +235,12 @@ class createPosts
         $database = new connectDatabase;
         $quer = "SELECT reacts FROM reacts WHERE type = '$type' && postid = $postId limit 1";
         $res = $database->read($quer);
-        if(!$res) {
-            return false;
-        }
-        if (is_array($res)) {
+        if ($res) {
             $resAr = json_decode($res[0]['reacts'], true);
             return $resAr;
         }
-
         return false;
     }
 }
+
+

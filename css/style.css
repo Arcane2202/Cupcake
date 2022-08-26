@@ -26,6 +26,14 @@ body {
 
 }
 
+#editPost:hover, #deletePost:hover {
+  font-weight: 700;
+}
+
+#addPic:hover{
+  cursor: pointer;
+}
+
 .menu-bar {
   background: black;
   text-align: center;
@@ -166,7 +174,10 @@ body {
   background-size: contain;
   background-color: var(--col3);
   color: antiquewhite;
+  outline: none;
+  font-size: calc(0.125em + 0.5vw);
 }
+
 
 #profilepic {
   width: 4vh;
@@ -175,7 +186,7 @@ body {
 
 #bodyContainer {
   min-height: 55vh;
-  width: 80vw;
+  width: 70vw;
   margin: auto;
   margin-bottom: 0;
   padding-top: 70px;
@@ -231,7 +242,7 @@ body {
 }
 
 #profButtons {
-  width: 100px;
+  width: 6vw;
   display: inline-block;
   margin: 0.5%;
   margin-bottom: 2%;
@@ -241,11 +252,13 @@ body {
   height: 500px;
   flex: 1;
   border-radius: 25px;
+  padding-bottom: 0%;
 }
 
 #divcontainer2 {
   flex: 3;
   padding: 2.6%;
+  padding-bottom: 0%;
   padding-right: 0px;
   border-radius: 25px;
 }
@@ -258,9 +271,12 @@ body {
 
 #friendscontainer {
   background-color: var(--col3);
-  min-height: 120vh;
+  height: 87vh;
   margin-top: 10%;
   padding: 5%;
+  padding-bottom: 0%;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
 }
 
 #friendimgcontainer {
@@ -305,17 +321,39 @@ textarea::-webkit-scrollbar {
   border-radius: 25px;
   color: black;
   font-size: larger;
+  width: 4vw;
+  padding: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#profileButton {
+  float: right;
+  background-color: var(--col8);
+  border-radius: 50%;
+  color: black;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #statusBar {
   /*margin-top: 5%;*/
-  height: 105vh;
   background-color: var(--col3);
-  padding: 4%;
+  padding: 2.5%;
+  padding-top: 1%;
+  padding-right: 1%;
   overflow-y: scroll;
   margin-bottom: 0;
+  height: 72vh;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  width: 100%;
 }
-
+#statusBar::-webkit-scrollbar {
+  /*margin-top: 5%;*/
+  display: none;
+}
 #status {
   padding: 0.5%;
   display: flex;
@@ -336,6 +374,10 @@ textarea::-webkit-scrollbar {
   flex: 1;
   padding-top: 5%;
 }
+.contact {
+  color: antiquewhite;
+}
+
 
 #leftholder {
   background-color: var(--col3);
@@ -429,11 +471,10 @@ input::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
-
 .btn-with-hover:hover {
   box-shadow: 1px 0.5px 5px antiquewhite;
   cursor: pointer;
-  font-size: calc(0.125em + 0.5vw);
+  font-size: calc(0.25em + 0.5vw);
 }
 
 .texthover:hover {

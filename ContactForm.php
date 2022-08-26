@@ -76,25 +76,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <form method="post">
                     <div class="mb-5">
                         <label for="name" class="start smallerText">Tell us your name</label><br>
-                        <input class="start" name="name" type="text" id="name" class="form-control textsizeCorrect"
+                        <input class="start contact" name="name" type="text" id="name" class="form-control textsizeCorrect"
                             placeholder="Your Name..." autocomplete="off">
                         <br>
                     </div>
                     <div class="mb-5">
                         <label for="name" class="start smallerText">Enter your e-mail</label><br>
-                        <input class="start" name="email" type="email" id="email" class="form-control textsizeCorrect"
+                        <input class="start contact" name="email" type="email" id="email" class="form-control textsizeCorrect"
                             placeholder="Eg.example@gmail.com" autocomplete="off">
                         <br>
                     </div>
                     <div class="mb-5">
                         <label for="number" class="start smallerText">Enter your phone number</label><br>
-                        <input class="start" name="number" type="number" id="number"
+                        <input class="start contact" name="number" type="number" id="number"
                             class="form-control textsizeCorrect" placeholder="Eg. +8801234567890" autocomplete="off">
                         <br>
                     </div>
                     <div class="mb-5">
                         <label for="message" class="start smallerText">Message</label><br>
-                        <textarea class="start" name="message" rows="4" cols="1" class="form-control textsizeCorrect"
+                        <textarea class="start contact" name="message" rows="4" cols="1" class="form-control textsizeCorrect"
                             id="message" placeholder="Write us a Message"></textarea>
                         <br>
                     </div>

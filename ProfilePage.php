@@ -113,48 +113,70 @@
                         <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
                     </div>
 
-                <?php
+                    <?php
 
                         if($userData['userID'] != $_SESSION['user']) { 
 
 
                             $id = $userData['userID'];
                             $text = "Add Friend";
+                            $text2 = "";
+                            $type1='friendRequests';
+                            $type2="";
                             $poster = new createPosts();
-                            $friend = $poster->getReactors($_SESSION['user'],"friendsCount");
-                            if(is_array($friend)) {
+                            $friend = $poster->getReactors($id,"friendsCount");
+                            $requests = $poster->getReactors($id,"friendRequests");
+                            $conReq = $poster->getReactors($_SESSION['user'],"friendRequests");
+                            if($friend) {
                                 $friendId = array_column($friend, 'reactor');
-                                if(in_array($userData['userID'],$friendId)) {
+                                if(in_array($_SESSION['user'],$friendId)) {
                                     $text = "Unfriend";
+                                    $text2 = "Message";
+                                    $type1="friendsCount";
+                                }
+                            } elseif($requests) {
+                                $requestId = array_column($requests, 'reactor');
+                                if(in_array($_SESSION['user'],$requestId)) {
+                                    $text = "Cancel Request";
+                                    $type1="friendRequests";
+                                }
+                            } elseif($conReq) {
+                                $conReqId = array_column($conReq, 'reactor');
+                                if(in_array($id,$conReqId)) {
+                                    $text = "Confirm";
+                                    $text2 = "Delete";
+                                    $type1="friendsCount";
                                 }
                             }
-                            
-                            
                             echo "
                             
                             
-                            <a href='react.php?type=friendRequests&postid=$id'>
-                                <input class='btn-with-hover' id='submitButton' type='submit' value='$text'
-                                    style='border-radius: 10px;margin-top:-4%;margin-right:10%'>
-                            </a>
-                            <a href='message.php?user_id=$id'>
-                                <input class='btn-with-hover' id='submitButton' type='submit' value='Message'
-                                    style='border-radius: 10px;margin-top:-4%;margin-right:10px'></a>
+                            <a href='react.php?type=$type1&postid=$id'>
+                                <input class='btn-with-hover' id='profileButton' type='submit' value='$text'
+                                    style='border-radius: 10px;margin-top:-2%;margin-right:5%'>
+                            </a>";
+                            if($text2!="") {
+                                echo"
+                                <a href='message.php?user_id=$id'>
+                                    <input class='btn-with-hover' id='profileButton' type='submit' value='$text2'
+                                        style='border-radius: 10px;margin-top:-2%;margin-right:4px'></a>
 
-                        ";
-
+                                ";
+                            }
+                            
                         }
 
-                ?>
+                    ?>
 
 
 
-                <br>
-                <div id="profButtons"> <a href="HomePage.php" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Timeline </a> </div>
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">About</a> </div>
-                <?php
+
+                    <br>
+                    <div id="profButtons"> <a href="HomePage.php" class="texthover"
+                            style="color: var(--col8); text-decoration:none">Timeline </a> </div>
+                    <div id="profButtons"><a href="" class="texthover"
+                            style="color: var(--col8); text-decoration:none">About</a> </div>
+                    <?php
 
                     if($userData['userID'] == $_SESSION['user']) { 
 
@@ -166,13 +188,13 @@
                     }
 
                 ?>
-                       
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Friends</a> </div>
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Photos</a> </div>
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Settings</a> </div>
+
+                    <div id="profButtons"><a href="" class="texthover"
+                            style="color: var(--col8); text-decoration:none">Friends</a> </div>
+                    <div id="profButtons"><a href="" class="texthover"
+                            style="color: var(--col8); text-decoration:none">Photos</a> </div>
+                    <div id="profButtons"><a href="" class="texthover"
+                            style="color: var(--col8); text-decoration:none">Settings</a> </div>
 
         </div>
 
@@ -205,24 +227,26 @@
                                 </div>
                                 
                                 <label for='dp'>
-                                        <img src='images/addpic.png' width='20' />
-                                    </label>
-                                    <input type='file' name='dp' id='dp' class='showNone'></input>
-                                    <input class='btn-with-hover' id='submitButton' type='submit' value='Post'>
+                                        <img id='addPic' src='images/addpic.png' width='20' />
+                                </label>
+                                <input type='file' name='dp' id='dp' class='showNone'></input>
+                                <input class='btn-with-hover' id='submitButton' type='submit' value='Post'>
                                 <br> 
                             </form>
 
-                        </div>";
+                        </div>
+                            <div id='statusBar' style='display:inline-block'>";
+                    } else {
+                        echo "<div id='statusBar' style='height:87vh; display:inline-block'>";
                     }
                 ?>
-
-                <div id="statusBar" style="display:inline-block">
 
                     <?php
 
                         if($userPosts) {
                             foreach($userPosts as $val) {
                                 $us = new userData();
+                                $wid = 'prof';
                                 $posterUs = $us->fetchData($val['userId']);
                                 include('postData.php');
                             }
