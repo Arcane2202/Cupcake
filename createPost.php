@@ -171,6 +171,10 @@ class createPosts
                     $reacts = $type;
                     $type = "user";
                     $valuk = "D";
+                } else {
+                    $reacts = 'reacts';
+                    $type = "post";
+                    $valuk = "D";
                 }
                 $quer = "UPDATE {$type}s SET $reacts = $reacts + 1 WHERE {$type}I{$valuk} = $postid limit 1";
                 $database->write($quer);
@@ -192,6 +196,12 @@ class createPosts
                     $reacts = $type;
                     $type = "user";
                     $valuk = "D";
+                } else {
+        
+                        $reacts = 'reacts';
+                        $type = "post";
+                        $valuk = "D";
+                    
                 }
                 $quer = "UPDATE {$type}s SET $reacts = $reacts - 1 WHERE {$type}I{$valuk} = $postid limit 1";
                 $database->write($quer);

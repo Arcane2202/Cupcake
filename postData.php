@@ -32,7 +32,7 @@
                 style="margin-top:5%; color: var(--col8); float:right"><?php echo $val['date'] ?></span>
             <br>
         </div>
-                
+
         <?php 
 
             if($posterUs['userID']==$_SESSION['user']) {
@@ -46,7 +46,7 @@
                         style='margin-left:5px;margin-top:-50%; color: var(--col8);'>Delete</span></a>";
             }
 
-        ?>                              
+        ?>
 
         <div style="margin-left: 2%; margin-top:5%">
             <?php echo htmlspecialchars($val['post']) ?>
@@ -59,9 +59,61 @@
                         } else {
                             echo "<img src='$image' style='width:48.5vw; margin-bottom:15px'/>";
                         }
-                        
                     }
             ?>
+            <!--<?php
+
+                $likes = "";
+                $database = new connectDatabase();
+                $post = new createPosts();
+                $res = $post->getReactors($val['postId'], 'post');
+                $reacters = [];
+                $flag = false;
+                if ($res) {
+                    $users = new userData();
+                    foreach ($res as $value) {
+                        $valu = $users->fetchData($value['reactor']);
+                        $reacters[] = $valu['firstName'] . $valu['lastName'];
+                        if ($valu['userID'] == $_SESSION['user']) {
+                            $flag = true;
+                        }
+                    }
+                    if ($flag) {
+                        $count = count($reacters) - 1;
+                        if ($count > 0) {
+                            if ($count == 1) {
+                                $likes = "You and 1 other liked this post.";
+                            }
+                            else {
+                                $likes = "You and " . $count . "others liked this post.";
+                            }
+                        }
+                        else {
+                            $likes = "You liked this post.";
+                        }
+                    }
+                    elseif ($count > 0) {
+                        $count = count($reacters) - 1;
+                        if ($count > 0) {
+                            if ($count == 1) {
+                                $likes = "$reacters[0] and 1 other liked this post.";
+                            }
+                            else {
+                                $likes = "$reacters[0] and " . $count . "others liked this post.";
+                            }
+                        }
+                        else {
+                            $likes = "$reacters[0] liked this post.";
+                        }
+                    }
+                }
+
+            ?>
+            <div id='reacters' style="padding-left: 4%;">
+                <?php if($likes!="") {
+                    echo "<i class='fa fa-heart' style='padding-right: 5px;font-size:1.7vh'>&nbsp$likes</i>";
+                } ?>
+            </div>-->
             <div id="reactSec">
                 <div id="flex" style="padding-left: 18%;">
                     <?php
@@ -70,11 +122,11 @@
                             $reactCount = "(".$val['reacts'].")";
                         }
                     ?>
-                    <a href="react.php?type=post&postid=<?php echo $val['postId']?>" class="btn-with-hover"
-                        style="color: var(--col8); text-decoration:none;">
-                        <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId']?>"
+                        class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
+                        <i class="fa fa-heart fa-2x" aria-hidden="true">
+                            <?php echo $reactCount ?></a></i>
                     </a>
-                    <a href="showReactors.php?type=post&postid=<?php echo $val['postId']?>" style="text-decoration: none; color: var(--col8)"> <span><?php echo $reactCount ?></span> </a>
                 </div>
                 <div id="flex">
                     <a href="" class="btn-with-hover" style="color: var(--col8);">
@@ -90,3 +142,41 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+function reacter(data, tag) {
+    var ajax = new XMLHttpRequest();
+    ajax.addEventListener('readystatechange', function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            response(ajax.responseText, tag);
+        }
+    });
+    data = JSON.stringify(data);
+    ajax.open("postData", "ajax.php", true);
+    ajax.send(data);
+}
+
+function getData(e) {
+    e.preventDefault();
+    var data = {};
+    data.act = "reactPost";
+    data.ref = e.target.parentElement.href;
+
+
+    reacter(data, e.target);
+}
+function response(res, tag) {
+
+    if (res != "") {
+        obj = JSON.parse(res);
+        if (typeof obj.act != undefined) {
+            var reactCount = "";
+
+            if (parseInt(obj.react) > 0) {
+                reactCount = "(" + obj.react + ")";
+            }
+            tag.innerHTML = reactCount;
+        }
+    }
+}
+</script>

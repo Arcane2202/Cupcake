@@ -168,7 +168,7 @@ body {
   border-radius: 4vh;
   padding: 1vh;
   font-size: 2vh;
-  background-image: url("images/searchicon.png");
+  background-image: url("../images/searchicon.png");
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
