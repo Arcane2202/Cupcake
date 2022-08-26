@@ -48,7 +48,7 @@
 
         ?>
 
-        <div style="margin-left: 2%; margin-top:5%">
+        <div style="margin-left: 2%; margin-top:5%; font-size:calc(0.5em + 0.5vw)">
             <?php echo htmlspecialchars($val['post']) ?>
             <br> <br>
             <?php
@@ -110,7 +110,7 @@
                 } */?>
             </div>-->
             <div id="reactSec">
-                <div id="flex" style="padding-left: 18%;">
+                <div id="flex" style="padding-left: 15%;padding-right: 8%">
                     <?php
                     $reactCount = "";
                     if ($val['reacts'] > 0) {
@@ -118,18 +118,18 @@
                     }
                     ?>
                     <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
-                        <i class="fa fa-heart fa-2x" aria-hidden="true">
+                        <i class="fa fa-heart fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true">
                             <?php echo $reactCount ?></a></i>
                     </a>
                 </div>
-                <div id="flex">
+                <div id="flex"style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
                     <a href="" class="btn-with-hover" style="color: var(--col8);">
-                        <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-comment fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div id="flex">
+                <div id="flex"style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
                     <a href="" class="btn-with-hover" style="color: var(--col8);">
-                        <i class="fa fa-share fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-share fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>

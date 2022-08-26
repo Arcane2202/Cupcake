@@ -95,7 +95,7 @@ body {
 
 
 .textsizeCorrect {
-  font-size: calc(0.25em + 0.5vw);
+  font-size: calc(0.35em + 0.5vw);
 }
 
 .smallerText {
@@ -404,11 +404,13 @@ textarea::-webkit-scrollbar {
 }
 
 #reactSec {
+  margin-top: 4vh;
   border-top-style: solid;
   border-top-width: 1px;
   border-bottom-width: 1px;
   display: flex;
   border-bottom-style: solid;
+  padding: 0.5vh;
 }
 
 .start {
