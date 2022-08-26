@@ -63,7 +63,7 @@
             ?>
             <!--<?php
 
-                $likes = "";
+                /*$likes = "";
                 $database = new connectDatabase();
                 $post = new createPosts();
                 $res = $post->getReactors($val['postId'], 'post');
@@ -106,13 +106,13 @@
                             $likes = "$reacters[0] liked this post.";
                         }
                     }
-                }
+                }*/
 
             ?>
             <div id='reacters' style="padding-left: 4%;">
-                <?php if($likes!="") {
+                <?php /*if($likes!="") {
                     echo "<i class='fa fa-heart' style='padding-right: 5px;font-size:1.7vh'>&nbsp$likes</i>";
-                } ?>
+                }*/ ?>
             </div>-->
             <div id="reactSec">
                 <div id="flex" style="padding-left: 18%;">
@@ -124,7 +124,7 @@
                     ?>
                     <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId']?>"
                         class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
-                        <i class="fa fa-heart fa-2x" aria-hidden="true">
+                        <i class="fa fa-heart fa-2x">
                             <?php echo $reactCount ?></a></i>
                     </a>
                 </div>
@@ -173,7 +173,7 @@ function response(res, tag) {
             var reactCount = "";
 
             if (parseInt(obj.react) > 0) {
-                reactCount = "(" + obj.react + ")";
+                reactCount = " (" + obj.react + ")";
             }
             tag.innerHTML = reactCount;
         }
