@@ -22,7 +22,7 @@
                         } elseif($val['cover']) {
                             echo " updated $pron cover picture";
                         } elseif($val['hasImage']) {
-                            echo " updloaded a picture";
+                            echo " uploaded a picture";
                         } else {
                             echo " updated $pron status";
                         }

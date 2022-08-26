@@ -25,7 +25,9 @@ body {
   color: antiquewhite;
 
 }
-
+::-webkit-scrollbar{
+  display: none;
+}
 #editPost:hover, #deletePost:hover {
   font-weight: 700;
 }
