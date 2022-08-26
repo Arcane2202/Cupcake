@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --col1: #0f0706;
   --col2: #1f0e0c;
@@ -22,42 +28,50 @@ body {
 .menu-bar {
   background: black;
   text-align: center;
+  width: 100%;
+  position: fixed;
 }
-.menu-bar ul{
+
+.menu-bar ul {
   display: inline-flex;
   list-style: none;
 }
-.menu-bar ul li{
+
+.menu-bar ul li {
   margin: 5px;
   margin-bottom: -8px;
   padding: 0.5vw;
 }
+
 .sub-menu {
   display: none;
   font-size: calc(0.125em + 0.5vw);
   text-decoration: none;
 }
 
-.menu-bar ul li:hover .sub-menu{
-  display:block;
+.menu-bar ul li:hover .sub-menu {
+  display: block;
   position: absolute;
   background-color: black;
   margin-top: 40px;
   margin-left: -80px;
   font-size: calc(0.125em + 0.5vw);
 }
-.menu-bar ul li:hover .sub-menu ul{
+
+.menu-bar ul li:hover .sub-menu ul {
   display: block;
   margin: 10px;
   font-size: calc(0.125em + 0.5vw);
   text-decoration: none;
 }
-.menu-bar ul li:hover .sub-menu ul li a{
+
+.menu-bar ul li:hover .sub-menu ul li a {
   font-size: calc(0.125em + 0.5vw);
   text-decoration: none;
   color: antiquewhite;
 }
-.menu-bar ul li:hover .sub-menu ul li a:hover{
+
+.menu-bar ul li:hover .sub-menu ul li a:hover {
   font-size: calc(0.125em + 0.5vw);
   text-decoration: none;
   color: antiquewhite;
@@ -72,12 +86,15 @@ body {
 .textsizeCorrect {
   font-size: calc(0.25em + 0.5vw);
 }
+
 .smallerText {
   font-size: calc(0.125em + 0.5vw);
 }
+
 .smallestText {
   font-size: calc(0.125em + 0.25vw);
 }
+
 .biggerText {
   font-size: calc(0.9em + 0.5vw);
 }
@@ -121,7 +138,8 @@ body {
   display: inline-flex;
   list-style: none;
 }
-.linav{
+
+.linav {
 
   width: 120px;
   margin: 15px;
@@ -156,21 +174,25 @@ body {
 
 #bodyContainer {
   min-height: 55vh;
-  width: 50vw;
+  width: 80vw;
   margin: auto;
+  margin-bottom: 0;
+  padding-top: 70px;
 }
 
 #profileImagesContainer {
   background-color: var(--col3);
   text-align: center;
   color: antiquewhite;
+  border-radius: 25px;
 }
 
-.imgPrevDiv{
+
+.imgPrevDiv {
   width: 46vw;
   min-height: 200px;
   margin-top: 2px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   border: 1px solid antiquewhite;
   display: flex;
   align-items: center;
@@ -178,25 +200,29 @@ body {
   font-weight: bold;
   color: antiquewhite;
 }
-.imgPrevPost{
+
+.imgPrevPost {
   display: none;
   width: 34vw;
   min-height: 200px;
   margin-top: 2px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   border: 1px solid antiquewhite;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   color: antiquewhite;
 }
+
 .imgPrevImg {
   display: none;
   width: 100%;
 }
+
 .showNone {
   display: none;
 }
+
 #profilepicmain {
   width: 10vw;
   margin-top: -11%;
@@ -211,14 +237,16 @@ body {
 }
 
 #divcontainer1 {
-  min-height: 500px;
+  height: 500px;
   flex: 1;
+  border-radius: 25px;
 }
+
 #divcontainer2 {
-  min-height: 45vh;
   flex: 3;
   padding: 2.6%;
   padding-right: 0px;
+  border-radius: 25px;
 }
 
 #friendLister {
@@ -229,7 +257,7 @@ body {
 
 #friendscontainer {
   background-color: var(--col3);
-  min-height: 94vh;
+  min-height: 120vh;
   margin-top: 10%;
   padding: 5%;
 }
@@ -252,6 +280,7 @@ body {
   padding: 2%;
   background-color: var(--col3);
   border-color: var(--col3);
+  border-radius: 25px;
 }
 
 textarea {
@@ -261,6 +290,12 @@ textarea {
   background-color: var(--col3);
   color: antiquewhite;
   resize: none;
+  outline: none;
+
+}
+
+textarea::-webkit-scrollbar {
+  color: #333333;
 }
 
 #submitButton {
@@ -273,8 +308,11 @@ textarea {
 
 #statusBar {
   /*margin-top: 5%;*/
+  height: 105vh;
   background-color: var(--col3);
   padding: 4%;
+  overflow-y: scroll;
+  margin-bottom: 0;
 }
 
 #status {
@@ -304,6 +342,7 @@ textarea {
   margin-top: 10%;
   padding: 5%;
 }
+
 #condivcontainer2 {
   min-height: 400px;
   flex: 4;
@@ -367,6 +406,7 @@ input::-webkit-inner-spin-button {
   clear: both;
   font-weight: bold;
 }
+
 /*
 #submitbutton:hover {
   border-radius: 40vh;
@@ -401,6 +441,7 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   text-decoration: none;
 }
+
 .addhover:hover {
   border-radius: 40vh;
   padding: 0.5vh 2vh;
@@ -412,7 +453,8 @@ input::-webkit-inner-spin-button {
 }
 
 #containposter:hover {
-  border: solid #9a463d;;
+  border: solid #9a463d;
+  ;
   cursor: pointer;
   border-radius: 10px;
 }
@@ -437,5 +479,5 @@ input::-webkit-inner-spin-button {
 }
 
 .reactor {
-  padding-top:125%
+  padding-top: 125%
 }

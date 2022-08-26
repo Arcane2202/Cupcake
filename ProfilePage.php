@@ -176,10 +176,10 @@
 
         </div>
 
-        <div style="display: flex;">
+        <div style="display: flex;" id="restPart">
 
             <div id="divcontainer1">
-                <div id="friendscontainer">
+                <div class="" id="friendscontainer">
 
                     <h2>Friends</h2>
                     <?php 

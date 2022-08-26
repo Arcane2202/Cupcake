@@ -38,10 +38,10 @@
             if($posterUs['userID']==$_SESSION['user']) {
                 $postId = $val['postId'];
                 echo "
-                <a href='editPost.php?postid=$postId'>
+                <a href='editPost.php?postid=$postId' style='text-decoration:none'>
                 <span class='smallerText' id='editPost'
                         style='margin-left:13%;margin-top:-50%; color: var(--col8);'>Edit</span></a>
-                <a href='deletePost.php?postid=$postId'>
+                <a href='deletePost.php?postid=$postId' style='text-decoration:none'>
                 <span class='smallerText' id='deletePost'
                         style='margin-left:5px;margin-top:-50%; color: var(--col8);'>Delete</span></a>";
             }
