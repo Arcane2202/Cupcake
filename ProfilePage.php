@@ -70,8 +70,18 @@
     <div id="bodyContainer">
 
         <div id="profileImagesContainer">
-
-            <a href="" style="color: antiquewhite; text-decoration:none">
+                <?php
+                    $quer = "SELECT * FROM posts WHERE cover = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
+                    $database = new connectDatabase();
+                    $res = $database->read($quer);
+                    $valu = $res[0];
+                    $name = $userData['firstName']." ".$userData['lastName'];
+                    $quer = "SELECT * FROM posts WHERE dp = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
+                    $res2 = $database->read($quer);
+                    $val = $res2[0];
+                echo "
+                <a href='postView.php?postId=$valu[postId]&date=$valu[date]&reacts=$valu[reacts]&image=$valu[image]&name=$name&userID=$userData[userID]&dp=$val[image]&post=$valu[post]' style='color: antiquewhite; text-decoration:none'>";
+                ?>
                 <span>
                     <?php
                       if(file_exists($userData['cover'])) {
@@ -88,10 +98,20 @@
                     style="font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%"></i></a> <br>-->
                 </span>
 
-                <a href="" style="color: antiquewhite; text-decoration:none">
-                    <span>
 
-                        <?php
+                <?php
+                    $quer = "SELECT * FROM posts WHERE dp = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
+                    $database = new connectDatabase();
+                    $res = $database->read($quer);
+                    $val = $res[0];
+                    $name = $userData['firstName']." ".$userData['lastName'];
+                
+                echo "
+                <a href='postView.php?postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$userData[userID]&dp=$val[image]&post=$val[post]' style='color: antiquewhite; text-decoration:none'>";
+                ?>
+                <span>
+
+                    <?php
                         if(file_exists($userData['dp'])) {
                             $dp = $media->preview($userData['dp'],'dp');
                             echo "<img id='profilepicmain' src=$dp style='margin-bottom:-2%' alt='profilepic'> </a> <br>";
@@ -102,18 +122,18 @@
 
                     ?>
 
-                        <!--<a href="changeDP.php?change=dp"><i class="fa fa-camera"
+                    <!--<a href="changeDP.php?change=dp"><i class="fa fa-camera"
                     style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>-->
 
 
 
-                    </span>
-                    <br>
-                    <div style="font-size: 1.5vw">
-                        <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
-                    </div>
+                </span>
+                <br>
+                <div style="font-size: 1.5vw">
+                    <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
+                </div>
 
-                    <?php
+                <?php
 
                         if($userData['userID'] != $_SESSION['user']) { 
 
@@ -149,8 +169,6 @@
                                 }
                             }
                             echo "
-                            
-                            
                             <a href='react.php?type=$type1&postid=$id'>
                                 <input class='btn-with-hover' id='profileButton' type='submit' value='$text'
                                     style='border-radius: 10px;margin-top:-2%;margin-right:5%'>
@@ -163,7 +181,6 @@
 
                                 ";
                             }
-                            
                         }
 
                     ?>
@@ -171,12 +188,12 @@
 
 
 
-                    <br>
-                    <div id="profButtons"> <a href="HomePage.php" class="texthover"
-                            style="color: var(--col8); text-decoration:none">Timeline </a> </div>
-                    <div id="profButtons"><a href="" class="texthover"
-                            style="color: var(--col8); text-decoration:none">About</a> </div>
-                    <?php
+                <br>
+                <div id="profButtons"> <a href="HomePage.php" class="texthover"
+                        style="color: var(--col8); text-decoration:none">Timeline </a> </div>
+                <div id="profButtons"><a href="" class="texthover"
+                        style="color: var(--col8); text-decoration:none">About</a> </div>
+                <?php
 
                     if($userData['userID'] == $_SESSION['user']) { 
 
@@ -189,12 +206,12 @@
 
                 ?>
 
-                    <div id="profButtons"><a href="" class="texthover"
-                            style="color: var(--col8); text-decoration:none">Friends</a> </div>
-                    <div id="profButtons"><a href="" class="texthover"
-                            style="color: var(--col8); text-decoration:none">Photos</a> </div>
-                    <div id="profButtons"><a href="" class="texthover"
-                            style="color: var(--col8); text-decoration:none">Settings</a> </div>
+                <div id="profButtons"><a href="" class="texthover"
+                        style="color: var(--col8); text-decoration:none">Friends</a> </div>
+                <div id="profButtons"><a href="" class="texthover"
+                        style="color: var(--col8); text-decoration:none">Photos</a> </div>
+                <div id="profButtons"><a href="" class="texthover"
+                        style="color: var(--col8); text-decoration:none">Settings</a> </div>
 
         </div>
 
@@ -241,7 +258,7 @@
                     }
                 ?>
 
-                    <?php
+                <?php
 
                         if($userPosts) {
                             foreach($userPosts as $val) {
@@ -253,13 +270,13 @@
                         }        
                    ?>
 
-                </div>
-
             </div>
+
         </div>
+    </div>
 
     </div>
-    
+
     <script>
     const dp = document.getElementById("dp");
     const div = document.getElementById("imgPrevPost");

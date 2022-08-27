@@ -3,11 +3,14 @@
     <div style="width: 100%;">
 
         <div class="texthover" id="NameHeader" style="color: var(--col9); margin-bottom:-3%">
-            <a href="" style="color: antiquewhite; text-decoration:none">
+            <a href="ProfilePage.php?id=<?php echo $posterUs['userID']; ?>" style="color: antiquewhite; text-decoration:none">
                 <img src="<?php echo $media->preview($posterUs['dp'], 'dp') ?>" style="border-radius:50px; width:10%;">
             </a>
-            <a href="" style="margin-left:2%; color: antiquewhite; text-decoration:none;">
-                <span class="texthover"><?php echo $posterUs['firstName'] . " " . $posterUs['lastName'] ?></span>
+            <a href="ProfilePage.php?id=<?php echo $posterUs['userID']; ?>" style="margin-left:2%; color: antiquewhite; text-decoration:none;">
+                <span class="texthover"><?php echo $posterUs['firstName'] . " " . $posterUs['lastName'];
+                                        $name = $posterUs['firstName'] . " " . $posterUs['lastName'];
+
+                                        ?></span>
             </a>
             <span class="textsizeCorrect" style="color: var(--col8); font-weight:normal">
                 <?php
@@ -33,9 +36,8 @@
         </div>
 
         <?php
-
+        $postId = $val['postId'];
         if ($posterUs['userID'] == $_SESSION['user']) {
-            $postId = $val['postId'];
             echo "
                 <a href='editPost.php?postid=$postId' style='text-decoration:none'>
                 <span class='smallerText' id='editPost'
@@ -47,23 +49,35 @@
 
         ?>
 
-        <div style="margin-left: 2%; margin-top:5%; font-size:calc(0.5em + 0.5vw)">
-            <?php echo htmlspecialchars($val['post']) ?>
-            <br> <br>
+        <div style="margin-left: 2%; margin-top:-3%; font-size:calc(0.5em + 0.5vw)">
+            <div id="textPart">
+                <?php
+                $post = "";
+                if ($val['post'] != "") {
+                    $post = htmlspecialchars($val['post']);
+                    echo "<p> $post<br></p>";
+                }
+                ?>
+            </div>
+
             <?php
+            echo "<a href='postView.php?postid=$postId&postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$posterUs[userID]&dp=$posterUs[dp]&post=$post'>";
+            $_SESSION['val'] = $val;
+            $_SESSION['posterUs'] = $posterUs;
             if (file_exists($val['image'])) {
                 $image = $media->preview($val['image'], 'dp');
                 if ($wid == "prof") {
-                    echo "<img src='$image' style='width:45.5vw; margin-bottom:15px'/>";
+                    echo "<img src='$image' style='width:45.5vw; border-radius:20px; margin-bottom:15px'/>";
                 } else {
-                    echo "<img src='$image' style='width:48.5vw; margin-bottom:15px'/>";
+                    echo "<img src='$image' style='width:48.5vw;border-radius:20px; margin-bottom:15px'/>";
                 }
             }
+            echo "</a>";
             ?>
-            <?php ?> 
-            
+            <?php ?>
+
             <div class="textsizeCorrect" id="reactShow" style="margin-top: 2vh;padding-left: 4%;color:antiquewhite">
-            <?php
+                <?php
                 $likes = "";
                 $database = new connectDatabase();
                 $post = new createPosts();
@@ -75,7 +89,7 @@
                     $users = new userData();
                     foreach ($res as $value) {
                         $valu = $users->fetchData($value['reactor']);
-                        $reacters[] = $valu['firstName'] ." ". $valu['lastName'];
+                        $reacters[] = $valu['firstName'] . " " . $valu['lastName'];
                         if ($valu['userID'] == $_SESSION['user']) {
                             $flag = true;
                         }
@@ -108,37 +122,37 @@
 
                 if ($likes != "") {
                     echo "<i class='fa fa-heart' style='padding-right: 5px;'>&nbsp$likes</i>";
-                } 
-                echo "</a>";
-            ?>
-                
-        </div>
-        <div id="reactSec">
-            <div id="flex" style="padding-left: 15%;padding-right: 8%">
-                <?php
-                $reactCount = "";
-                if ($val['reacts'] > 0) {
-                    $reactCount = "(" . $val['reacts'] . ")";
                 }
+                echo "</a>";
                 ?>
-                <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
-                    <i class="fa fa-heart fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true">
-                        <?php echo $reactCount ?></a></i>
-                </a>
+
             </div>
-            <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                <a href="" class="btn-with-hover" style="color: var(--col8);">
-                    <i class="fa fa-comment fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                <a href="" class="btn-with-hover" style="color: var(--col8);">
-                    <i class="fa fa-share fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
-                </a>
+            <div id="reactSec">
+                <div id="flex" style="padding-left: 15%;padding-right: 8%">
+                    <?php
+                    $reactCount = "";
+                    if ($val['reacts'] > 0) {
+                        $reactCount = "(" . $val['reacts'] . ")";
+                    }
+                    ?>
+                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
+                        <i class="fa fa-heart fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true">
+                            <?php echo $reactCount ?></a></i>
+                    </a>
+                </div>
+                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
+                    <a href="" class="btn-with-hover" style="color: var(--col8);">
+                        <i class="fa fa-comment fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
+                    <a href="" class="btn-with-hover" style="color: var(--col8);">
+                        <i class="fa fa-share fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <script type="text/javascript">
@@ -178,5 +192,4 @@
             }
         }
     }
-
 </script>

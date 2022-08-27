@@ -75,7 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <form method="post" enctype="multipart/form-data">
                 <div id="containposter">
                     <div class="imgPrevDiv" id = "imgPrevDiv">
-                        <img src="" class="imgPrevImg" id="imgPrevImg" alt="img">
+                        <?php if($_GET['change'] == "dp") {
+                            echo "<img src='' class='imgPrevImg' id='imgPrevImg' alt='img'>";
+                        } else {
+                            echo "<img src='' class='imgPrevImg' style='border-radius:2px' id='imgPrevImg' alt='img'>";
+                        } ?>
                         <span class="imgPrevtext">Selected Image will appear here!</span>
                     </div>
                     <input type="file" name="dp" id="dp">

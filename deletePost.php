@@ -58,14 +58,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                     <h4>Delete Post</h4><br>
                     <form method="post" enctype="multipart/form-data">
                         
-                        Are you sure you want to delete this post?
+                        <span style="margin-left: 2%">Are you sure you want to delete this post?</span>
+                        <input class="btn-with-hover" id="submitButton" type="submit" value="Delete" style="margin-top: 0%;margin-right: 3%">
                         <?php 
                             $USER = new userData();
                             $posterUs = $USER->fetchData($val['userId']);
                             include("displayPostToDelete.php"); 
                         ?>
                         <input type="hidden" value="<?php echo $val['postId'] ?>" name="postId">
-                        <input class="btn-with-hover" id="submitButton" type="submit" value="Delete" style="margin-top: -5%;margin-right: 3%">
                         <br>
                     </form>
 

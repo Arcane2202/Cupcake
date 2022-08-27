@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                             <?php 
                                 if(file_exists($val['image'])) {
                                     $image = $media->preview($val['image'],'dp');
-                                    echo "<img src='$image' style='width:40vw; margin-bottom:15px'/>";
+                                    echo "<img src='$image' style='width:58vw; margin-bottom:15px'/>";
                                 }
                             ?>
                             <input class="btn-with-hover" id="submitButton" type="submit" value="Save">

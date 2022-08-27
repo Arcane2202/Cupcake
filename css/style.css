@@ -201,31 +201,63 @@ body {
   border-radius: 25px;
 }
 
+.outer-wrapper{
+  display: inline-block;
+  margin: 0; 
+  padding: 0;
+}
+.frame{  
+  width: 100vw;
+  height: 100vh;
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+} 
+
+.frame img{
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+}
 
 .imgPrevDiv {
-  width: 46vw;
+  width: 35vw;
   min-height: 200px;
-  margin-top: 2px;
-  margin-bottom: 20px;
-  border: 1px solid antiquewhite;
+  margin: 0 auto;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   font-weight: bold;
   color: antiquewhite;
 }
 
+.imgPrevDiv img {
+  display: none;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  border-radius:50%;
+}
+
 .imgPrevPost {
   display: none;
-  width: 34vw;
+  width: 48vw;
   min-height: 200px;
   margin-top: 2px;
   margin-bottom: 20px;
-  border: 1px solid antiquewhite;
+  border: none;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   color: antiquewhite;
+  border-radius: 5px;
+}
+.imgPrevPost img {
+  display: none;
+  border-radius: 5px;
 }
 
 .imgPrevImg {
@@ -310,7 +342,8 @@ textarea {
   color: antiquewhite;
   resize: none;
   outline: none;
-
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 textarea::-webkit-scrollbar {
@@ -320,12 +353,10 @@ textarea::-webkit-scrollbar {
 #submitButton {
   float: right;
   background-color: brown;
-  border-radius: 5px;
-  color: black;
+  border-radius: 10px;
+  color: antiquewhite;
   font-size: larger;
   width: 4vw;
-  padding: 5px;
-  padding: 2px;
 }
 
 #profileButton {
@@ -350,6 +381,20 @@ textarea::-webkit-scrollbar {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   width: 100%;
+}
+
+#textPart{
+  margin-bottom: 0;
+  margin-left: 2%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+#textPart2{
+  margin-bottom: 0;
+  margin-left: 2%;
+  white-space: pre-wrap;
+  /*overflow-wrap: break-word;*/
+  overflow-y: scroll;
 }
 #statusBar::-webkit-scrollbar {
   /*margin-top: 5%;*/
@@ -378,6 +423,16 @@ textarea::-webkit-scrollbar {
 .contact {
   color: antiquewhite;
 }
+
+.postImageContainer {
+  height: 100vh;
+  background-color:var(--col2);
+  flex: 2.5;
+  margin-top: 2%;
+  justify-content: center;
+}
+  
+
 
 
 #leftholder {

@@ -8,7 +8,7 @@
             <?php 
                     if(file_exists($val['image'])) {
                         $image = $media->preview($val['image'],'dp');
-                        echo "<img src='$image' style='width:44vw; margin-bottom:15px'/>";
+                        echo "<img src='$image' style='width:54vw; margin-bottom:15px'/>";
                     }
             ?>
         </div>
