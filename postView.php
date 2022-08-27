@@ -108,95 +108,105 @@ $use = new userData();
                                 $res = $database->read($quer);
                                 $valu = $res[0];
                                 $post = htmlspecialchars($valu['post']);
-                                echo "
-                                <div style='margin-left: 2%; margin-top:-2vh;margin-bottom:-5vh; font-size:calc(0.5em + 0.5vw)'>
-                                    <div id='textPart2'>
-                                       <p> $post</p>
-                                    </div>
-                                </div>";
                             } ?>
-                            <div class="textsizeCorrect" id="reactShow" style="margin-top: 2vh;padding-left: 4%;color:antiquewhite">
-                                <?php
-                                $likes = "";
-                                $database = new connectDatabase();
-                                $post = new createPosts();
-                                $res = $post->getReactors($_GET['postId'], 'post');
-                                $reacters = [];
-                                $flag = false;
-                                echo "<a id='reactors_$_GET[postId]' class='smallerText' style='color:antiquewhite' href='showReactors.php?type=post&postid=$_GET[postId]'>";
-                                if ($res) {
-                                    $users = new userData();
-                                    foreach ($res as $value) {
-                                        $valu = $users->fetchData($value['reactor']);
-                                        $reacters[] = $valu['firstName'] . " " . $valu['lastName'];
-                                        if ($valu['userID'] == $_SESSION['user']) {
-                                            $flag = true;
-                                        }
-                                    }
-                                    $count = count($reacters);
-                                    if ($flag) {
-                                        $count = count($reacters) - 1;
-                                        if ($count > 0) {
-                                            if ($count == 1) {
-                                                $likes = "You and 1 other liked this post.";
-                                            } else {
-                                                $likes = "You and " . $count . "others liked this post.";
-                                            }
-                                        } else {
-                                            $likes = "You liked this post.";
-                                        }
-                                    } elseif ($count > 0) {
-                                        $count = count($reacters) - 1;
-                                        if ($count > 0) {
-                                            if ($count == 1) {
-                                                $likes = "$reacters[0] and 1 other liked this post.";
-                                            } else {
-                                                $likes = "$reacters[0] and " . $count . "others liked this post.";
-                                            }
-                                        } else {
-                                            $likes = "$reacters[0] liked this post.";
-                                        }
-                                    }
-                                }
-
-                                if ($likes != "") {
-                                    echo "<i class='fa fa-heart' style='padding-right: 5px;'>&nbsp$likes</i>";
-                                }
-                                echo "</a>";
-                                ?>
-
-                            </div>
-                            <div id="reactSec">
-                                <div id="flex" style="padding-left: 15%;padding-right: 8%">
+                            <div style="margin-left: 2%; margin-top:-3%; font-size:calc(0.5em + 0.5vw)">
+                                <div id="textPart">
                                     <?php
-                                    $reactCount = "";
-                                    if ($_GET['reacts'] > 0) {
-                                        $reactCount = "(" . $_GET['reacts'] . ")";
+                                    if ($post != "") {
+                                        $string = strip_tags($post);
+                                        if (strlen($string) > 450) {
+                                            $stringCut = substr($string, 0, 450);
+                                            $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '...<a style="text-decoration: none; font-weight: bold;color: antiquewhite;" onclick="seePost(event,' . $postId . ')" href="postData.php?postid=' . $postId . '">see more</a>';
+                                        }
+                                        echo "<p> $string<br></p>";
                                     }
                                     ?>
-                                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $_GET['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
-                                        <i class="fa fa-heart fa-2x" style="font-size:calc(0.30em + 0.5vw)" aria-hidden="true">
-                                            <?php echo $reactCount ?></a></i>
-                                    </a>
                                 </div>
-                                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                                    <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                        <i class="fa fa-comment fa-2x" style="font-size:calc(0.30em + 0.5vw)" aria-hidden="true"></i>
-                                    </a>
+
+
+
+                                <div class="textsizeCorrect" id="reactShow" style="margin-top: 2vh;padding-left: 4%;color:antiquewhite">
+                                    <?php
+                                    $likes = "";
+                                    $database = new connectDatabase();
+                                    $post = new createPosts();
+                                    $res = $post->getReactors($_GET['postId'], 'post');
+                                    $reacters = [];
+                                    $flag = false;
+                                    echo "<a id='reactors_$_GET[postId]' class='smallerText' style='color:antiquewhite' href='showReactors.php?type=post&postid=$_GET[postId]'>";
+                                    if ($res) {
+                                        $users = new userData();
+                                        foreach ($res as $value) {
+                                            $valu = $users->fetchData($value['reactor']);
+                                            $reacters[] = $valu['firstName'] . " " . $valu['lastName'];
+                                            if ($valu['userID'] == $_SESSION['user']) {
+                                                $flag = true;
+                                            }
+                                        }
+                                        $count = count($reacters);
+                                        if ($flag) {
+                                            $count = count($reacters) - 1;
+                                            if ($count > 0) {
+                                                if ($count == 1) {
+                                                    $likes = "You and 1 other liked this post.";
+                                                } else {
+                                                    $likes = "You and " . $count . "others liked this post.";
+                                                }
+                                            } else {
+                                                $likes = "You liked this post.";
+                                            }
+                                        } elseif ($count > 0) {
+                                            $count = count($reacters) - 1;
+                                            if ($count > 0) {
+                                                if ($count == 1) {
+                                                    $likes = "$reacters[0] and 1 other liked this post.";
+                                                } else {
+                                                    $likes = "$reacters[0] and " . $count . "others liked this post.";
+                                                }
+                                            } else {
+                                                $likes = "$reacters[0] liked this post.";
+                                            }
+                                        }
+                                    }
+
+                                    if ($likes != "") {
+                                        echo "<i class='fa fa-heart' style='padding-right: 5px;'>&nbsp$likes</i>";
+                                    }
+                                    echo "</a>";
+                                    ?>
+
                                 </div>
-                                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                                    <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                        <i class="fa fa-share fa-2x" style="font-size:calc(0.30em + 0.5vw)" aria-hidden="true"></i>
-                                    </a>
+                                <div id="reactSec">
+                                    <div id="flex" style="padding-left: 15%;padding-right: 8%">
+                                        <?php
+                                        $reactCount = "";
+                                        if ($_GET['reacts'] > 0) {
+                                            $reactCount = "(" . $_GET['reacts'] . ")";
+                                        }
+                                        ?>
+                                        <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $_GET['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
+                                            <i class="fa fa-heart fa-2x" style="font-size:calc(0.30em + 0.5vw)" aria-hidden="true">
+                                                <?php echo $reactCount ?></a></i>
+                                        </a>
+                                    </div>
+                                    <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
+                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
+                                            <i class="fa fa-comment fa-2x" style="font-size:calc(0.30em + 0.5vw)" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
+                                        <a href="" class="btn-with-hover" style="color: var(--col8);">
+                                            <i class="fa fa-share fa-2x" style="font-size:calc(0.30em + 0.5vw)" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
         </div>
 
         <script type="text/javascript">
@@ -235,6 +245,31 @@ $use = new userData();
                         post.innerHTML = obj.likes;
                     }
                 }
+            }
+
+            function seePost(e, postId) {
+                e.preventDefault();
+                var data = {};
+                data.act = "showpost";
+                data.ref = postId;
+                showPost(data, e.target.parentElement);
+            }
+
+            function showPost(data, tag) {
+                var ajax = new XMLHttpRequest();
+                ajax.addEventListener('readystatechange', function() {
+                    if (ajax.readyState == 4 && ajax.status == 200) {
+                        results(ajax.responseText, tag);
+                    }
+                });
+                data = JSON.stringify(data);
+                ajax.open("postView", "ajax.php", true);
+                ajax.send(data);
+            }
+
+            function results(res, tag) {
+                obj = JSON.parse(res);
+                tag.innerHTML = obj.post;
             }
         </script>
 

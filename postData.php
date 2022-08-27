@@ -55,22 +55,29 @@
                 $post = "";
                 if ($val['post'] != "") {
                     $post = htmlspecialchars($val['post']);
-                    echo "<p> $post<br></p>";
+                    $string = strip_tags($post);
+                    if(strlen($string) > 450) {
+                        $stringCut = substr($string, 0, 450);
+                        $string = substr($stringCut, 0, strrpos($stringCut,' ')).'...<a style="text-decoration: none; font-weight: bold;color: antiquewhite;" onclick="seePost(event,'.$postId.')" href="postData.php?postid='.$postId.'">see more</a>';
+                    }
+                    echo "<p> $string<br></p>";
                 }
                 ?>
             </div>
-
+            
             <?php
             echo "<a href='postView.php?postid=$postId&postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$posterUs[userID]&dp=$posterUs[dp]&post=$post'>";
             $_SESSION['val'] = $val;
             $_SESSION['posterUs'] = $posterUs;
             if (file_exists($val['image'])) {
                 $image = $media->preview($val['image'], 'dp');
+           
                 if ($wid == "prof") {
-                    echo "<img src='$image' style='width:45.5vw; border-radius:20px; margin-bottom:15px'/>";
+                    echo "<img src='$image' style='margin-left:2vh;width:43.6vw;border-radius:20px; margin-bottom:15px'/>";
                 } else {
-                    echo "<img src='$image' style='width:48.5vw;border-radius:20px; margin-bottom:15px'/>";
+                    echo "<img src='$image' style='margin-left:2vh;width:46.7vw;border-radius:20px; margin-bottom:15px'/>";
                 }
+           
             }
             echo "</a>";
             ?>
@@ -192,4 +199,27 @@
             }
         }
     }
+    function seePost(e,postId) {
+        e.preventDefault();
+        var data = {};
+        data.act = "showpost";
+        data.ref = postId;
+        showPost(data, e.target.parentElement);
+    }
+    function showPost(data, tag) {
+        var ajax = new XMLHttpRequest();
+        ajax.addEventListener('readystatechange', function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                results(ajax.responseText, tag);
+            }
+        });
+        data = JSON.stringify(data);
+        ajax.open("postData", "ajax.php", true);
+        ajax.send(data);
+    }
+    function results(res, tag) {
+        obj = JSON.parse(res);
+        tag.innerHTML = obj.post;
+    }
+    
 </script>

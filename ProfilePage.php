@@ -184,10 +184,6 @@
                         }
 
                     ?>
-
-
-
-
                 <br>
                 <div id="profButtons"> <a href="HomePage.php" class="texthover"
                         style="color: var(--col8); text-decoration:none">Timeline </a> </div>

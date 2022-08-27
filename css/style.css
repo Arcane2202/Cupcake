@@ -186,6 +186,13 @@ body {
   float: right;
 }
 
+#imagePost {
+  width:40.5vw;
+}
+#imagePost img{
+  margin: 0 auto;
+}
+
 #bodyContainer {
   min-height: 55vh;
   width: 70vw;
@@ -276,7 +283,7 @@ body {
 }
 
 #profButtons {
-  width: 6vw;
+  width: 7vw;
   display: inline-block;
   margin: 0.5%;
   margin-bottom: 2%;

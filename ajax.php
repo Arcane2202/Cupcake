@@ -17,4 +17,15 @@ if ($data != "") {
 if (isset($data->act) && $data->act == "reactPost") {
     include("react.php");
 }
+if (isset($data->act) && $data->act == "showpost") {
+    $quer = "SELECT post FROM posts WHERE postId = '$data->ref' limit 1";
+    $database = new connectDatabase();
+    $res = $database->read($quer);
+    $val = $res[0];
+    $obj = (object)[];
+    $obj->post = "<p>". $val['post']."<br></p>";
+    $obj->act = "showpost";
+    echo json_encode($obj);
+}
+
 ?>
