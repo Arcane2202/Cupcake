@@ -98,14 +98,9 @@ session_start();
                     <h6>OR</h6><p>Log in with:</p><br>
                     <div>
                         <a>
-                        <i class="fa-brands fa-square-google-plus google" ></i>
+                        <i class="fa-brands fa-square-google-plus google" > </i>
                         </a>
-                        <a>
-                        <i class="fa-brands fa-square-facebook facebook" ></i>
-                        </a>
-                        <a>
-                        <i class="fa-brands fa-square-twitter twitter" ></i>
-                        </a>
+                        
                         
                     </div>
                     

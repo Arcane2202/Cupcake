@@ -173,12 +173,6 @@
                         <a>
                         <i class="google fa-brands fa-square-google-plus" style="font-size: 4vw;margin-right:3%;"></i>
                         </a>
-                        <a>
-                        <i class="facebook fa-brands fa-square-facebook" style="font-size: 4vw;margin-right:3%;"></i>
-                        </a>
-                        <a>
-                        <i class="twitter fa-brands fa-square-twitter" style="font-size: 4vw;"></i>
-                        </a>
                         
                     </div>
                     
