@@ -35,42 +35,23 @@ session_start();
         
     </head>
 
-    <body style="background-color: var(--col4);
-    color: antiquewhite;">
-<!--
-    <div id="navBar">
-        <div id="containMake">
-                <b>Cup Cake</b> 
-            <button type="submit" id="signup_btn">Sign Up</button>
-        </div>          
-    </div>
--->
+    <body style="background-color: var(--col4);color: antiquewhite;">
     <div style="overflow: hidden; display:flex;">
-            <div style="
-            flex:3;">
+        <div style="flex:3;">
+            <div style="margin-top:20%; padding-left:20%;">         
+                <h1 class="tubelight"> Cupcake </h1>
 
-<!--
-            <img src="./img/logo.png" style="width:30% ; height:30%;
-            margin-top:20%; margin-left:10%;">
--->
-                <div style="margin-top:20%; padding-left:20%;">         
-                    <h1 class="tubelight"> Cupcake </h1>
+                <div class="marquee">
+                    <div>A platform for the youth to resurrect the friendship</div>                 
+                </div>
 
-                    <div class="marquee">
-                        <div>A platform for the youth to resurrect the friendship</div>                 
-                    </div>
+            </div>         
+        </div>
 
-                </div>         
-            </div>
-
-            <div style="
-            flex:1;
-            padding:5%;
-
-            ">
-                <div class="form-box" align="center" >
-                    <h1 align="center">Login Form</h1>
-                    <form method="post" action="">
+        <div style="flex:1;padding:5%;">
+            <div class="form-box" align="center" >
+                <h1 align="center">Login Form</h1>
+                <form method="post" action="">
                     <div class="input-box">
                         <i class="fa fa-envelope"></i>
                         <input type="email" name="email" value="<?php echo $email ?>" placeholder="Email ID">
@@ -85,47 +66,27 @@ session_start();
                     </div>
                     <div style="padding-top: 5%;">
                         <span class="error start" style="font-size: 95%; color:red"> <?php echo $error?></span>
-                  
                         <input type="submit" id="button" class="login-btn" value="LOG IN">
-                        
                     </div>
+                </form>
+                <a class="hyper" href="#">Forgotten password</a>
 
-                    
-                    </form>
-                    <a class="hyper" href="#">Forgotten password</a>
-
-                    <div class="input-box"></div>
+                <div class="input-box"></div>
                     <h6>OR</h6><p>Log in with:</p><br>
-                    <div>
-                        <a>
-                        <i class="fa-brands fa-square-google-plus google" > </i>
-                        </a>
-                        
-                        
-                    </div>
-                    
-
-
-                    <div class="input-box"></div>
-                    <div align="center">
-                        <a href="signup.php">
-                        <button type="submit" id="signup_btn">Create a New Account</button>
-                        </a>
-                    </div>
-                    
-
-
+                <div>
+                    <a><i class="fa-brands fa-square-google-plus google" > </i></a>         
                 </div>
-
-
-
-
+                <div class="input-box"></div>
+                <div align="center">
+                    <a href="signup.php">
+                        <button type="submit" id="signup_btn">Create a New Account</button>
+                    </a>
+                </div>
             </div>
+        </div>
+    </div>
     
-        
-
-
-
+    
     <script>
         function hidetoggle(){
             var x = document.getElementById("myInput");
