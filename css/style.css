@@ -319,14 +319,13 @@ textarea::-webkit-scrollbar {
 
 #submitButton {
   float: right;
-  background-color: var(--col8);
-  border-radius: 25px;
+  background-color: brown;
+  border-radius: 5px;
   color: black;
   font-size: larger;
   width: 4vw;
   padding: 5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding: 2px;
 }
 
 #profileButton {
