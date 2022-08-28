@@ -36,6 +36,61 @@ body{
     background-color: #2e1512;
 }
 */
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+  text-align: center;
+  }
+  
+  .flex-item-left {
+    flex:3;
+  }
+  
+  .flex-item-right {
+    flex:1;
+  }
+
+  
+  .brdr{
+    border:1px solid red
+  }
+.co-left-childd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 250px;
+}
+.co-right-childd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+  /* Responsive layout - makes a one column layout instead of a two-column layout */
+  @media (max-width: 800px) {
+    .co-left-childd{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0px;
+        padding-top:15px;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+
+    }
+    .co-right-childd{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+  }
+
+
+
+
 #bar{
     height:100px; 
     background-color:#0f0706; 

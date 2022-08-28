@@ -48,21 +48,26 @@
     <body style="background-color: var(--col4);
     color: antiquewhite;">
 
-        <div style="overflow: hidden; display:flex;">
-            <div style="flex:3;">
-                <div style="margin-top:20%; padding-left:20%;">         
-                    <h1 class="tubelight"> Cupcake </h1>
+        <div class="row">
+            <div class="col-lg-8 col">
+                <div class="co-left-childd">
+                    <div>
+                        <h1 class="tubelight"> Cupcake </h1>
 
-                    <div class="marquee">
-                        <div>A platform for the youth to resurrect the friendship</div>                 
-                    </div>
-                </div> 
-    
+                        <div class="marquee">
+                            <div>A platform for the youth to resurrect the friendship</div>                 
+                        </div>
+                    </div>         
+                    
+
+                </div>         
             </div>
 
-            <div style="flex:1; padding:5%;">
+            <div class="col-lg-4 col">
+
+            <div class="co-right-childd">
                 <div class="form-box" align="center" >
-                    <h1 align="center">Sign Up Form</h1>
+                        <h1 align="center">Sign Up Form</h1>
                         <form method="post" action="">
                             <div style="display: flex;">
                                 <div style="flex:1">
@@ -92,15 +97,15 @@
                                 </div>
                             </div>
                             <div style="display: flex;">
-                   
+                
                                 <div class="input-box3">
                                     <input name="password"value="<?php echo $password?>" type="password" placeholder="Password" id="myInput">
-                                    <span class="eye" onclick="hidetoggle()" style="margin-left: -1%;">
+                                    <span class="eye" onclick="hidetoggle()" style="margin-left: -15px;">
                                         <i id="hide1" class="fa fa-eye"></i>
                                         <i id="hide2" class="fa fa-eye-slash"></i>
                                     </span>
                                 </div>
-                  
+                
                             </div>
                             <div style="padding-left: 5%; padding-right:5%;">
                                 <label style="color:#c6c9d8bf">Birth Date : </label>
@@ -155,6 +160,7 @@
                         <div>
                             <a><i class="google fa-brands fa-square-google-plus" style="font-size: 4vw;margin-right:3%;"></i></a>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
