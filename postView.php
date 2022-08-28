@@ -52,9 +52,6 @@ $use = new userData();
 <body class="textsizeCorrect">
 
     <?php include('navBar.php'); ?>
-
-    <body class="textsizeCorrect">
-        <?php include('navBar.php'); ?>
         <div id="bodyContainer" style="height: 100vh;margin-bottom: 0;padding-bottom: 0;">
             <div style="display: flex;min-height: 100vh;margin-bottom: 0;padding-bottom: 0;">
 
