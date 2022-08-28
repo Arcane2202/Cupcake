@@ -37,17 +37,17 @@
 </div>
 -->
 
-<nav>
+<nav class="fixed-top">
     <div class="menu-icon">
         <span class="fas fa-bars"></span>
     </div>
 
 
     <a href="HomePage.php" class="basic">
-            <div class="logo floating">
-                Cupcake
-            </div>
-            </a>
+        <div class="logo floating">
+            Cupcake
+        </div>
+    </a>
 
     <div class="nav-items">
         <li class="li_icons"><a href="" class="basic icons"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
@@ -55,15 +55,7 @@
         <li class="li_img"><a href="ProfilePage.php">
                 <img src=<?php echo $media->preview($userData['dp'],'dp') ?> class="propic" id="profilepic" alt="profilepic">
             </a>
-                <!--
-                <div class="sub-menu">
-                    <ul>
-                        <li> <a href="ProfilePage.php"> Profile</a> </li>
-                        <li> <a href="./ContactForm.php"> Help</a> </li>
-                        <li> <a href="logout.php"> Logout</a> </li>
-                    </ul>
-                <div>
-                -->
+
             <div class="dropdown">
                 <ul>
                     <li class="dropdown-link"> <a href="ProfilePage.php"> Profile <i class="fa fa-user stickers" aria-hidden="true"></i></a> </li>
@@ -89,7 +81,6 @@
 </nav>
 
 <script>
-    var boolval = false;
     const menuBtn = document.querySelector(".menu-icon span");
     const searchBtn = document.querySelector(".search-icon");
     const cancelBtn = document.querySelector(".cancel-icon");
@@ -97,11 +88,7 @@
     const form = document.querySelector("form");
     const pp = document.querySelector(".propic");
     const dropdown = document.querySelector(".dropdown");
-
-    pp.onclick = () => {
-        dropdown.classList.add("active");
-    }    
-
+   
     menuBtn.onclick = () => {
         items.classList.add("active");
         menuBtn.classList.add("hide");

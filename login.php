@@ -25,6 +25,7 @@ session_start();
 
 <html>
     <head>
+        <link rel="icon" type="img/svg" href="img/cupcake-wh.svg">
         <title>CupCake|Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

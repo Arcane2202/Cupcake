@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Cupcake|Contact Us</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="img/svg" href="img/cupcake-wh.svg">
 </head>
 
 <body class="textsizeCorrect">

@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Cupcake|Profile</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="img/svg" href="img/cupcake-wh.svg">
 </head>
 
 <body class="textsizeCorrect">

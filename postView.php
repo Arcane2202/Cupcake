@@ -45,7 +45,7 @@ $use = new userData();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Cupcake</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="icon" type="img/svg" href="img/cupcake-wh.svg">
 </head>
 
 
