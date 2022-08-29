@@ -164,9 +164,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </a>
                 </div>
                 <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
-                    <a href="" class="react_icon">
-                        <i class="fa fa-comments fa-2x " style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
+                <?php 
+                $posts = htmlspecialchars($val['post']);
+                echo "<a href='postView.php?postId=$postId&postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$posterUs[userID]&dp=$posterUs[dp]&post=$posts' class='react_icon'>
+                        <i class='fa fa-comments fa-2x' style='font-size:calc(1em + 0.5vw)' aria-hidden='true'></i>
                     </a>
+                ";?>
                 </div>
                 <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
                     <a href="" class="btn-with-hover" style="color: var(--col8);">
@@ -174,6 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </a>
                 </div>
             </div>
+            <!--
             <div class="commentBox"style="height:45vh">
             <div class='commentposter' style='margin-bottom:3%'>
                 <form method='post' enctype='multipart/form-data'>
@@ -198,6 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 ?>
             </div>
             </div>
+                -->
         </div>
     </div>
 </div>
