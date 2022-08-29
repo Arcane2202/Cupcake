@@ -724,4 +724,19 @@ input::-webkit-inner-spin-button {
   .smallestText{
     display: none;
   }
+
+  #ContactbodyContainer {
+    min-height: 55vh;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+  .start {
+    width: 35vw;
+    text-align: start;
+    border: solid thin antiquewhite;
+    background-color: var(--col3);
+    padding: 1%;
+  }
 }
