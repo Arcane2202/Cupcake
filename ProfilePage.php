@@ -202,6 +202,7 @@ $friends = $use->getFriendData($userId);
 
             ?>
 
+            <div id="profButtons"><a href="" class="hover-underline make-white" style="text-decoration:none">Friends</a> </div>
             <div id="profButtons"><a href="showAllUsers.php?type=friendRequests&id=$id" class="hover-underline make-white" style="text-decoration:none">Find People</a> </div>
             <!--<div id="profButtons"><a href="" class="hover-underline make-white" style="text-decoration:none">Photos</a> </div>
         --><div id="profButtons"><a href="" class="hover-underline make-white" style="text-decoration:none">Settings</a> </div>
