@@ -83,7 +83,7 @@ $use = new userData();
                             </a>
                             <a href="ProfilePage.php?id=<?php echo $_GET['userID']; ?>"
                                 style="margin-left:2%; color: antiquewhite; text-decoration:none;">
-                                <span class="texthover"><?php echo $_GET['name'] ?></span>
+                                <span class="texthover ProfileName"><?php echo $_GET['name'] ?></span>
                             </a>
                             <span class="smallestText" id="time"
                                 style="margin-top:5%; color: var(--col8); float:right"><?php echo $_GET['date'] ?></span>
@@ -181,30 +181,23 @@ $use = new userData();
 
                             </div>
                             <div id="reactSec">
-                                <div id="flex" style="padding-left: 15%;padding-right: 8%">
+                                <div id="flex" style="padding-left: 19%;padding-right: 8%">
                                     <?php
                                         $reactCount = "";
                                         if ($_GET['reacts'] > 0) {
                                             $reactCount = "(" . $_GET['reacts'] . ")";
                                         }
                                         ?>
-                                    <a onclick='getData(event)'
-                                        href="react.php?type=post&postid=<?php echo $_GET['postId'] ?>"
-                                        class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
+                                    <a id="heart_icon" class="react_icon" onclick='getData(event)'
+                                        href="react.php?type=post&postid=<?php echo $_GET['postId'] ?>">
                                         <i class="fa fa-heart fa-2x" style="font-size:calc(0.30em + 0.5vw)"
                                             aria-hidden="true">
                                             <?php echo $reactCount ?></a></i>
                                     </a>
                                 </div>
-                                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                                    <a href="" class="btn-with-hover" style="color: var(--col8);">
+                                <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
+                                    <a href="" id="heart_icon" class="react_icon">
                                         <i class="fa fa-comment fa-2x" style="font-size:calc(0.30em + 0.5vw)"
-                                            aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                                    <a href="" class="btn-with-hover" style="color: var(--col8);">
-                                        <i class="fa fa-share fa-2x" style="font-size:calc(0.30em + 0.5vw)"
                                             aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -213,12 +206,17 @@ $use = new userData();
                                 <div class='commentposter' style='margin-bottom:3%'>
                                     <form method='post' enctype='multipart/form-data'>
                                         <?php $text = "text" . $postId; ?>
+                                        <div style="border:1px solid white; border-bottom:transparent; margin-bottom:10%;" id="containposter">
                                         <textarea id=<?php echo $text ?> name='comments'
                                             placeholder='Write a comment'></textarea>
-                                        <input onclick='comment2(event,<?php echo $postId ?>)' class='btn-with-hover'
-                                            style='width:3vw; font-size:100%;' id='submitButton' type='Button'
-                                            value='Post'>
+                                        <button onclick='comment2(event,<?php echo $postId ?>)' class='icon'
+                                        style='background-color:transparent; border:none;' id='submitButton' type='Button'
+                                            value='Post'><i id='submitButton' class='fa fa-share icon smallerText' aria-hidden='true' style='margin-top:-10%;'></i> </button>
+                            
                                         <br>
+
+                                        </div>
+                                        
                                     </form>
 
                                     <?php

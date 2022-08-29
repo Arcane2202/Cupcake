@@ -246,7 +246,7 @@ $friends = $use->getFriendData($userId);
                                     <i id='addPic' class='fa fa-file-image-o icon' aria-hidden='true' style='font-size: 20px;'></i>
                                 </label>
                                 <input type='file' name='dp' id='dp' class='showNone'></input>
-                                <button style='background-color:transparent; border:none;' id='submitButton' type='submit'><i id='submitButton' class='fa fa-floppy-o icon' aria-hidden='true' style='font-size: 20px;'></i> </button>
+                                <button style='background-color:transparent; border:none;' id='submitButton' type='submit'><i id='submitButton' class='fa fa-share icon' aria-hidden='true' style='font-size: 20px;'></i> </button>
                                 <br> 
                             </form>
 

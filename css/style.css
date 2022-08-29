@@ -679,6 +679,17 @@ input::-webkit-inner-spin-button {
   transform-origin: bottom center;
 }
 
+.react-data{
+  color: var(--col8);
+  margin-top: 2vh;padding-left: 4%;
+}
+.react-data:hover{
+  color: antiquewhite;
+  text-decoration: underline;
+}
+.profileName{
+  font-size: calc(0.75em + 0.5vw);
+}
 
 @media (max-width: 980px){
   #bodyContainer {
@@ -706,5 +717,11 @@ input::-webkit-inner-spin-button {
     display: inline-block;
     margin: 0.5%;
     margin-bottom: 2%;
+  }
+  .ProfileName{
+    font-size: calc(0.39em + 0.5vw);
+  }
+  .smallestText{
+    display: none;
   }
 }

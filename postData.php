@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ?>
             <?php ?>
 
-            <div class="textsizeCorrect" id="reactShow" style="margin-top: 2vh;padding-left: 4%;color:antiquewhite">
+            <div class="textsizeCorrect" id="reactShow" >
                 <?php
                 $color = "antiquewhite";
                 $likes = "";
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $res = $post->getReactors($val['postId'], 'post');
                 $reacters = [];
                 $flag = false;
-                echo "<a id='reactors_$val[postId]' style='color:antiquewhite' href='showReactors.php?type=post&postid=$val[postId]'>";
+                echo "<a id='reactors_$val[postId]' class='react-data' href='showReactors.php?type=post&postid=$val[postId]'>";
                 if ($res) {
                     
                     $users = new userData();
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     ?>
                     <a id="heart_icon" class="react_icon" style="color:<?php echo $color ?>" onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>">
                         <i class="fa fa-heart fa-2x " style="font-size:calc(1em + 0.5vw); " aria-hidden="true">
-                            <?php echo $reactCount ?></a></i>
+                            <?php echo $reactCount ?></i>
                     </a>
                 </div>
                 <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
@@ -170,11 +170,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <i class='fa fa-comments fa-2x' style='font-size:calc(1em + 0.5vw)' aria-hidden='true'></i>
                     </a>
                 ";?>
-                </div>
-                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                    <a href="" class="btn-with-hover" style="color: var(--col8);">
-                        <i class="fa fa-share fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
-                    </a>
                 </div>
             </div>
             <!--

@@ -75,6 +75,7 @@ session_start();
                         <input type="submit" id="button" class="login-btn" value="LOG IN">
                     </div>
                 </form>
+<!--
                 <a class="hyper" href="#">Forgotten password</a>
 
                 <div class="input-box"></div>
@@ -83,6 +84,7 @@ session_start();
                     <a><i class="fa-brands fa-square-google-plus google" > </i></a>         
                 </div>
                 <div class="input-box"></div>
+-->
                 <div align="center">
                     <a href="signup.php">
                         <button type="submit" id="signup_btn">Create a New Account</button>

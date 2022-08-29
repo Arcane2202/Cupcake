@@ -154,13 +154,14 @@
 
                         <br>
                         <a class="hyper" href="./login.php">Already Got an account? Sign In</a>
-
+<!--
                         <div class="input-box"></div>
                         <h6>OR</h6><p>Sign Up with:</p><br>
                         <div>
                             <a><i class="google fa-brands fa-square-google-plus" style="font-size: 4vw;margin-right:3%;"></i></a>
                         </div>
                     </div>
+-->
                 </div>
             </div>
         </div>
