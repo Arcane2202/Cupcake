@@ -30,5 +30,14 @@ if (isset($data->act) && $data->act == "showpost") {
 if (isset($data->act) && $data->act == "makeFriend") {
     include("makeFriend.php");
 }
+if (isset($data->act) && $data->act == "comment") {
+    $userId = $_SESSION['user'];
+    $poster = new createPosts();
+    $postid = $data->postid;
+    $res = $poster->createComment($data->ref, $userId,$postid);
 
+    $obj = (object)[];
+    $obj->act = "comment";
+    echo json_encode($obj);
+}
 ?>

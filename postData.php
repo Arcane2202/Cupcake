@@ -1,3 +1,16 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $userId = $_SESSION['user'];
+    $poster = new createPosts();
+    $res = $poster->createComment($_POST, $userId, $val['postId']);
+    if ($res == "") {
+        die;
+    } else {
+        echo $res;
+    }
+}
+?>
+
 <div id="status">
 
     <div style="width: 100%;">
@@ -56,28 +69,27 @@
                 if ($val['post'] != "") {
                     $post = htmlspecialchars($val['post']);
                     $string = strip_tags($post);
-                    if(strlen($string) > 450) {
+                    if (strlen($string) > 450) {
                         $stringCut = substr($string, 0, 450);
-                        $string = substr($stringCut, 0, strrpos($stringCut,' ')).'...<a style="text-decoration: none; font-weight: bold;color: antiquewhite;" onclick="seePost(event,'.$postId.')" href="postData.php?postid='.$postId.'">see more</a>';
+                        $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '...<a style="text-decoration: none; font-weight: bold;color: antiquewhite;" onclick="seePost(event,' . $postId . ')" href="postData.php?postid=' . $postId . '">see more</a>';
                     }
                     echo "<p> $string<br></p>";
                 }
                 ?>
             </div>
-            
+
             <?php
             echo "<a href='postView.php?postid=$postId&postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$posterUs[userID]&dp=$posterUs[dp]&post=$post'>";
             $_SESSION['val'] = $val;
             $_SESSION['posterUs'] = $posterUs;
             if (file_exists($val['image'])) {
                 $image = $media->preview($val['image'], 'dp');
-           
+
                 if ($wid == "prof") {
                     echo "<img src='$image' style='margin-left:2vh;width:43.6vw;border-radius:20px; margin-bottom:15px'/>";
                 } else {
                     echo "<img src='$image' style='margin-left:2vh;width:46.7vw;border-radius:20px; margin-bottom:15px'/>";
                 }
-           
             }
             echo "</a>";
             ?>
@@ -142,8 +154,7 @@
                         $reactCount = "(" . $val['reacts'] . ")";
                     }
                     ?>
-                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" 
-                    style="color: var(--col8); text-decoration:none;">
+                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
                         <i class="fa fa-heart fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true">
                             <?php echo $reactCount ?></a></i>
                     </a>
@@ -158,6 +169,30 @@
                         <i class="fa fa-share fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
                     </a>
                 </div>
+            </div>
+            <div class="commentBox"style="height:45vh">
+            <div class='commentposter' style='margin-bottom:3%'>
+                <form method='post' enctype='multipart/form-data'>
+                    <?php $text = "text" . $postId; ?>
+                    <textarea id=<?php echo $text ?> name='comments' placeholder='Write a comment'></textarea>
+                    <input onclick='comment(event,<?php echo $postId ?>)' class='btn-with-hover' style='width:3vw; font-size:100%;' id='submitButton' type='Button' value='Post'>
+                    <br>
+                </form>
+
+                <?php
+
+                    $query = "SELECT * FROM comments WHERE postid = '$postId'";
+                    $db = new connectDatabase();
+                    $res = $db->read($query);
+                    if($res) {
+                        foreach ($res as $val) {
+                            $us = new userData();
+                            $commentuser = $us->fetchData($val['commentuser']);
+                            include('getComments.php');
+                        }
+                    }
+                ?>
+            </div>
             </div>
         </div>
     </div>
@@ -201,13 +236,15 @@
             }
         }
     }
-    function seePost(e,postId) {
+
+    function seePost(e, postId) {
         e.preventDefault();
         var data = {};
         data.act = "showpost";
         data.ref = postId;
         showPost(data, e.target.parentElement);
     }
+
     function showPost(data, tag) {
         var ajax = new XMLHttpRequest();
         ajax.addEventListener('readystatechange', function() {
@@ -219,9 +256,37 @@
         ajax.open("postData", "ajax.php", true);
         ajax.send(data);
     }
+
     function results(res, tag) {
         obj = JSON.parse(res);
         tag.innerHTML = obj.post;
     }
-    
+
+
+    function comment(e, postid) {
+        e.preventDefault();
+        var text = document.getElementById("text" + postid);
+        var data = {};
+        data.act = "comment";
+        data.ref = text.value;
+        data.postid = postid;
+        makecomment(data, postid, text);
+    }
+
+    function makecomment(data, postid, text) {
+        var ajax = new XMLHttpRequest();
+        ajax.addEventListener('readystatechange', function() {
+            if (ajax.readyState == 4 && ajax.status == 200) {
+                returnfromhere(ajax.responseText, postid, text);
+            }
+        });
+        data = JSON.stringify(data);
+        ajax.open("postData", "ajax.php", true);
+        ajax.send(data);
+    }
+
+    function returnfromhere(res, postid, text) {
+        obj = JSON.parse(res);
+        text.value = "";
+    }
 </script>

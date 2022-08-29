@@ -341,6 +341,25 @@ body {
   border-color: var(--col3);
   border-radius: 25px;
 }
+.commentposter {
+  border: solid thin;
+  background-color: var(--col3);
+  border-color: var(--col3);
+  border-radius: 25px;
+}
+
+.commentposter textarea {
+  width: 100%;
+  border-radius: 10px;
+  padding: 1%;
+  font-family: var(--primary-font);
+  background-color: var(--col3);
+  color: antiquewhite;
+  resize: none;
+  border: solid thin;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
 
 textarea {
   width: 100%;
@@ -392,6 +411,13 @@ textarea::-webkit-scrollbar {
   width: 100%;
 }
 
+.commentBox{
+  margin: 5%;
+  margin-left: 0;
+  margin-right: 0;
+  border-bottom: solid thin;
+  overflow-y: scroll;
+}
 #textPart{
   margin-bottom: 0;
   margin-left: 2%;

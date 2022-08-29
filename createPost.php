@@ -56,6 +56,21 @@ class createPosts
         return $this->errorMessage;
     }
 
+    public function createComment($data, $userId,$postid)
+    {
+        if (empty($data)) {
+            $this->errorMessage .= "Cannot make empty comments!!!";
+        } else {
+            $comment = "";
+            $comment .= addslashes($data);
+            $database = new connectDatabase();
+            $quer = "INSERT INTO comments(postid,commentuser,comment) VALUES('$postid','$userId','$comment')";
+            $database = new connectDatabase();
+            $database->write($quer);
+        }
+        return $this->errorMessage;
+    }
+
     private function postIdGenerate($min, $max)
     {
         $len = rand($min, $max); //DevSkim: ignore DS148264  
