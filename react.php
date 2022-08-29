@@ -24,7 +24,7 @@ if (isset($_GET['postid']) && isset($_GET['type']) && is_numeric($_GET['postid']
         $storeReact = new createPosts();
         $storeReact->reactPost($_GET['postid'], $_GET['type'], $_SESSION['user']);
     }
-
+    $color = "antiquewhite";
     $likes = $info = "";
     $database = new connectDatabase();
     $post = new createPosts();
@@ -42,6 +42,7 @@ if (isset($_GET['postid']) && isset($_GET['type']) && is_numeric($_GET['postid']
         }
         $count = count($reacters);
         if ($flag) {
+            $color = "brown";
             $count = count($reacters) - 1;
             if ($count > 0) {
                 if ($count == 1) {
@@ -53,6 +54,7 @@ if (isset($_GET['postid']) && isset($_GET['type']) && is_numeric($_GET['postid']
                 $likes = "You liked this post.";
             }
         } elseif ($count > 0) {
+            $color = "antiquewhite";
             $count = count($reacters) - 1;
             if ($count > 0) {
                 if ($count == 1) {
@@ -76,5 +78,6 @@ if (isset($_GET['postid']) && isset($_GET['type']) && is_numeric($_GET['postid']
     $obj->act = "reactPost";
     $obj->likes = $likes;
     $obj->postId = "reactors_$_GET[postid]";
+    $obj->color = $color;
     echo json_encode($obj);
 }

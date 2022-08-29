@@ -92,8 +92,8 @@ $friends = $use->getFriendData($userId);
                     echo "<img src=$cover style='margin-bottom:-2%; width: 100%;' alt='coverpic'> </a>";
                 }
                 if ($userData['userID'] == $_SESSION['user']) {
-                    echo "<a href='changeDP.php?change=cover'><i class='fa fa-camera'
-                        style='font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%'></i></a> <br>";
+                    echo "<a href='changeDP.php?change=cover'><i class='fa fa-camera icon'
+                        style='font-size:20px; margin-top:-10%; margin-left:94%'></i></a> <br>";
                 }
                 ?>
 
@@ -121,7 +121,7 @@ $friends = $use->getFriendData($userId);
                     echo "<img id='profilepicmain' src=$dp style='margin-bottom:-2%' alt='profilepic'> </a> <br>";
                 }
                 if ($userData['userID'] == $_SESSION['user']) {
-                    echo "<a href='changeDP.php?change=dp'><i class='fa fa-camera'style='font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%'></i></a>";
+                    echo "<a href='changeDP.php?change=dp'><i class='fa fa-camera icon'style='font-size:20px; margin-top:-8%; margin-left:12%'></i></a>";
                 }
 
                 ?>
@@ -188,8 +188,7 @@ $friends = $use->getFriendData($userId);
 
             ?>
             <br>
-            <div id="profButtons"> <a href="HomePage.php" class="texthover" style="color: var(--col8); text-decoration:none">Timeline </a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">About</a> </div>
+            <div id="profButtons"> <a href="HomePage.php" class="hover-underline make-white" style="text-decoration:none">Timeline </a> </div>
             <?php
 
             if ($userData['userID'] == $_SESSION['user']) {
@@ -197,15 +196,15 @@ $friends = $use->getFriendData($userId);
 
                 $id = $userData['userID'];
                 echo "
-                        <div id='profButtons'><a href='showFriendRequests.php?type=friendRequests&id=$id' class='texthover'
-                            style='color: var(--col8); text-decoration:none'>Friend Requests</a> </div> ";
+                        <div id='profButtons'><a href='showFriendRequests.php?type=friendRequests&id=$id' class='hover-underline make-white'
+                            style='text-decoration:none'>Friend Requests</a> </div> ";
             }
 
             ?>
 
-            <div id="profButtons"><a href="showAllUsers.php?type=friendRequests&id=$id" class="texthover" style="color: var(--col8); text-decoration:none">Find People</a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Photos</a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Settings</a> </div>
+            <div id="profButtons"><a href="showAllUsers.php?type=friendRequests&id=$id" class="hover-underline make-white" style="text-decoration:none">Find People</a> </div>
+            <!--<div id="profButtons"><a href="" class="hover-underline make-white" style="text-decoration:none">Photos</a> </div>
+        --><div id="profButtons"><a href="" class="hover-underline make-white" style="text-decoration:none">Settings</a> </div>
 
         </div>
 
@@ -243,10 +242,10 @@ $friends = $use->getFriendData($userId);
                                 </div>
                                 
                                 <label for='dp'>
-                                        <img id='addPic' src='images/addpic.png' width='20' />
+                                    <i id='addPic' class='fa fa-file-image-o icon' aria-hidden='true' style='font-size: 20px;'></i>
                                 </label>
                                 <input type='file' name='dp' id='dp' class='showNone'></input>
-                                <input class='btn-with-hover' id='submitButton' type='submit' value='Post'>
+                                <button style='background-color:transparent; border:none;' id='submitButton' type='submit'><i id='submitButton' class='fa fa-floppy-o icon' aria-hidden='true' style='font-size: 20px;'></i> </button>
                                 <br> 
                             </form>
 

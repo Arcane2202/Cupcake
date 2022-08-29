@@ -15,17 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <div style="width: 100%;">
 
-        <div class="texthover" id="NameHeader" style="color: var(--col9); margin-bottom:-3%">
+        <div  id="NameHeader" style="color: var(--col9); margin-bottom:-3%">
             <a href="ProfilePage.php?id=<?php echo $posterUs['userID']; ?>" style="color: antiquewhite; text-decoration:none">
-                <img src="<?php echo $media->preview($posterUs['dp'], 'dp') ?>" style="border-radius:50px; width:10%;">
+                <img src="<?php echo $media->preview($posterUs['dp'], 'dp') ?>" style="border-radius:50%; width:10%;">
             </a>
-            <a href="ProfilePage.php?id=<?php echo $posterUs['userID']; ?>" style="margin-left:2%; color: antiquewhite; text-decoration:none;">
-                <span class="texthover"><?php echo $posterUs['firstName'] . " " . $posterUs['lastName'];
+            <a href="ProfilePage.php?id=<?php echo $posterUs['userID']; ?>" style="margin-left:2vw; margin-right:1vw; color: antiquewhite; text-decoration:none;">
+                <span class="textsizeCorrect texthover2"><?php echo $posterUs['firstName'] . " " . $posterUs['lastName'];
                                         $name = $posterUs['firstName'] . " " . $posterUs['lastName'];
 
                                         ?></span>
             </a>
-            <span class="textsizeCorrect" style="color: var(--col8); font-weight:normal">
+            <span class="textsizeCorrect" style="color: var(--col8); font-weight:normal; font-size:1.3vw;">
                 <?php
                 $pron = 'their';
                 if ($posterUs['gender'] == "Male") {
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             echo "
                 <a href='editPost.php?postid=$postId' style='text-decoration:none'>
                 <span class='smallerText' id='editPost'
-                        style='margin-left:13%;margin-top:-50%; color: var(--col8);'>Edit</span></a>
+                        style='margin-left: calc(11% + 2vw);margin-top:-50%; color: var(--col8);'>Edit</span></a>
                 <a href='deletePost.php?postid=$postId' style='text-decoration:none'>
                 <span class='smallerText' id='deletePost'
                         style='margin-left:5px;margin-top:-50%; color: var(--col8);'>Delete</span></a>";
@@ -86,9 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $image = $media->preview($val['image'], 'dp');
 
                 if ($wid == "prof") {
-                    echo "<img src='$image' style='margin-left:2vh;width:43.6vw;border-radius:20px; margin-bottom:15px'/>";
+                    echo "<img src='$image' style='width:98%;border-radius:20px; margin-bottom:15px'/>";
                 } else {
-                    echo "<img src='$image' style='margin-left:2vh;width:46.7vw;border-radius:20px; margin-bottom:15px'/>";
+                    echo "<img src='$image' style='width:98%;border-radius:20px; margin-bottom:15px'/>";
                 }
             }
             echo "</a>";
@@ -97,6 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             <div class="textsizeCorrect" id="reactShow" style="margin-top: 2vh;padding-left: 4%;color:antiquewhite">
                 <?php
+                $color = "antiquewhite";
                 $likes = "";
                 $database = new connectDatabase();
                 $post = new createPosts();
@@ -105,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $flag = false;
                 echo "<a id='reactors_$val[postId]' style='color:antiquewhite' href='showReactors.php?type=post&postid=$val[postId]'>";
                 if ($res) {
+                    
                     $users = new userData();
                     foreach ($res as $value) {
                         $valu = $users->fetchData($value['reactor']);
@@ -116,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     $count = count($reacters);
                     if ($flag) {
                         $count = count($reacters) - 1;
+                        $color = "brown";
                         if ($count > 0) {
                             if ($count == 1) {
                                 $likes = "You and 1 other liked this post.";
@@ -126,6 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             $likes = "You liked this post.";
                         }
                     } elseif ($count > 0) {
+                        $color = "antiquewhite";
                         $count = count($reacters) - 1;
                         if ($count > 0) {
                             if ($count == 1) {
@@ -147,21 +151,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             </div>
             <div id="reactSec">
-                <div id="flex" style="padding-left: 15%;padding-right: 8%">
+                <div id="flex" style="padding-left: 19%;padding-right: 8%">
                     <?php
                     $reactCount = "";
                     if ($val['reacts'] > 0) {
                         $reactCount = "(" . $val['reacts'] . ")";
                     }
                     ?>
-                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
-                        <i class="fa fa-heart fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true">
+                    <a id="heart_icon" class="react_icon" style="color:<?php echo $color ?>" onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>">
+                        <i class="fa fa-heart fa-2x " style="font-size:calc(1em + 0.5vw); " aria-hidden="true">
                             <?php echo $reactCount ?></a></i>
                     </a>
                 </div>
-                <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
-                    <a href="" class="btn-with-hover" style="color: var(--col8);">
-                        <i class="fa fa-comment fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
+                <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
+                    <a href="" class="react_icon">
+                        <i class="fa fa-comments fa-2x " style="font-size:calc(1em + 0.5vw)" aria-hidden="true"></i>
                     </a>
                 </div>
                 <div id="flex" style="padding-left: 15%;padding-right: 8%;border-left: solid thin;">
@@ -232,7 +236,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 tag.innerHTML = reactCount;
                 var post = document.getElementById(obj.postId);
                 post.innerHTML = obj.likes;
-
+                var temp = document.getElementById("heart_icon");
+                
+                tag.parentElement.style.color = obj.color;
+                
             }
         }
     }

@@ -90,7 +90,7 @@ $friends = $use->getFriendData($userId);
             </div>
             <div id="condivcontainer2">
 
-                <div id="containposter" style="margin-bottom:3%;">
+                <div id="containposter" >
 
                     <form method="post" enctype="multipart/form-data">
                         <textarea name="posts" placeholder="What's on your mind?"></textarea>
@@ -100,10 +100,13 @@ $friends = $use->getFriendData($userId);
                         </div>
                         
                         <label for="dp">
-                                <img id='addPic' src="images/addpic.png" width="20" />
+                                <!--<img id='addPic' src="images/addpic.png" width="20" />-->
+                                <i id='addPic' class='fa fa-file-image-o icon' aria-hidden='true' style='font-size: 20px;'></i>
                             </label>
-                            <input type="file" name="dp" id="dp" class="showNone"></input>
-                            <input class="btn-with-hover" id="submitButton" type="submit" value="Post">
+                            <input type='file' name='dp' id='dp' class='showNone'></input>
+                            <button style='background-color:transparent; border:none;' id='submitButton' type='submit'><i id='submitButton' class='fa fa-floppy-o icon' aria-hidden='true' style='font-size: 20px;'></i> </button>
+                            <!--<i id="submitButton" type="submit" value="Post" class="fa fa-floppy-o icon" aria-hidden="true" style="font-size: 20px;"></i>-->
+
                         <br>
                     </form>
 
