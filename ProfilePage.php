@@ -167,14 +167,14 @@ $friends = $use->getFriendData($userId);
                 }
             ?>
 
-                <button onclick='getData(event,<?php echo  $type1 ?>,<?php echo  $friendId ?>)' 
+                <button onclick='getData2(event,<?php echo  $type1 ?>,<?php echo  $friendId ?>)' 
                 class='btn-with-hover' id='profileButton' value='<?php echo $text ?>' 
                 style='border-radius: 10px;margin-top:-2%;margin-right:5%'><?php echo $text ?></button>
 
                 <?php
                 if ($text2 != "") {
                 ?>
-                    <button onclick='getData(event,<?php echo  $type2 ?>,<?php echo  $friendId ?>)' 
+                    <button onclick='getData2(event,<?php echo  $type2 ?>,<?php echo  $friendId ?>)' 
                     class='btn-with-hover' id='deleteButton' value='<?php echo $text2 ?>' 
                     style='border-radius: 10px;margin-top:-2%;margin-right:4px'><?php echo $text2 ?></button>
                 <?php
@@ -203,7 +203,7 @@ $friends = $use->getFriendData($userId);
 
             ?>
 
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Friends</a> </div>
+            <div id="profButtons"><a href="showAllUsers.php?type=friendRequests&id=$id" class="texthover" style="color: var(--col8); text-decoration:none">Find People</a> </div>
             <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Photos</a> </div>
             <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Settings</a> </div>
 
@@ -281,7 +281,7 @@ $friends = $use->getFriendData($userId);
             var ajax = new XMLHttpRequest();
             ajax.addEventListener('readystatechange', function() {
                 if (ajax.readyState == 4 && ajax.status == 200) {
-                    response(ajax.responseText,task,tag);
+                    response2(ajax.responseText,task,tag);
                 }
             });
             data = JSON.stringify(data);
@@ -289,7 +289,7 @@ $friends = $use->getFriendData($userId);
             ajax.send(data);
         }
 
-        function getData(e, task, taskUser) {
+        function getData2(e, task, taskUser) {
             e.preventDefault();
             var data = {};
             data.act = "makeFriend";
@@ -299,7 +299,7 @@ $friends = $use->getFriendData($userId);
             makeFriend(data,task, e.target);
         }
 
-        function response(res,data,tag) {
+        function response2(res,data,tag) {
             if (res != "") {
                 obj = JSON.parse(res); 
                 if(data == 4) {

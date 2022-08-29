@@ -142,7 +142,8 @@
                         $reactCount = "(" . $val['reacts'] . ")";
                     }
                     ?>
-                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" style="color: var(--col8); text-decoration:none;">
+                    <a onclick='getData(event)' href="react.php?type=post&postid=<?php echo $val['postId'] ?>" class="btn-with-hover" 
+                    style="color: var(--col8); text-decoration:none;">
                         <i class="fa fa-heart fa-2x" style="font-size:calc(1em + 0.5vw)" aria-hidden="true">
                             <?php echo $reactCount ?></a></i>
                     </a>
@@ -196,6 +197,7 @@
                 tag.innerHTML = reactCount;
                 var post = document.getElementById(obj.postId);
                 post.innerHTML = obj.likes;
+
             }
         }
     }
