@@ -1,6 +1,5 @@
 <?php
     session_start();
-    //unset($_SESSION['user']);
     include("connect.php");
     include("loginUser.php");
     include("userInformation.php");
@@ -10,18 +9,14 @@
 
     $log = new loginUser();
     $userData = $log->loginCheck($_SESSION['user']);
-    if(isset($_GET['postid'])&& isset($_GET['type'])) {
-        $database = new connectDatabase();
-        $post = new createPosts();
-        $res = $post->getReactors($_GET['postid'],$_GET['type']);
-    }
+    $database = new connectDatabase();
+    $requests = new userData();
+    $res = $requests->getFriendRequests($_GET['id']);
 ?>
 
 <!DOCTYPE html>
 
 <html>
-
-
 
 <head>
     <meta charset="UTF-8">
@@ -45,12 +40,11 @@
 
                     <?php
                          if(is_array($res)) {
+                                $type = "friendRequests";
                                 $users = new userData();
                                 foreach($res as $value) {
-                                  
-                                    $val = $users->fetchData($value['reactor']);
-                                    include("listReactors.php");
-                                    
+                                    $val = $users->fetchData($value['userID']);
+                                    include("listRequest.php");
                                 }
                          }
 

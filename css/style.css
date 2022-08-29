@@ -23,7 +23,9 @@
 body {
   background-color: var(--col4);
   color: antiquewhite;
-
+  margin-top:2%;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 ::-webkit-scrollbar{
   display: none;
@@ -316,8 +318,7 @@ body {
   margin-top: 10%;
   padding: 5%;
   padding-bottom: 0%;
-  border-top-right-radius: 25px;
-  border-top-left-radius: 25px;
+  border-radius: 25px;
 }
 
 #friendimgcontainer {
@@ -366,7 +367,7 @@ textarea::-webkit-scrollbar {
   width: 4vw;
 }
 
-#profileButton {
+#profileButton,#deleteButton,#messageButton {
   float: right;
   background-color: var(--col8);
   border-radius: 50%;
@@ -380,11 +381,12 @@ textarea::-webkit-scrollbar {
   /*margin-top: 5%;*/
   background-color: var(--col3);
   padding: 2.5%;
+  padding-bottom: 0;
   padding-top: 1%;
   padding-right: 1%;
   overflow-y: scroll;
   margin-bottom: 0;
-  height: 72vh;
+  height: 100vh;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   width: 100%;
@@ -454,6 +456,9 @@ textarea::-webkit-scrollbar {
   flex: 4;
   padding: 2.6%;
   padding-right: 0px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-radius: 25px;
 }
 
 #ContactbodyContainer {

@@ -55,6 +55,15 @@
             $quer = "INSERT INTO USERS(userID,firstName,lastName,email,phone,gender,password,urlAdress,dp,cover)
             VALUES('$userID','$firstName','$lastName','$email','$phone','$gender','$password','$urlAdress','$dp','$cover')";
             $database = new connectDatabase();
+            $table = $userID."table";
+            $database->write($quer);
+            $quer = "CREATE TABLE IF NOT EXISTS $table (
+                id bigint(20) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+                userId varchar(100) ,
+                friendid varchar(100) ,
+                state varchar(100) ,
+                date timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+              )";
             $database->write($quer);
         }
 

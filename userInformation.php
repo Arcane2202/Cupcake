@@ -15,7 +15,19 @@
         }
 
         public function getFriendData($userId) {
-            $quer = "SELECT * FROM USERS WHERE userID != $userId";
+            $table = $userId."table";
+            $quer = "SELECT * FROM users WHERE userID in (SELECT friendid FROM $table WHERE state = 'friends')";
+            $database = new connectDatabase();
+            $res = $database->read($quer);
+            if($res) {
+                return $res;
+            } else {
+                return false;
+            }
+        }
+        public function getFriendRequests($userId) {
+            $table = $userId."table";
+            $quer = "SELECT * FROM users WHERE userID in (SELECT friendid FROM $table WHERE state = 'got request')";
             $database = new connectDatabase();
             $res = $database->read($quer);
             if($res) {

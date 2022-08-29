@@ -27,5 +27,8 @@ if (isset($data->act) && $data->act == "showpost") {
     $obj->act = "showpost";
     echo json_encode($obj);
 }
+if (isset($data->act) && $data->act == "makeFriend") {
+    include("makeFriend.php");
+}
 
 ?>

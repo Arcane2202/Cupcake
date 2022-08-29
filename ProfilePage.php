@@ -1,42 +1,42 @@
 <?php
-    session_start();
-    //unset($_SESSION['user']);
-    include("connect.php");
-    include("loginUser.php");
-    include("userInformation.php");
-    include("createPost.php");
-    include("media.php");
-    include("getProfile.php");
-    
-    $user = $_SESSION['user'];
-    $media = new media();
-    $log = new loginUser();
-    $userData=$log->loginCheck($_SESSION['user']);
-   if(isset($_GET['id'])) {
+session_start();
+//unset($_SESSION['user']);
+include("connect.php");
+include("loginUser.php");
+include("userInformation.php");
+include("createPost.php");
+include("media.php");
+include("getProfile.php");
+
+$user = $_SESSION['user'];
+$media = new media();
+$log = new loginUser();
+$userData = $log->loginCheck($_SESSION['user']);
+if (isset($_GET['id'])) {
     $prof = new getProfile();
     $profData = $prof->getData($_GET['id']);
-    if(is_array($profData)) {
+    if (is_array($profData)) {
         $userData = $profData[0];
     }
-   }
-    
-    
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $userId = $_SESSION['user'];
-        $poster = new createPosts();
-        $res = $poster->createPost($_POST,$userId,$_FILES);
+}
 
-        if($res == "") {
-            header("Location: ProfilePage.php");
-            die;
-        }
-    }
-    $userId = $userData['userID'];
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $userId = $_SESSION['user'];
     $poster = new createPosts();
-    $userPosts = $poster->getPosts($userId);
+    $res = $poster->createPost($_POST, $userId, $_FILES);
 
-    $use = new userData();
-    $friends = $use->getFriendData($userId);
+    if ($res == "") {
+        header("Location: ProfilePage.php");
+        die;
+    }
+}
+$userId = $userData['userID'];
+$poster = new createPosts();
+$userPosts = $poster->getPosts($userId);
+
+$use = new userData();
+$friends = $use->getFriendData($userId);
 ?>
 <!DOCTYPE html>
 
@@ -55,183 +55,186 @@
 <body class="textsizeCorrect">
 
 
-    <?php include('navBar.php');?>
+    <?php include('navBar.php'); ?>
 
-    <?php 
-        if(isset($_GET['id'])) {
-            $prof = new getProfile();
-            $profData = $prof->getData($_GET['id']);
-            if(is_array($profData)) {
-                $userData = $profData[0];
-            }
+    <?php
+    if (isset($_GET['id'])) {
+        $prof = new getProfile();
+        $profData = $prof->getData($_GET['id']);
+        if (is_array($profData)) {
+            $userData = $profData[0];
         }
+    }
     ?>
 
     <div id="bodyContainer">
 
         <div id="profileImagesContainer">
-                <?php
-                    $quer = "SELECT * FROM posts WHERE cover = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
-                    $database = new connectDatabase();
-                    $res = $database->read($quer);
-                    $valu = $res[0];
-                    $name = $userData['firstName']." ".$userData['lastName'];
-                    $quer = "SELECT * FROM posts WHERE dp = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
-                    $res2 = $database->read($quer);
-                    $val = $res2[0];
+            <?php
+            $quer = "SELECT * FROM posts WHERE cover = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
+            $database = new connectDatabase();
+            $res = $database->read($quer);
+            if ($res) {
+
+
+                $valu = $res[0];
+                $name = $userData['firstName'] . " " . $userData['lastName'];
+                $quer = "SELECT * FROM posts WHERE dp = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
+                $res2 = $database->read($quer);
+                $val = $res2[0];
                 echo "
                 <a href='postView.php?postId=$valu[postId]&date=$valu[date]&reacts=$valu[reacts]&image=$valu[image]&name=$name&userID=$userData[userID]&dp=$val[image]&post=$valu[post]' style='color: antiquewhite; text-decoration:none'>";
-                ?>
-                <span>
-                    <?php
-                      if(file_exists($userData['cover'])) {
-                          $cover = $media->preview($userData['cover'],'cover');
-                          echo "<img src=$cover style='margin-bottom:-2%; width: 100%;' alt='coverpic'> </a>";
-                      }
-                      if($userData['userID'] == $_SESSION['user']) {
-                        echo "<a href='changeDP.php?change=cover'><i class='fa fa-camera'
-                        style='font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%'></i></a> <br>";
-                      }
-                    ?>
-
-                    <!--<a href="changeDP.php?change=cover"><i class="fa fa-camera"
-                    style="font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%"></i></a> <br>-->
-                </span>
-
-
+            } ?>
+            <span>
                 <?php
-                    $quer = "SELECT * FROM posts WHERE dp = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
-                    $database = new connectDatabase();
-                    $res = $database->read($quer);
-                    $val = $res[0];
-                    $name = $userData['firstName']." ".$userData['lastName'];
-                
+                if (file_exists($userData['cover'])) {
+                    $cover = $media->preview($userData['cover'], 'cover');
+                    echo "<img src=$cover style='margin-bottom:-2%; width: 100%;' alt='coverpic'> </a>";
+                }
+                if ($userData['userID'] == $_SESSION['user']) {
+                    echo "<a href='changeDP.php?change=cover'><i class='fa fa-camera'
+                        style='font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%'></i></a> <br>";
+                }
+                ?>
+
+                <!--<a href="changeDP.php?change=cover"><i class="fa fa-camera"
+                    style="font-size:24px;color:antiquewhite; margin-top:-18%; margin-left:96%"></i></a> <br>-->
+            </span>
+
+
+            <?php
+            $quer = "SELECT * FROM posts WHERE dp = 1 AND userId = '$userId' ORDER BY id DESC limit 1";
+            $database = new connectDatabase();
+            $res = $database->read($quer);
+            if ($res) {
+                $val = $res[0];
+                $name = $userData['firstName'] . " " . $userData['lastName'];
+
                 echo "
                 <a href='postView.php?postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$userData[userID]&dp=$val[image]&post=$val[post]' style='color: antiquewhite; text-decoration:none'>";
+            } ?>
+            <span>
+
+                <?php
+                if (file_exists($userData['dp'])) {
+                    $dp = $media->preview($userData['dp'], 'dp');
+                    echo "<img id='profilepicmain' src=$dp style='margin-bottom:-2%' alt='profilepic'> </a> <br>";
+                }
+                if ($userData['userID'] == $_SESSION['user']) {
+                    echo "<a href='changeDP.php?change=dp'><i class='fa fa-camera'style='font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%'></i></a>";
+                }
+
                 ?>
-                <span>
 
-                    <?php
-                        if(file_exists($userData['dp'])) {
-                            $dp = $media->preview($userData['dp'],'dp');
-                            echo "<img id='profilepicmain' src=$dp style='margin-bottom:-2%' alt='profilepic'> </a> <br>";
-                        }
-                        if($userData['userID'] == $_SESSION['user']) {
-                            echo "<a href='changeDP.php?change=dp'><i class='fa fa-camera'style='font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%'></i></a>";
-                        }
-
-                    ?>
-
-                    <!--<a href="changeDP.php?change=dp"><i class="fa fa-camera"
+                <!--<a href="changeDP.php?change=dp"><i class="fa fa-camera"
                     style="font-size:24px;color:antiquewhite; margin-top:-8%; margin-left:12%"></i></a>-->
 
 
 
-                </span>
-                <br>
-                <div style="font-size: 1.5vw">
-                    <b><?php echo $userData['firstName']." ".$userData['lastName'] ?></b>
-                </div>
+            </span>
+            <br>
+            <div style="font-size: 1.5vw">
+                <b><?php echo $userData['firstName'] . " " . $userData['lastName'] ?></b>
+            </div>
 
-                <?php
-
-                        if($userData['userID'] != $_SESSION['user']) { 
-
-
-                            $id = $userData['userID'];
-                            $text = "Add Friend";
-                            $text2 = "";
-                            $type1='friendRequests';
-                            $type2="";
-                            $poster = new createPosts();
-                            $friend = $poster->getReactors($id,"friendsCount");
-                            $requests = $poster->getReactors($id,"friendRequests");
-                            $conReq = $poster->getReactors($_SESSION['user'],"friendRequests");
-                            if($friend) {
-                                $friendId = array_column($friend, 'reactor');
-                                if(in_array($_SESSION['user'],$friendId)) {
-                                    $text = "Unfriend";
-                                    $text2 = "Message";
-                                    $type1="friendsCount";
-                                }
-                            } elseif($requests) {
-                                $requestId = array_column($requests, 'reactor');
-                                if(in_array($_SESSION['user'],$requestId)) {
-                                    $text = "Cancel Request";
-                                    $type1="friendRequests";
-                                }
-                            } elseif($conReq) {
-                                $conReqId = array_column($conReq, 'reactor');
-                                if(in_array($id,$conReqId)) {
-                                    $text = "Confirm";
-                                    $text2 = "Delete";
-                                    $type1="friendsCount";
-                                }
-                            }
-                            echo "
-                            <a href='react.php?type=$type1&postid=$id'>
-                                <input class='btn-with-hover' id='profileButton' type='submit' value='$text'
-                                    style='border-radius: 10px;margin-top:-2%;margin-right:5%'>
-                            </a>";
-                            if($text2!="") {
-                                echo"
-                                <a href='message.php?user_id=$id'>
-                                    <input class='btn-with-hover' id='profileButton' type='submit' value='$text2'
-                                        style='border-radius: 10px;margin-top:-2%;margin-right:4px'></a>
-
-                                ";
-                            }
-                        }
-
-                    ?>
-                <br>
-                <div id="profButtons"> <a href="HomePage.php" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Timeline </a> </div>
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">About</a> </div>
-                <?php
-
-                    if($userData['userID'] == $_SESSION['user']) { 
-
-
-                        $id = $userData['userID'];
-                        echo "
-                        <div id='profButtons'><a href='showReactors.php?type=friendRequests&postid=$id' class='texthover'
-                            style='color: var(--col8); text-decoration:none'>Friend Requests</a> </div> ";
+            <?php
+            if ($userData['userID'] != $_SESSION['user']) {
+                $friendId = $userData['userID'];
+                $table = $_SESSION['user'] . "table";
+                $text = "Add Friend";
+                $text2 = "";
+                $type1 = 1;
+                $type2 = "";
+                $show = "none";
+                $query = "SELECT * FROM $table WHERE friendid = '$friendId' limit 1";
+                $db = new connectDatabase();
+                $res = $db->read($query);
+                if ($res) {
+                    $res = $res[0];
+                    if ($res['state'] == "sent request") {
+                        $text = "Cancel Request";
+                        $type1 = 2;
+                    } elseif ($res['state'] == "got request") {
+                        $text = "Confirm";
+                        $type1 = 3;
+                        $text2 = "Delete";
+                        $type2 = 4;
+                    } else {
+                        $text = "Unfriend";
+                        $type1 = 5;
+                        $show = "block";
                     }
+                }
+            ?>
 
+                <button onclick='getData(event,<?php echo  $type1 ?>,<?php echo  $friendId ?>)' 
+                class='btn-with-hover' id='profileButton' value='<?php echo $text ?>' 
+                style='border-radius: 10px;margin-top:-2%;margin-right:5%'><?php echo $text ?></button>
+
+                <?php
+                if ($text2 != "") {
                 ?>
+                    <button onclick='getData(event,<?php echo  $type2 ?>,<?php echo  $friendId ?>)' 
+                    class='btn-with-hover' id='deleteButton' value='<?php echo $text2 ?>' 
+                    style='border-radius: 10px;margin-top:-2%;margin-right:4px'><?php echo $text2 ?></button>
+                <?php
+                }
+                ?>
+                <button onclick='' class='btn-with-hover' id='messageButton' value='' 
+                style='display:<?php echo $show ?>;border-radius: 10px;margin-top:-2%;margin-right:4px'>
+                Message</button>
+            <?php
+            }
 
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Friends</a> </div>
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Photos</a> </div>
-                <div id="profButtons"><a href="" class="texthover"
-                        style="color: var(--col8); text-decoration:none">Settings</a> </div>
+            ?>
+            <br>
+            <div id="profButtons"> <a href="HomePage.php" class="texthover" style="color: var(--col8); text-decoration:none">Timeline </a> </div>
+            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">About</a> </div>
+            <?php
+
+            if ($userData['userID'] == $_SESSION['user']) {
+
+
+                $id = $userData['userID'];
+                echo "
+                        <div id='profButtons'><a href='showFriendRequests.php?type=friendRequests&id=$id' class='texthover'
+                            style='color: var(--col8); text-decoration:none'>Friend Requests</a> </div> ";
+            }
+
+            ?>
+
+            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Friends</a> </div>
+            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Photos</a> </div>
+            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Settings</a> </div>
 
         </div>
 
         <div style="display: flex;" id="restPart">
 
             <div id="divcontainer1">
-                <div class="" id="friendscontainer">
+                <?php
+                $style = "";
+                if ($userData['userID'] == $_SESSION['user']) {
+                    $style = "height:115vh;";
+                }
+                ?>
+                <div class="" id="friendscontainer" style="<?php echo $style ?>">
 
                     <h2>Friends</h2>
-                    <?php 
-                        if($friends) {
-                            foreach($friends as $val) {
-                                include('friendlist.php');
-                            }
-                        }    
+                    <?php
+                    if ($friends) {
+                        foreach ($friends as $val) {
+                            include('friendlist.php');
+                        }
+                    }
                     ?>
-
-
                 </div>
             </div>
+
             <div id="divcontainer2">
-                <?php 
-                    if($userData['userID'] == $_SESSION['user']) {   
-                        echo "<div id='containposter' style='margin-bottom:3%'>
+                <?php
+                if ($userData['userID'] == $_SESSION['user']) {
+                    echo "<div id='containposter' style='margin-bottom:3%'>
                             <form method='post' enctype='multipart/form-data'>
                                 <textarea name='posts' placeholder='What is on your mind?'></textarea>
                                 
@@ -249,22 +252,22 @@
 
                         </div>
                             <div id='statusBar' style='display:inline-block'>";
-                    } else {
-                        echo "<div id='statusBar' style='height:87vh; display:inline-block'>";
-                    }
+                } else {
+                    echo "<div id='statusBar' style='height:87vh; display:inline-block'>";
+                }
                 ?>
 
                 <?php
 
-                        if($userPosts) {
-                            foreach($userPosts as $val) {
-                                $us = new userData();
-                                $wid = 'prof';
-                                $posterUs = $us->fetchData($val['userId']);
-                                include('postData.php');
-                            }
-                        }        
-                   ?>
+                if ($userPosts) {
+                    foreach ($userPosts as $val) {
+                        $us = new userData();
+                        $wid = 'prof';
+                        $posterUs = $us->fetchData($val['userId']);
+                        include('postData.php');
+                    }
+                }
+                ?>
 
             </div>
 
@@ -273,30 +276,76 @@
 
     </div>
 
-    <script>
-    const dp = document.getElementById("dp");
-    const div = document.getElementById("imgPrevPost");
-    const img = div.querySelector(".imgPrevImg");
-    const txt = div.querySelector(".imgPrevtext");
-
-    dp.addEventListener("change", function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            img.style.display = "block";
-            div.style.display = "flex";
-
-
-            reader.addEventListener("load", function() {
-                img.setAttribute("src", this.result);
+    <script type="text/javascript">
+        function makeFriend(data,task, tag) {
+            var ajax = new XMLHttpRequest();
+            ajax.addEventListener('readystatechange', function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    response(ajax.responseText,task,tag);
+                }
             });
-            reader.readAsDataURL(file);
-        } else {
-            img.setAttribute("src", "");
-            img.style.display = null;
-            div.style.display = null;
+            data = JSON.stringify(data);
+            ajax.open("ProfilePage", "ajax.php", true);
+            ajax.send(data);
         }
-    });
+
+        function getData(e, task, taskUser) {
+            e.preventDefault();
+            var data = {};
+            data.act = "makeFriend";
+            data.task = task;
+            data.taskUser = taskUser;
+            data.text = e.target.innerHTML;
+            makeFriend(data,task, e.target);
+        }
+
+        function response(res,data,tag) {
+            if (res != "") {
+                obj = JSON.parse(res); 
+                if(data == 4) {
+                    second = document.getElementById("deleteButton");
+                    second.style.display = "none";
+                    profileButton = document.getElementById("profileButton");
+                    document.getElementById("messageButton").innerHTML = obj.show;
+                    profileButton.innerHTML = obj.text;
+                } else if(data==3) {
+                    second = document.getElementById("deleteButton");
+                    second.style.display = "none";
+                    profileButton = document.getElementById("profileButton");
+                    document.getElementById("messageButton").style.display = obj.show;
+                    profileButton.innerHTML = obj.text;
+                } else {
+                    document.getElementById("messageButton").style.display = obj.show;
+                    tag.innerHTML = obj.text;
+                }
+            }
+        }
+    </script>
+
+    <script>
+        const dp = document.getElementById("dp");
+        const div = document.getElementById("imgPrevPost");
+        const img = div.querySelector(".imgPrevImg");
+        const txt = div.querySelector(".imgPrevtext");
+
+        dp.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                img.style.display = "block";
+                div.style.display = "flex";
+
+
+                reader.addEventListener("load", function() {
+                    img.setAttribute("src", this.result);
+                });
+                reader.readAsDataURL(file);
+            } else {
+                img.setAttribute("src", "");
+                img.style.display = null;
+                div.style.display = null;
+            }
+        });
     </script>
 
 
