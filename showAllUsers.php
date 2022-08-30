@@ -11,7 +11,7 @@
     $userData = $log->loginCheck($_SESSION['user']);
     $database = new connectDatabase();
     $requests = new userData();
-    $res = $requests->getFriendRequests($_GET['id']);
+    $res = $requests->getPeople($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -40,19 +40,15 @@
 
                     <?php
                          if(is_array($res)) {
-                                $type = "friendRequests";
+                                $type = "people";
                                 $users = new userData();
                                 foreach($res as $value) {
                                     $val = $users->fetchData($value['userID']);
-                                    include("listRequest.php");
+                                    include('listusers.php');
                                 }
                          }
-
                     ?>
-
                 </div>
-
-                
             </div>
         </div>
     </div>
@@ -60,3 +56,4 @@
 </body>
 
 </html>
+

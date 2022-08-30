@@ -314,7 +314,7 @@ body {
 #friendscontainer {
   background-color: var(--col3);
   height: 87vh;
-  margin-top: 10%;
+  margin-top: 2%;
   padding: 5%;
   padding-bottom: 0%;
   border-radius: 25px;
@@ -404,7 +404,7 @@ textarea::-webkit-scrollbar {
   color:brown;
 }
 
-#profileButton {
+#profileButton,.profileButton {
   float: right;
   background-color: var(--col8);
   border-radius: 50%;
@@ -413,7 +413,7 @@ textarea::-webkit-scrollbar {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-#deleteButton {
+#deleteButton,.deleteButton {
   float: right;
   background-color: var(--col8);
   border-radius: 50%;
@@ -422,7 +422,7 @@ textarea::-webkit-scrollbar {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-#messageButton {
+#messageButton,.messageButton {
   float: right;
   background-color: var(--col8);
   border-radius: 50%;

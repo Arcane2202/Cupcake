@@ -180,16 +180,16 @@ $friends = $use->getFriendData($userId);
                 <?php
                 }
                 ?>
+                <a href="message.php?id=<?php echo $userData['userID']; ?>">
                 <button onclick='' class='btn-with-hover' id='messageButton' value='' 
                 style='display:<?php echo $show ?>;border-radius: 10px;margin-top:-2%;margin-right:4px'>
-                Message</button>
+                Message</button></a>
             <?php
             }
 
             ?>
             <br>
             <div id="profButtons"> <a href="HomePage.php" class="texthover" style="color: var(--col8); text-decoration:none">Timeline </a> </div>
-            <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">About</a> </div>
             <?php
 
             if ($userData['userID'] == $_SESSION['user']) {
@@ -203,6 +203,7 @@ $friends = $use->getFriendData($userId);
 
             ?>
 
+            <div id="profButtons"><a href="getMessagePage.php?type=friendRequests&id=$id" class="texthover" style="color: var(--col8); text-decoration:none">Friends</a> </div>
             <div id="profButtons"><a href="showAllUsers.php?type=friendRequests&id=$id" class="texthover" style="color: var(--col8); text-decoration:none">Find People</a> </div>
             <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Photos</a> </div>
             <div id="profButtons"><a href="" class="texthover" style="color: var(--col8); text-decoration:none">Settings</a> </div>

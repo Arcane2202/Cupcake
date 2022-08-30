@@ -36,6 +36,17 @@
                 return false;
             }
         }
+        public function getPeople($userId) {
+            $table = $userId."table";
+            $quer = "SELECT * FROM users WHERE userID != $_SESSION[user]";
+            $database = new connectDatabase();
+            $res = $database->read($quer);
+            if($res) {
+                return $res;
+            } else {
+                return false;
+            }
+        }
     }
 
     ?>

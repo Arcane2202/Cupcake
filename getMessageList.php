@@ -1,11 +1,11 @@
 <?php
-    $img = $media->preview($val['dp'], 'dp');
-    $id = $val['userID'];
-    $text2 = "Message";
-    $type1 = 5;
-    $text = "Unfriend";
-    $type2 = "";
-    $friendId = $val['userID'];
+$img = $media->preview($val['dp'], 'dp');
+$id = $val['userID'];
+$text2 = "Message";
+$type1 = 5;
+$text = "Unfriend";
+$type2 = "";
+$friendId = $val['userID'];
 ?>
 
 <div id="reactorLister">

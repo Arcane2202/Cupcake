@@ -11,7 +11,7 @@
     $userData = $log->loginCheck($_SESSION['user']);
     $database = new connectDatabase();
     $requests = new userData();
-    $res = $requests->getFriendData($_SESSION['user']);
+    $friends = $requests->getFriendData($_SESSION['user']);
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 <body class="textsizeCorrect">
     <?php include('navBar.php');?>
     <div id="bodyContainer">
-        <div style="display: flex;">
+        <!--<div style="display: flex;">
 
             
             <div id="condivcontainer2">
@@ -54,7 +54,20 @@
 
                 
             </div>
-        </div>
+        </div>-->
+        <div class="" id="friendscontainer" style="<?php echo $style ?>">
+
+<h2>Friends</h2>
+<?php
+if ($friends) {
+    foreach ($friends as $val) {
+        include('friendlist.php');
+    }
+}
+?>
+</div>
+    
+    
     </div>
 
 </body>

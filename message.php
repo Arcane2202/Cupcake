@@ -25,7 +25,8 @@
         <section class="chat-area">
             <header>
                 <?php 
-          $user_id = mysqli_real_escape_string($conn, "377761914");
+          
+          $user_id = mysqli_real_escape_string($conn, $_GET['id']);
           $sql = mysqli_query($conn, "SELECT * FROM users WHERE userID = {$user_id}");
           if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
