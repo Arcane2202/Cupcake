@@ -12,7 +12,7 @@
 
 
     </div>
-    <div style="margin-left: 10%; margin-top:5px; background-color:transparent;">
+    <div style="margin-left:10%; margin-top:5px; background-color:transparent">
         <?php
         $comment = "";
         if ($val['comment'] != "") {

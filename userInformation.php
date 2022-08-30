@@ -47,6 +47,17 @@
                 return false;
             }
         }
+        public function getSeach($userId,$check) {
+            $table = $userId."table";
+            $quer = "SELECT * FROM users WHERE firstName like '%$check%' OR lastName like '%$check%'";
+            $database = new connectDatabase();
+            $res = $database->read($quer);
+            if($res) {
+                return $res;
+            } else {
+                return false;
+            }
+        }
     }
 
     ?>

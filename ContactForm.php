@@ -9,12 +9,25 @@ include("createPost.php");
 include("media.php");
 $media = new media();
 
+$name ="";
+$email ="";
+$number = "";
+$message ="";
+
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
+$userid = $_SESSION['user'];
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    print_r($_POST);
-    if ($res == "") {
-        header("Location: ContactForm.php");
+    $name = $_POST['name']; 
+    $email = $_POST['email'];
+    $number =  $_POST['number'];
+    $message = $_POST['message'];
+    $userId = $_SESSION['user'];
+    $quer = "INSERT INTO support(userid,name,email,phone,message) VALUES('$userid','$name','$email','$number','$message')";
+    $database = new connectDatabase();
+    $res = $database->write($quer);
+    if ($res) {
+        header("Location: showsupport.php");
         die;
     }
 }

@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+
+if(isset($_SESSION['user'])) {
+    header("Location:HomePage.php");
+}
     include("connect.php");
     include("storeUser.php");
     $fName = "";

@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+if(isset($_SESSION['user'])) {
+    header("Location:HomePage.php");
+}
 session_start();
     include("connect.php");
     include("loginUser.php");

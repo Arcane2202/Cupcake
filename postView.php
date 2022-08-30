@@ -91,7 +91,7 @@ $use = new userData();
                         </div>
 
                         <?php
-
+                            $postId = $_GET['postId'];
                             if ($_GET['userID'] == $_SESSION['user']) {
                                 $postId = $_GET['postId'];
                                 echo "<a href='editPost.php?postid=$postId' style='text-decoration:none'>
@@ -218,9 +218,9 @@ $use = new userData();
                                         </div>
                                         
                                     </form>
-
+                                        <div id="<?php echo 'comments'.$postId?>">
                                     <?php
-
+                                        
                                         $query = "SELECT * FROM comments WHERE postid = '$postId'";
                                         $db = new connectDatabase();
                                         $res = $db->read($query);
@@ -231,7 +231,7 @@ $use = new userData();
                                                 include('getComments.php');
                                             }
                                         }
-                                ?>
+                                ?></div>
                                 </div>
                             </div>
                         </div>
@@ -331,6 +331,7 @@ $use = new userData();
 
     function returnfromhere2(res, postid, text) {
         obj = JSON.parse(res);
+        var view = document.getElementById("comments"+postid);
         text.value = "";
     }
     </script>

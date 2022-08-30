@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 <?php
 
-                    $query = "SELECT * FROM comments WHERE postid = '$postId'";
+                    $query = "SELECT * FROM comments WHERE postid = '$postId' ORDER BY ID DESC";
                     $db = new connectDatabase();
                     $res = $db->read($query);
                     if($res) {

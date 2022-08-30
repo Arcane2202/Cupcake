@@ -1,6 +1,11 @@
 <?php
     $log = new loginUser();
     $userData=$log->loginCheck($_SESSION['user']);
+    $check="";
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $check = $_GET['search'];
+        header("Location:searchShow.php");
+    }
 ?>
 <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/navStyle.css" />
@@ -73,9 +78,11 @@
         <span class="fas fa-times"></span>
     </div>
 
-    <form action="#">
-        <input type="search" class="search-data" placeholder="Search" required>
-        <button type="submit" class="fas fa-search"></button>
+    <form method="post" action="#">
+        <input type="search" name="search" id="search" class="search-data" placeholder="Search" required>
+        <?php 
+        echo '
+        <a href="searchShow.php?type=friend&check=$check"> <button type="submit" class="fas fa-search"></button> </a>';?>
     </form>
        
 </nav>
