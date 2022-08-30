@@ -50,7 +50,7 @@
     </a>
 
     <div class="nav-items">
-        <li class="li_icons"><a href="" class="basic icons"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+        <li class="li_icons"><a href="getMessagePage.php" class="basic icons"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
         <li class="li_icons"><a href="" class="basic icons"><i class="fa fa-bell" aria-hidden="true"></i></a></li>
         <li class="li_img"><a href="ProfilePage.php">
                 <img src=<?php echo $media->preview($userData['dp'],'dp') ?> class="propic" id="profilepic" alt="profilepic">

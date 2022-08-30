@@ -413,7 +413,24 @@ textarea::-webkit-scrollbar {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
+#deleteButton {
+  float: right;
+  background-color: var(--col8);
+  border-radius: 50%;
+  color: black;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#messageButton {
+  float: right;
+  background-color: var(--col8);
+  border-radius: 50%;
+  color: black;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 #statusBar {
   /*margin-top: 5%;*/
   background-color: var(--col3);
