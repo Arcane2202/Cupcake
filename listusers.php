@@ -70,11 +70,11 @@ if($id!=$_SESSION['user']) {
 </div> 
 
 <script type="text/javascript">
-        function makeFriend4(data, task, tag) {
+        function makeFriend4(data, task, tag, taskUser) {
             var ajax = new XMLHttpRequest();
             ajax.addEventListener('readystatechange', function() {
                 if (ajax.readyState == 4 && ajax.status == 200) {
-                    response4(ajax.responseText, task, tag);
+                    response4(ajax.responseText, task, tag,taskUser);
                 }
             });
             data = JSON.stringify(data);
@@ -89,10 +89,10 @@ if($id!=$_SESSION['user']) {
             data.task = task;
             data.taskUser = taskUser;
             data.text = e.target.innerHTML;
-            makeFriend4(data, task, e.target);
+            makeFriend4(data, task, e.target, taskUser);
         }
 
-        function response4(res, data, tag) {
+        function response4(res, data, tag, taskUser) {
             if (res != "") {
                 obj = JSON.parse(res);
                 if (data == 4) {
