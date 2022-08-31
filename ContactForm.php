@@ -9,37 +9,37 @@ include("createPost.php");
 include("media.php");
 $media = new media();
 
-$name ="";
-$email ="";
+$name = "";
+$email = "";
 $number = "";
-$message ="";
+$message = "";
 $errorMessage = "";
-if(isset($_GET['$error'])) {
+if (isset($_GET['$error'])) {
     $errorMessage = $_GET['$error'];
 }
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
 $userid = $_SESSION['user'];
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $name = $_POST['name']; 
+    $name = $_POST['name'];
     $email = $_POST['email'];
     $number =  $_POST['number'];
     $message = $_POST['message'];
     $userId = $_SESSION['user'];
-    if(empty($_POST['name'])||empty($_POST['email'])||empty($_POST['number'])||empty($_POST['message'])) {
+    if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['number']) || empty($_POST['message'])) {
         $errorMessage .= "*Please fillup all the fields!";
-    } elseif(strlen($number)!=11 or $number[0]!='0' or $number[1]!='1'){
+    } elseif (strlen($number) != 11 or $number[0] != '0' or $number[1] != '1') {
         $errorMessage .= "*Invalid phone number!<br>";
     }
-    if($errorMessage=="") {
+    if ($errorMessage == "") {
         $quer = "INSERT INTO support(userid,name,email,phone,message) VALUES('$userid','$name','$email','$number','$message')";
         $database = new connectDatabase();
         $res = $database->write($quer);
         if ($res) {
             header("Location: showsupport.php");
             die;
-        } 
-    } 
+        }
+    }
 }
 ?>
 
@@ -99,30 +99,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <form method="post">
                     <div class="mb-5">
                         <label for="name" class="start smallerText">Tell us your name</label><br>
-                        <input class="start contact" name="name" type="text" id="name" class="form-control textsizeCorrect"
-                            placeholder="Your Name..." autocomplete="off">
+                        <input class="start contact" name="name" type="text" id="name" class="form-control textsizeCorrect" placeholder="Your Name..." autocomplete="off">
                         <br>
                     </div>
                     <div class="mb-5">
                         <label for="name" class="start smallerText">Enter your e-mail</label><br>
-                        <input class="start contact" name="email" type="email" id="email" class="form-control textsizeCorrect"
-                            placeholder="Eg.example@gmail.com" autocomplete="off">
+                        <input class="start contact" name="email" type="email" id="email" class="form-control textsizeCorrect" placeholder="Eg.example@gmail.com" autocomplete="off">
                         <br>
                     </div>
                     <div class="mb-5">
                         <label for="number" class="start smallerText">Enter your phone number</label><br>
-                        <input class="start contact" name="number" type="number" id="number"
-                            class="form-control textsizeCorrect" placeholder="Eg. +8801234567890" autocomplete="off">
+                        <input class="start contact" name="number" type="number" id="number" class="form-control textsizeCorrect" placeholder="Eg. +8801234567890" autocomplete="off">
                         <br>
                     </div>
                     <div class="mb-5">
                         <label for="message" class="start smallerText">Message</label><br>
-                        <textarea class="start contact" name="message" rows="4" cols="1" class="form-control textsizeCorrect"
-                            id="message" placeholder="Write us a Message"></textarea>
+                        <textarea class="start contact" name="message" rows="4" cols="1" class="form-control textsizeCorrect" id="message" placeholder="Write us a Message"></textarea>
                         <br>
                     </div>
                     <div class="mb-5">
-                        <span class="error start" style="font-size: 95%; color:red;border:none"> <?php echo $errorMessage?></span> <br>
+                        <span class="error start" style="font-size: 95%; color:red;border:none"> <?php echo $errorMessage ?></span> <br>
                         <input id="submitbutton" type="submit" name="submit" class="addhover main-btn"></button>
                     </div>
                 </form>
@@ -131,5 +127,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     </div>
 </body>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 </html>
