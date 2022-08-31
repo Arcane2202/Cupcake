@@ -61,8 +61,8 @@ $use = new userData();
                 <div class="outer-wrapper">
                     <div class="frame">
                         <?php
-                            echo "<img src='$_GET[image]'/>";
-                            ?>
+                        echo "<img src='$_GET[image]'/>";
+                        ?>
                     </div>
                 </div>
 
@@ -91,39 +91,39 @@ $use = new userData();
                         </div>
 
                         <?php
+                        $postId = $_GET['postId'];
+                        if ($_GET['userID'] == $_SESSION['user']) {
                             $postId = $_GET['postId'];
-                            if ($_GET['userID'] == $_SESSION['user']) {
-                                $postId = $_GET['postId'];
-                                echo "<a href='editPost.php?postid=$postId' style='text-decoration:none'>
+                            echo "<a href='editPost.php?postid=$postId' style='text-decoration:none'>
                                     <span class='smallerText' id='editPost'
                                             style='margin-left:13%;margin-top:-50%; color: var(--col8);'>Edit</span></a>
                                     <a href='deletePost.php?postid=$postId' style='text-decoration:none'>
                                     <span class='smallerText' id='deletePost'
                                             style='margin-left:5px;margin-top:-50%; color: var(--col8);'>Delete</span></a>";
-                            }
+                        }
 
-                            ?>
+                        ?>
                         <?php
-                            $post = "";
-                            if ($_GET['post'] != "") {
-                                $quer = "SELECT * FROM posts WHERE postId = '$postId' limit 1";
-                                $database = new connectDatabase();
-                                $res = $database->read($quer);
-                                $valu = $res[0];
-                                $post = htmlspecialchars($valu['post']);
-                            } ?>
+                        $post = "";
+                        if ($_GET['post'] != "") {
+                            $quer = "SELECT * FROM posts WHERE postId = '$postId' limit 1";
+                            $database = new connectDatabase();
+                            $res = $database->read($quer);
+                            $valu = $res[0];
+                            $post = htmlspecialchars($valu['post']);
+                        } ?>
                         <div style="margin-left: 2%; margin-top:-3%; font-size:calc(0.5em + 0.5vw)">
                             <div id="textPart">
                                 <?php
-                                    if ($post != "") {
-                                        $string = strip_tags($post);
-                                        if (strlen($string) > 450) {
-                                            $stringCut = substr($string, 0, 450);
-                                            $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '...<a style="text-decoration: none; font-weight: bold;color: antiquewhite;" onclick="seePost(event,' . $postId . ')" href="postData.php?postid=' . $postId . '">see more</a>';
-                                        }
-                                        echo "<p> $string<br></p>";
+                                if ($post != "") {
+                                    $string = strip_tags($post);
+                                    if (strlen($string) > 450) {
+                                        $stringCut = substr($string, 0, 450);
+                                        $string = substr($stringCut, 0, strrpos($stringCut, ' ')) . '...<a style="text-decoration: none; font-weight: bold;color: antiquewhite;" onclick="seePost(event,' . $postId . ')" href="postData.php?postid=' . $postId . '">see more</a>';
                                     }
-                                    ?>
+                                    echo "<p> $string<br></p>";
+                                }
+                                ?>
                             </div>
 
 
@@ -131,63 +131,63 @@ $use = new userData();
                             <div class="textsizeCorrect" id="reactShow"
                                 style="margin-top: 2vh;padding-left: 4%;color:antiquewhite">
                                 <?php
-                                    $likes = "";
-                                    $database = new connectDatabase();
-                                    $post = new createPosts();
-                                    $res = $post->getReactors($_GET['postId'], 'post');
-                                    $reacters = [];
-                                    $flag = false;
-                                    echo "<a id='reactors_$_GET[postId]' class='smallerText' style='color:antiquewhite' href='showReactors.php?type=post&postid=$_GET[postId]'>";
-                                    if ($res) {
-                                        $users = new userData();
-                                        foreach ($res as $value) {
-                                            $valu = $users->fetchData($value['reactor']);
-                                            $reacters[] = $valu['firstName'] . " " . $valu['lastName'];
-                                            if ($valu['userID'] == $_SESSION['user']) {
-                                                $flag = true;
-                                            }
-                                        }
-                                        $count = count($reacters);
-                                        if ($flag) {
-                                            $count = count($reacters) - 1;
-                                            if ($count > 0) {
-                                                if ($count == 1) {
-                                                    $likes = "You and 1 other liked this post.";
-                                                } else {
-                                                    $likes = "You and " . $count . "others liked this post.";
-                                                }
-                                            } else {
-                                                $likes = "You liked this post.";
-                                            }
-                                        } elseif ($count > 0) {
-                                            $count = count($reacters) - 1;
-                                            if ($count > 0) {
-                                                if ($count == 1) {
-                                                    $likes = "$reacters[0] and 1 other liked this post.";
-                                                } else {
-                                                    $likes = "$reacters[0] and " . $count . "others liked this post.";
-                                                }
-                                            } else {
-                                                $likes = "$reacters[0] liked this post.";
-                                            }
+                                $likes = "";
+                                $database = new connectDatabase();
+                                $post = new createPosts();
+                                $res = $post->getReactors($_GET['postId'], 'post');
+                                $reacters = [];
+                                $flag = false;
+                                echo "<a id='reactors_$_GET[postId]' class='smallerText' style='color:antiquewhite' href='showReactors.php?type=post&postid=$_GET[postId]'>";
+                                if ($res) {
+                                    $users = new userData();
+                                    foreach ($res as $value) {
+                                        $valu = $users->fetchData($value['reactor']);
+                                        $reacters[] = $valu['firstName'] . " " . $valu['lastName'];
+                                        if ($valu['userID'] == $_SESSION['user']) {
+                                            $flag = true;
                                         }
                                     }
+                                    $count = count($reacters);
+                                    if ($flag) {
+                                        $count = count($reacters) - 1;
+                                        if ($count > 0) {
+                                            if ($count == 1) {
+                                                $likes = "You and 1 other liked this post.";
+                                            } else {
+                                                $likes = "You and " . $count . "others liked this post.";
+                                            }
+                                        } else {
+                                            $likes = "You liked this post.";
+                                        }
+                                    } elseif ($count > 0) {
+                                        $count = count($reacters) - 1;
+                                        if ($count > 0) {
+                                            if ($count == 1) {
+                                                $likes = "$reacters[0] and 1 other liked this post.";
+                                            } else {
+                                                $likes = "$reacters[0] and " . $count . "others liked this post.";
+                                            }
+                                        } else {
+                                            $likes = "$reacters[0] liked this post.";
+                                        }
+                                    }
+                                }
 
-                                    if ($likes != "") {
-                                        echo "<i class='fa fa-heart' style='padding-right: 5px;'>&nbsp$likes</i>";
-                                    }
-                                    echo "</a>";
-                                    ?>
+                                if ($likes != "") {
+                                    echo "<i class='fa fa-heart' style='padding-right: 5px;'>&nbsp$likes</i>";
+                                }
+                                echo "</a>";
+                                ?>
 
                             </div>
                             <div id="reactSec">
                                 <div id="flex" style="padding-left: 19%;padding-right: 8%">
                                     <?php
-                                        $reactCount = "";
-                                        if ($_GET['reacts'] > 0) {
-                                            $reactCount = "(" . $_GET['reacts'] . ")";
-                                        }
-                                        ?>
+                                    $reactCount = "";
+                                    if ($_GET['reacts'] > 0) {
+                                        $reactCount = "(" . $_GET['reacts'] . ")";
+                                    }
+                                    ?>
                                     <a id="heart_icon" class="react_icon" onclick='getData(event)'
                                         href="react.php?type=post&postid=<?php echo $_GET['postId'] ?>">
                                         <i class="fa fa-heart fa-2x" style="font-size:calc(0.30em + 0.5vw)"
@@ -197,21 +197,23 @@ $use = new userData();
                                 </div>
 
                                 <?php
-                                    $postidd = $_GET['postId']; 
-                                    $quer = "SELECT * FROM `comments` WHERE postid ='$postidd'";
-                                    $new = new connectDatabase();
-                                    $res = count($new->read($quer));
-                                    if($res==0){
-                                        $res="";
-                                    }
-                                    else{
-                                        $res = "(".$res.")";
-                                    } 
+                                $postidd = $_GET['postId'];
+                                $quer = "SELECT * FROM `comments` WHERE postid ='$postidd'";
+                                $new = new connectDatabase();
+                                $res = count($new->read($quer));
+                                if ($res == 0) {
+                                    $res = "";
+                                } else {
+                                    $res = "(" . $res . ")";
+                                }
                                 ?>
+                                <input type="hidden" id = "POSTid" name="POSTid" style="display: none;" value="<?php echo $postidd ?>"
                                 <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
                                     <a href="" id="heart_icon" class="react_icon">
                                         <i class="fa fa-comment fa-2x" style="font-size:calc(0.30em + 0.5vw)"
-                                            aria-hidden="true"><?PHP echo $res ?></i>
+                                            aria-hidden="true">
+                                            <?PHP echo $res ?>
+                                        </i>
                                     </a>
                                 </div>
                             </div>
@@ -219,32 +221,35 @@ $use = new userData();
                                 <div class='commentposter' style='margin-bottom:3%'>
                                     <form method='post' enctype='multipart/form-data'>
                                         <?php $text = "text" . $postId; ?>
-                                        <div style="border:1px solid white; border-bottom:transparent; margin-bottom:10%;" id="containposter">
-                                        <textarea id=<?php echo $text ?> name='comments'
-                                            placeholder='Write a comment'></textarea>
-                                        <button onclick='comment2(event,<?php echo $postId ?>)' class='icon'
-                                        style='background-color:transparent; border:none;' id='submitButton' type='Button'
-                                            value='Post'><i id='submitButton' class='fa fa-share icon smallerText' aria-hidden='true' style='margin-top:-10%;'></i> </button>
-                            
-                                        <br>
+                                        <div style="border:1px solid white; border-bottom:transparent; margin-bottom:10%;"
+                                            id="containposter">
+                                            <textarea id=<?php echo $text ?> name='comments'
+                                                placeholder='Write a comment'></textarea>
+                                            <button onclick='comment2(event,<?php echo $postId ?>)' class='icon'
+                                                style='background-color:transparent; border:none;' id='submitButton'
+                                                type='Button' value='Post'><i id='submitButton'
+                                                    class='fa fa-share icon smallerText' aria-hidden='true'
+                                                    style='margin-top:-10%;'></i> </button>
+
+                                            <br>
 
                                         </div>
-                                        
+
                                     </form>
-                                        <div id="<?php echo 'comments'.$postId?>">
-                                    <?php
-                                        
+                                    <div id="<?php echo 'comments' . $postId ?>">
+                                        <?php
+
                                         $query = "SELECT * FROM comments WHERE postid = '$postId'";
                                         $db = new connectDatabase();
                                         $res = $db->read($query);
-                                        if($res) {
+                                        if ($res) {
                                             foreach ($res as $val) {
                                                 $us = new userData();
                                                 $commentuser = $us->fetchData($val['commentuser']);
                                                 include('getComments.php');
                                             }
                                         }
-                                ?></div>
+                                        ?></div>
                                 </div>
                             </div>
                         </div>
@@ -342,7 +347,7 @@ $use = new userData();
 
     function returnfromhere2(res, postid, text) {
         obj = JSON.parse(res);
-        var view = document.getElementById("comments"+postid);
+        var view = document.getElementById("comments" + postid);
         text.value = "";
     }
     </script>
@@ -350,4 +355,4 @@ $use = new userData();
 </body>
 
 
-</html
+</html>
