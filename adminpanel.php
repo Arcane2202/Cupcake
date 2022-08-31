@@ -19,9 +19,9 @@
         </div>
 
         <ul class="ul-spacing">
-            <li><i class="fas fa-chart-line"></i>Dashboard</li>
-            <li><i class="far fa-comment-alt"></i>Feedback</li>
-            <li><i class="fas fa-user-cog"></i>User Handle</li>
+            <li class="Dashboard"><i class="fas fa-chart-line"></i>Dashboard</li>
+            <li class="Feedback"><i class="far fa-comment-alt"></i>Feedback</li>
+            <li class="Handle"><i class="fas fa-user-cog"></i>User Handle</li>
 
         </ul>
     </div>
@@ -29,11 +29,8 @@
     <div class="container">
         <div class="header">
             <div class="nav">
-                <div class="search">
-                    <input type="text" placeholder="Search..">
-                    <button type="sumbit" ><i class="fas fa-search"></i></button>
-                </div>
-                <div class="user">
+                <h1 style="color:brown;">WELCOME TO CUPCAKE, Admin!</h1>
+                <div class="user" style="float:right;">
                     <a href="#" class="btn">LOG OUT</a>
                 </div>
             </div>
@@ -46,7 +43,7 @@
                         <h3>USERS</h3>
                     </div>
                     <div class="icon-case">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users floating"></i>
                     </div>
                 </div>
 
@@ -56,7 +53,7 @@
                         <h3>POSTS</h3>
                     </div>
                     <div class="icon-case">
-                        <i class="fas fa-mail-bulk"></i>
+                        <i class="fas fa-mail-bulk floating"></i>
                     </div>
                 </div>
 
@@ -66,7 +63,7 @@
                         <h3>REACTS</h3>
                     </div>
                     <div class="icon-case">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart floating"></i>
                     </div>
                 </div>
 
@@ -76,7 +73,7 @@
                         <h3>COMMENTS</h3>
                     </div>
                     <div class="icon-case">
-                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-comment-alt floating"></i>
                     </div>
                 </div>
 
@@ -99,7 +96,7 @@
                 </div>
                 <div class="new-users">
                     <div class="title">
-                        <h2> New Students </h2>
+                        <h2> New Users </h2>
                         <a href="#" class="btn">View all</a>
                     </div>
                 </div>
@@ -107,5 +104,73 @@
         </div>
 
     </div>
+
+
+
+
+    <script>
+        const Handle = document.querySelector(".Handle");
+        const Dashboard = document.querySelector(".Dashboard");
+        const Feedback = document.querySelector(".Feedback");
+        const cards = document.querySelector(".cards");
+        const content2 = document.querySelector(".content-2");
+        const feedbacks = document.querySelector(".recent-feedbacks");
+        const users = document.querySelector(".new-users");
+
+        Feedback.classList.remove("active");
+        Handle.classList.remove("active");
+        Dashboard.classList.remove("active");
+        cards.classList.add("hide");
+        cards.classList.remove("show");
+        content2.classList.add("hide");
+        feedbacks.classList.add("hide");
+        feedbacks.classList.remove("show");
+        users.classList.remove("show");
+        users.classList.add("hide");
+    
+        Dashboard.onclick = () => {
+            Feedback.classList.remove("active");
+            Handle.classList.remove("active");
+            Dashboard.classList.add("active");
+            cards.classList.add("show");
+            cards.classList.remove("hide");
+            content2.classList.add("hide");
+            feedbacks.classList.add("hide");
+            feedbacks.classList.remove("show");
+            users.classList.remove("show");
+            users.classList.add("hide");
+
+        }
+
+        Feedback.onclick = () => {
+            Dashboard.classList.remove("active");
+            Handle.classList.remove("active");
+            Feedback.classList.add("active");
+            cards.classList.add("hide");
+            cards.classList.remove("show");
+            content2.classList.add("show");
+            feedbacks.classList.add("show");
+            feedbacks.classList.remove("hide");
+            users.classList.remove("show");
+            users.classList.add("hide");
+
+        }
+        Handle.onclick = () => {
+            Dashboard.classList.remove("active");
+            Feedback.classList.remove("active");
+            Handle.classList.add("active");
+            cards.classList.add("hide");
+            cards.classList.remove("show");
+            content2.classList.add("show");
+            feedbacks.classList.add("hide");
+            feedbacks.classList.remove("show");
+            users.classList.remove("hide");
+            users.classList.add("show");
+        }
+
+    </script>
 </body>
+
+
+
 </html>

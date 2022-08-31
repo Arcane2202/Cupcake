@@ -57,6 +57,20 @@ h3{
                      0 0 240px #9a463d,
     }
 }
+.floating { 
+    text-decoration: none; color: brown;
+    animation-name: floating;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-top: 5%;
+}
+ 
+@keyframes floating {
+    0% { transform: translate(0,  -8%); }
+    50%  { transform: translate(0, 8%); }
+    100%   { transform: translate(0, -8%); }   
+}
 .ul-spacing{
     margin-top:140px;
 }
@@ -131,10 +145,39 @@ th,td{
     align-items: center;
 
 }
+.Dashboard{
+    background:transparent;
+    color:#fff;
+}
+
+.Dashboard.active{
+    background:#111;
+    color:brown;
+}
+
+.Feedback{
+    background:transparent;
+    color:#fff;
+}
+
+.Feedback.active{
+    background:#111;
+    color:brown;
+}
+
+.Handle{
+    background:transparent;
+    color:#fff;
+}
+
+.Handle.active{
+    background:#111;
+    color:brown;
+}
 
 .side-menu li:hover{
     background:#111;
-    color:brown
+    color:brown;
 }
 
 .container{
@@ -164,6 +207,8 @@ th,td{
     width: 90%;
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: space-between;
 }
 
 .container .header .nav .search{
@@ -217,11 +262,15 @@ th,td{
 }
 
 .container .content .cards{
+    visibility: visible;
     padding:20px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+.container .content .cards.hide{
+    visibility: collapse ;
 }
 
 .container .content .cards .card{
@@ -237,25 +286,45 @@ th,td{
 }
 
 .container .content .content-2{
-    min-height: 60vh;
+    visibility: visible;
+    min-height: 90vh;
     display: flex;
+
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
 }
+.container .content .content-2.hide{
+    visibility: collapse ;
+    
+}
 
 .container .content .content-2 .recent-feedbacks{
-    min-height: 50vh;
-    flex: 5;
+    min-width: 55vw;
+    flex: 1;
     background: white;
     margin: 0 25px 25px 25px;
     box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
 }
+.container .content .content-2 .recent-feedbacks.show{
+    visibility: visible;
+}
+
+.container .content .content-2 .recent-feedbacks.hide{
+    visibility: collapse;
+}
 
 .container .content .content-2 .new-users{
-    min-height: 50vh;
-    flex: 2;
+    min-width: 55vw;
+    flex: 1;
     background: white;
     margin: 0 25px;
     box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
+}
+
+.container .content .content-2 .new-users.show{
+    visibility: visible;
+}
+.container .content .content-2 .new-users.hide{
+    visibility: collapse;
 }
