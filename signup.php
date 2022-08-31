@@ -166,7 +166,7 @@ if(isset($_SESSION['user'])) {
                         <div>
                             <a><i class="google fa-brands fa-square-google-plus" style="font-size: 4vw;margin-right:3%;"></i></a>
                         </div>
-                    </div>
+                        </div>
 -->
                 </div>
             </div>

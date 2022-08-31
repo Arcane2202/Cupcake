@@ -13,7 +13,10 @@ $name ="";
 $email ="";
 $number = "";
 $message ="";
-
+$errorMessage = "";
+if(isset($_GET['$error'])) {
+    $errorMessage = $_GET['$error'];
+}
 $log = new loginUser();
 $userData = $log->loginCheck($_SESSION['user']);
 $userid = $_SESSION['user'];
@@ -23,13 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $number =  $_POST['number'];
     $message = $_POST['message'];
     $userId = $_SESSION['user'];
-    $quer = "INSERT INTO support(userid,name,email,phone,message) VALUES('$userid','$name','$email','$number','$message')";
-    $database = new connectDatabase();
-    $res = $database->write($quer);
-    if ($res) {
-        header("Location: showsupport.php");
-        die;
+    if(empty($_POST['name'])||empty($_POST['email'])||empty($_POST['number'])||empty($_POST['message'])) {
+        $errorMessage .= "*Please fillup all the fields!";
+    } elseif(strlen($number)!=11 or $number[0]!='0' or $number[1]!='1'){
+        $errorMessage .= "*Invalid phone number!<br>";
     }
+    if($errorMessage=="") {
+        $quer = "INSERT INTO support(userid,name,email,phone,message) VALUES('$userid','$name','$email','$number','$message')";
+        $database = new connectDatabase();
+        $res = $database->write($quer);
+        if ($res) {
+            header("Location: showsupport.php");
+            die;
+        } 
+    } 
 }
 ?>
 
@@ -112,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <br>
                     </div>
                     <div class="mb-5">
+                        <span class="error start" style="font-size: 95%; color:red;border:none"> <?php echo $errorMessage?></span> <br>
                         <input id="submitbutton" type="submit" name="submit" class="addhover main-btn"></button>
                     </div>
                 </form>
