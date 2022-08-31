@@ -7,14 +7,12 @@
     include("media.php");
     $media = new media();
 
-    echo $_POST['search'];
-    die;
 
     $log = new loginUser();
     $userData = $log->loginCheck($_SESSION['user']);
     $database = new connectDatabase();
     $requests = new userData();
-    $res = $requests->getSearch($_GET['id'],$_GET['CHECK']);
+    $res = $requests->getSearch($_POST['id'],$_POST['search']);
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +37,7 @@
             
             <div id="condivcontainer2">
 
-                <div id="containposter">
+                <div>
 
                     <?php
                          if(is_array($res)) {

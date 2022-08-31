@@ -20,7 +20,7 @@
                                 </div>
                                 </div>';
                 }else{
-                    $img = "<img src='".$media->preview($row['dp'], "dp")."' style='border-radius:50%; height:100%;width:5%;'>";
+                    $img = "<img src='".$media->preview($row['dp'], "dp")."' class='dp-chat'>";
                     $output .= '<div class="chat incoming">'.$img.'<div class="details"><p>'. $row['msg'] .'</p>
                                 </div>
                                 </div>';

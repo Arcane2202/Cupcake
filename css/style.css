@@ -340,6 +340,7 @@ body {
   border-color: var(--col3);
   border-radius: 8px;
   margin-bottom:15px;
+  height: auto;
 }
 .commentposter {
   border: solid thin;

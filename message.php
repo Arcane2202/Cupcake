@@ -18,10 +18,9 @@
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/navStyle.css" />
 </head>
 
-<body class="textsizeCorrect">
+<body>
 <!--
 <nav class="fixed-top">
     <div class="menu-icon">
@@ -66,7 +65,7 @@
        
 </nav>
 -->
-<div id="bodyContainer">
+<div id="bodyContainer" >
     <div class="wrapper">
         <section class="chat-area">
             <a style="text-decoration:none;color:antiquewhite;" href="ProfilePage.php?id=<?php echo $_GET['id']; ?>"><header>
@@ -81,7 +80,7 @@
           }
         ?>
                 
-                <img src="<?php echo $media->preview($row['dp'], 'dp') ?>" style="border-radius:50%; width:5%;">
+                <img src="<?php echo $media->preview($row['dp'], 'dp') ?>" style="border-radius:50%; width:50px;">
                 <div class="details" style="margin-left:1%">
                     <span><?php echo $row['firstName']. " " . $row['lastName'] ?></span>
                 </div>
@@ -166,36 +165,6 @@
     }
     </script>
 
-<script>
-    const menuBtn = document.querySelector(".menu-icon span");
-    const searchBtn = document.querySelector(".search-icon");
-    const cancelBtn = document.querySelector(".cancel-icon");
-    const items = document.querySelector(".nav-items");
-    const form = document.querySelector("form");
-    const pp = document.querySelector(".propic");
-    const dropdown = document.querySelector(".dropdown");
-   
-    menuBtn.onclick = () => {
-        items.classList.add("active");
-        menuBtn.classList.add("hide");
-        searchBtn.classList.add("hide");
-        cancelBtn.classList.add("show");
-    }
-
-    cancelBtn.onclick = () => {
-        items.classList.remove("active");
-        menuBtn.classList.remove("hide");
-        searchBtn.classList.remove("hide");
-        cancelBtn.classList.remove("show");
-        form.classList.remove("active");
-    }
-    searchBtn.onclick = () => {
-        form.classList.add("active");
-        searchBtn.classList.add("hide");
-        cancelBtn.classList.add("show");
-    }
-
-</script>
 
 </body>
 

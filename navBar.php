@@ -2,45 +2,10 @@
     $log = new loginUser();
     $userData=$log->loginCheck($_SESSION['user']);
     $check="";
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        $check = $_GET['search'];
-        header("Location:searchShow.php");
-    }
+    
 ?>
 <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/navStyle.css" />
-
-<!--
-<div class="menu-bar textsizeCorrect">
-<div id="containMake">
-    <ul>
-        <li>
-            <a href="HomePage.php" class="basic">
-            <div class="floating">
-                Cupcake
-            </div>
-            </a>
-        </li>
-        <li><input type="text" id="searchBar" placeholder="Search..."></li>
-
-
-        <li><a href="" class="basic icons"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        <li><a href="" class="basic icons"><i class="fa fa-bell" aria-hidden="true"></i></a></li>
-        <li><a href="ProfilePage.php">
-                <img src=<?php /*echo $media->preview($userData['dp'],'dp') */?> class="propic" id="profilepic" alt="profilepic"></a>
-            <div class="sub-menu">
-                <ul>
-                    <li> <a href="ProfilePage.php"> Profile</a> </li>
-                    <li> <a href="./ContactForm.php"> Help</a> </li>
-                    <li> <a href="logout.php"> Logout</a> </li>
-                </ul>
-            <div>
-
-        </li>
-    </ul>
-</div>
-</div>
--->
 
 <nav class="fixed-top">
     <div class="menu-icon">
@@ -78,11 +43,12 @@
         <span class="fas fa-times"></span>
     </div>
 
-    <form method="post" action="#">
+    <form method="post" action="searchShow.php">
+        <input type="none" placeholder="" name = "id" value="<?PHP echo $_SESSION['user'] ?>" style="display: none">
         <input type="search" name="search" id="search" class="search-data" placeholder="Search" required>
         <?php 
         echo '
-        <a href="searchShow.php?type=friend&check=$check"> <button type="submit" class="fas fa-search"></button> </a>';?>
+        <a href=""> <button type="submit" class="fas fa-search"></button> </a>';?>
     </form>
        
 </nav>

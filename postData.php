@@ -164,40 +164,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </a>
                 </div>
                 <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
-                <?php 
+                <?php
+                $postidd = $val['postId']; 
+                $quer = "SELECT * FROM `comments` WHERE postid ='$postidd'";
+                $new = new connectDatabase();
+                $res = count($new->read($quer));
+                if($res==0){
+                    $res="";
+                }
+                else{
+                    $res = "(".$res.")";
+                }
                 $posts = htmlspecialchars($val['post']);
                 echo "<a href='postView.php?postId=$postId&postId=$val[postId]&date=$val[date]&reacts=$val[reacts]&image=$val[image]&name=$name&userID=$posterUs[userID]&dp=$posterUs[dp]&post=$posts' class='react_icon'>
-                        <i class='fa fa-comments fa-2x' style='font-size:calc(1em + 0.5vw)' aria-hidden='true'></i>
+                        <i class='fa fa-comments fa-2x' style='font-size:calc(1em + 0.5vw)' aria-hidden='true'>$res</i>
                     </a>
                 ";?>
                 </div>
             </div>
-            <!--
-            <div class="commentBox"style="height:45vh">
-            <div class='commentposter' style='margin-bottom:3%'>
-                <form method='post' enctype='multipart/form-data'>
-                    <?php $text = "text" . $postId; ?>
-                    <textarea id=<?php echo $text ?> name='comments' placeholder='Write a comment'></textarea>
-                    <input onclick='comment(event,<?php echo $postId ?>)' class='btn-with-hover' style='width:3vw; font-size:100%;' id='submitButton' type='Button' value='Post'>
-                    <br>
-                </form>
 
-                <?php
-
-                    $query = "SELECT * FROM comments WHERE postid = '$postId' ORDER BY ID DESC";
-                    $db = new connectDatabase();
-                    $res = $db->read($query);
-                    if($res) {
-                        foreach ($res as $val) {
-                            $us = new userData();
-                            $commentuser = $us->fetchData($val['commentuser']);
-                            include('getComments.php');
-                        }
-                    }
-                ?>
-            </div>
-            </div>
-                -->
         </div>
     </div>
 </div>

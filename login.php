@@ -1,10 +1,9 @@
 <?php
 
 session_start();
-if(isset($_SESSION['user'])) {
-    header("Location:HomePage.php");
+    if(isset($_SESSION['user'])){
+    header("location: HomePage.php");
 }
-session_start();
     include("connect.php");
     include("loginUser.php");
     $email = "";
@@ -25,6 +24,7 @@ session_start();
         $password = $_POST['password'];
     }
 ?>
+
 
 <!DOCTYPE html>
 

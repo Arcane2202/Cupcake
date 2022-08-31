@@ -36,7 +36,7 @@
             
             <div id="condivcontainer2">
 
-                <div id="containposter">
+                <div>
 
                     <?php
                          if(is_array($res)) {

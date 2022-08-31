@@ -195,10 +195,23 @@ $use = new userData();
                                             <?php echo $reactCount ?></a></i>
                                     </a>
                                 </div>
+
+                                <?php
+                                    $postidd = $_GET['postId']; 
+                                    $quer = "SELECT * FROM `comments` WHERE postid ='$postidd'";
+                                    $new = new connectDatabase();
+                                    $res = count($new->read($quer));
+                                    if($res==0){
+                                        $res="";
+                                    }
+                                    else{
+                                        $res = "(".$res.")";
+                                    } 
+                                ?>
                                 <div id="flex" style="padding-left: 27%;padding-right: 8%;border-left: solid thin;">
                                     <a href="" id="heart_icon" class="react_icon">
                                         <i class="fa fa-comment fa-2x" style="font-size:calc(0.30em + 0.5vw)"
-                                            aria-hidden="true"></i>
+                                            aria-hidden="true"><?PHP echo $res ?></i>
                                     </a>
                                 </div>
                             </div>
@@ -237,9 +250,7 @@ $use = new userData();
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 

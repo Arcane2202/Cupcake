@@ -115,7 +115,7 @@ if(isset($_SESSION['user'])) {
                             </div>
                             <div style="padding-left: 5%; padding-right:5%;">
                                 <label style="color:#c6c9d8bf">Birth Date : </label>
-                                <input name="dob" value="<?php echo $dob?>" type="date" placeholder="Birth Date" >
+                                <input name="dob" value="<?php echo $dob?>" type="date" placeholder="Birth Date" max="<?php echo date("Y-m-d");?>">
                             </div>
                     
 
@@ -193,7 +193,7 @@ if(isset($_SESSION['user'])) {
                 z.style.display = "block";
             }
         }
-
     </script>
+
     </body>
 </html>

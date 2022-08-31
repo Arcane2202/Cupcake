@@ -28,6 +28,12 @@ body{
   background: #111;
   padding: 0 10px;
 }
+#bodyContainer{
+  margin-left: 30%;
+  margin-right: 30%;
+
+
+}
 .wrapper{
   background:  #2e1512;
   color: #fff;
@@ -364,6 +370,10 @@ body{
   pointer-events: auto;
 }
 
+.dp-chat{
+     border-radius:50%; height:100%;width:50px;
+}
+
 @media screen and (max-width: 450px) {
   .form, .users{
     padding: 20px;
@@ -427,4 +437,13 @@ body{
   .chat-area form button{
     width: 45px;
   }
+  #bodyContainer{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .dp-chat{
+    border-radius:50%; height:100%;width:25px;
+}
+
 }

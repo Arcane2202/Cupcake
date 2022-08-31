@@ -47,7 +47,7 @@
                 return false;
             }
         }
-        public function getSeach($userId,$check) {
+        public function getSearch($userId,$check) {
             $table = $userId."table";
             $quer = "SELECT * FROM users WHERE firstName like '%$check%' OR lastName like '%$check%'";
             $database = new connectDatabase();

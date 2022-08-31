@@ -1,0 +1,261 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #111;
+}
+
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+
+h1, h2, h4, h5, h6{
+    color: brown;
+}
+
+h3{
+    color:#9a463d;
+}
+
+.tubelight{
+    position: relative;
+    margin-top: 40px;
+    font-size: 40px;
+    color:#9a463d;
+    text-align: left;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+    outline: none;
+    line-height: 0.70em;
+    animation: animate 10s linear infinite;
+    font-family: 'Bad Script', cursive;
+
+}
+
+@keyframes animate
+{
+    0%,9%,11%,13%,26%,88%,92%
+    {   
+        color:#9a463d;
+        text-shadow: none;
+    }
+    9.5%,12%,26.5%,77%
+    {
+        color: #fff;
+        text-shadow: 0 0 10px #9a463d,
+                     0 0 20px #9a463d,
+                     0 0 40px #9a463d,
+                     0 0 80px #9a463d,
+                     0 0 160px #9a463d,
+                     0 0 240px #9a463d,
+    }
+}
+.ul-spacing{
+    margin-top:140px;
+}
+
+.btn{
+    background: #f05462;
+    color: #fff;
+    padding: 05px 10px;
+    text-align: center;
+}
+.btn:hover{
+    color:#f05462;
+    background: white;
+    border: 2px solid #f05462;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 10px;
+    border-bottom: 2px solid #999;
+}
+
+.icon-case i{
+    color: #f05462;
+    font-weight: 600;
+    font-size: 50px;
+}
+
+table{
+    padding: 10px;
+}
+
+th,td{
+    text-align: left;
+    padding: 8px;
+
+}
+
+
+.brand-name{
+    display: flex;
+    flex-direction: column;
+}
+.side-menu{
+    position: fixed;
+    background: #2e1512;
+    width: 25vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu .brand-name{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.side-menu li i{
+    margin-right: 18px;
+}
+
+.side-menu li{
+    font-size: 20px;
+    padding: 30px 40px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+}
+
+.side-menu li:hover{
+    background:#111;
+    color:brown
+}
+
+.container{
+    position:absolute;
+    right: 0;
+    width: 75vw;
+    height: 100vh;
+    background: #111;
+
+}
+
+.container .header{
+    position:fixed;
+    top:0;
+    right: 0;
+    width: 75vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+.container .header .nav{
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+
+.container .header .nav .search{
+    
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    background: white;
+}
+
+.container .header .nav .search input[type=text]{
+    border:none;
+    background:#111;
+    color:#fff;
+    padding : 10px;
+    width: 50%;
+}
+.container .header .nav .search button{
+    width: 40px;
+    height: 40px;
+    border:none;
+    background: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.container .header .nav .search button i{
+    width: 30px;
+    height: 30px;
+    border: none;
+    
+}
+.container .header .nav .user{
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+
+.container .content{
+    position: relative;
+    margin-top: 10vh;
+    min-height: 90vh;
+}
+
+.container .content .cards{
+    padding:20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.container .content .cards .card{
+    width: 250px;
+    height:150px;
+    background: #fff;
+    margin:20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
+
+}
+
+.container .content .content-2{
+    min-height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.container .content .content-2 .recent-feedbacks{
+    min-height: 50vh;
+    flex: 5;
+    background: white;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
+}
+
+.container .content .content-2 .new-users{
+    min-height: 50vh;
+    flex: 2;
+    background: white;
+    margin: 0 25px;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
+}
