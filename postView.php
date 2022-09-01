@@ -225,7 +225,7 @@ $use = new userData();
                                             id="containposter">
                                             <textarea id=<?php echo $text ?> name='comments'
                                                 placeholder='Write a comment'></textarea>
-                                            <button onclick='comment2(event,<?php echo $postId ?>)' class='icon'
+                                            <button onclick='comment2(event,<?php echo $postId ?>); location.reload();' class='icon'
                                                 style='background-color:transparent; border:none;' id='submitButton'
                                                 type='Button' value='Post'><i id='submitButton'
                                                     class='fa fa-share icon smallerText' aria-hidden='true'

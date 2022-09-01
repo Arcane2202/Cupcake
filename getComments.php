@@ -3,7 +3,7 @@
         <a href="ProfilePage.php?id=<?php echo $commentuser['userID']; ?>" style="color: antiquewhite; text-decoration:none">
             <img src="<?php echo $media->preview($commentuser['dp'], 'dp') ?>" style="border-radius:50px; width:10%;">
         </a>
-        <a class="smallerText" href="ProfilePage.php?id=<?php echo $commentuser['userID']; ?>" style=" margin-left:2%; color: antiquewhite; text-decoration:none; text">
+        <a class="smallerText" href="ProfilePage.php?id=<?php echo $commentuser['userID']; ?>" style=" margin-left:2%; color: antiquewhite; text-decoration:none;">
             <span class="texthover"><?php echo $commentuser['firstName'] . " " . $commentuser['lastName'];
                                     $name = $commentuser['firstName'] . " " . $commentuser['lastName'];
 
@@ -12,7 +12,7 @@
 
 
     </div>
-    <div style="margin-left:10%; margin-top:5px; background-color:transparent">
+    <div style="margin-left:10%; margin-top:5px; background-color:transparent;">
         <?php
         $comment = "";
         if ($val['comment'] != "") {

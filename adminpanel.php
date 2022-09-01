@@ -103,7 +103,7 @@ $cnt=0;
                 </div>
 
             </div>
-            <div class="content-2">
+            <!--<div class="content-2">-->
                 <div class="recent-feedbacks">
                     <div class="title">
                         <h2> Recent Feedbacks </h2>
@@ -183,7 +183,7 @@ $cnt=0;
                     
 
                 </div>
-            </div>
+            <!--</div>-->
         </div>
 
     </div>
