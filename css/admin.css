@@ -261,7 +261,7 @@ th,td{
 }
 
 .container .content .cards{
-    visibility: visible;
+    /*visibility: visible;*/
     padding:20px 15px;
     display: flex;
     align-items: center;
@@ -304,7 +304,7 @@ th,td{
 
 .container .content .content-2 .recent-feedbacks{
     min-width: 55vw;
-    flex: 1;
+    /*flex: 1;*/
     background: white;
     margin: 0 25px 25px 25px;
     box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
@@ -316,8 +316,7 @@ th,td{
 }
 
 .container .content .content-2 .recent-feedbacks.hide{
-     /*visibility: collapse ;*/
-     display: none;
+    visibility: collapse;
 }
 
 .container .content .content-2 .new-users{
