@@ -18,6 +18,8 @@ $react = count($res4);
 $quer = "SELECT * FROM support";
 $res = $db->read($quer);
 $cnt=0;
+include("media.php");
+$media = new media();
 ?>
 
 
@@ -107,7 +109,7 @@ $cnt=0;
                 <div class="recent-feedbacks">
                     <div class="title">
                         <h2> Recent Feedbacks </h2>
-                        <a href="#" class="btn">View all</a>
+                        <a href="#" class="btn">View all</a> 
                     </div>
                     <table>
                         <tr>
@@ -141,6 +143,7 @@ $cnt=0;
                     </div>
                     <table>
                         <tr>
+                            <th>User DP</th>
                             <th>User ID</th>
                             <th>User Name</th>
                             <th>User E-Mail</th>
@@ -153,11 +156,13 @@ $cnt=0;
                         </tr>
                         <?php
                         foreach ($us as $valluk) {
+                            $img = $media->preview($valluk['dp'], 'dp');
                         ?>
                             <tr>
-
+                                <td><img id="" src="<?php echo $img ?>" style="width:50px;border-radius:50%;"></td>
 
                                 <td><?php echo $valluk['userID'] ?></td>
+                                
                                 <td><?php echo $valluk['firstName'] . " " . $valluk['lastName'] ?></td>
                                 <td><?php echo $valluk['email'] ?></td>
                                 <td><?php echo $valluk['phone'] ?></td>
