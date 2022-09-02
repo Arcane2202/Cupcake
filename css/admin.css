@@ -200,7 +200,6 @@ th,td{
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
 }
 
 .container .header .nav{
@@ -270,7 +269,8 @@ th,td{
     flex-wrap: wrap;
 }
 .container .content .cards.hide{
-    visibility: collapse ;
+    /*visibility: collapse ;*/
+    display: none;
 }
 
 .container .content .cards .card{
@@ -289,14 +289,17 @@ th,td{
     visibility: visible;
     min-height: 90vh;
     display: flex;
-
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
 }
 .container .content .content-2.hide{
-    /*visibility: collapse ;*/
-    
+     /*visibility: collapse ;*/
+     display: none;
+}
+.container .content .content-2.show{
+     /*visibility: collapse ;*/
+     display: block;
 }
 
 .container .content .content-2 .recent-feedbacks{
@@ -308,13 +311,12 @@ th,td{
 }
 .container .content .content-2 .recent-feedbacks.show{
     /*visibility: visible;*/
-    display: show;
-
+    display: block;
+    margin-top: 200px;
 }
 
 .container .content .content-2 .recent-feedbacks.hide{
-    /*visibility: collapse;*/
-    display: none;
+    visibility: collapse;
 }
 
 .container .content .content-2 .new-users{
@@ -327,9 +329,10 @@ th,td{
 
 .container .content .content-2 .new-users.show{
     /*visibility: visible;*/
-    display: show;
+    display: block;
+    margin-top: 200px;
 }
 .container .content .content-2 .new-users.hide{
-    /*visibility: collapse;*/
-    display: none;
+     /*visibility: collapse ;*/
+     display: none;
 }
