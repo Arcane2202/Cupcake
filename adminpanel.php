@@ -64,46 +64,47 @@ $media = new media();
         </div>
         <div class="content">
             <div class="cards">
-                <div class="card">
-                    <div class="box">
-                        <h1><?php echo $user ?></h1>
-                        <h3>USERS</h3>
+                <div class="cards-content">
+                    <div class="card">
+                        <div class="box">
+                            <h1><?php echo $user ?></h1>
+                            <h3>USERS</h3>
+                        </div>
+                        <div class="icon-case">
+                            <i class="fas fa-users floating"></i>
+                        </div>
                     </div>
-                    <div class="icon-case">
-                        <i class="fas fa-users floating"></i>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1><?php echo $post ?></h1>
+                            <h3>POSTS</h3>
+                        </div>
+                        <div class="icon-case">
+                            <i class="fas fa-mail-bulk floating"></i>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1><?php echo $react ?></h1>
+                            <h3>REACTS</h3>
+                        </div>
+                        <div class="icon-case">
+                            <i class="fas fa-heart floating"></i>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="box">
+                            <h1><?php echo $comment ?></h1>
+                            <h3>COMMENTS</h3>
+                        </div>
+                        <div class="icon-case">
+                            <i class="fas fa-comment-alt floating"></i>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="box">
-                        <h1><?php echo $post ?></h1>
-                        <h3>POSTS</h3>
-                    </div>
-                    <div class="icon-case">
-                        <i class="fas fa-mail-bulk floating"></i>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="box">
-                        <h1><?php echo $react ?></h1>
-                        <h3>REACTS</h3>
-                    </div>
-                    <div class="icon-case">
-                        <i class="fas fa-heart floating"></i>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="box">
-                        <h1><?php echo $comment ?></h1>
-                        <h3>COMMENTS</h3>
-                    </div>
-                    <div class="icon-case">
-                        <i class="fas fa-comment-alt floating"></i>
-                    </div>
-                </div>
-
             </div>
             <!--<div class="content-2">-->
                 <div class="recent-feedbacks">
@@ -201,28 +202,17 @@ $media = new media();
         const Dashboard = document.querySelector(".Dashboard");
         const Feedback = document.querySelector(".Feedback");
         const cards = document.querySelector(".cards");
-        const content2 = document.querySelector(".content-2");
         const feedbacks = document.querySelector(".recent-feedbacks");
         const users = document.querySelector(".new-users");
 
-        Feedback.classList.remove("active");
-        Handle.classList.remove("active");
-        Dashboard.classList.remove("active");
-        cards.classList.add("hide");
-        cards.classList.remove("show");
-        content2.classList.add("hide");
-        feedbacks.classList.add("hide");
-        feedbacks.classList.remove("show");
-        users.classList.remove("show");
-        users.classList.add("hide");
 
         Dashboard.onclick = () => {
+
             Feedback.classList.remove("active");
             Handle.classList.remove("active");
             Dashboard.classList.add("active");
             cards.classList.add("show");
             cards.classList.remove("hide");
-            content2.classList.add("hide");
             feedbacks.classList.add("hide");
             feedbacks.classList.remove("show");
             users.classList.remove("show");
@@ -236,7 +226,6 @@ $media = new media();
             Feedback.classList.add("active");
             cards.classList.add("hide");
             cards.classList.remove("show");
-            content2.classList.add("show");
             feedbacks.classList.add("show");
             feedbacks.classList.remove("hide");
             users.classList.remove("show");
@@ -249,7 +238,6 @@ $media = new media();
             Handle.classList.add("active");
             cards.classList.add("hide");
             cards.classList.remove("show");
-            content2.classList.add("show");
             feedbacks.classList.add("hide");
             feedbacks.classList.remove("show");
             users.classList.remove("hide");

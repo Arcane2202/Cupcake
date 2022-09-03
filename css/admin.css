@@ -261,16 +261,24 @@ th,td{
 }
 
 .container .content .cards{
-    /*visibility: visible;*/
+    /*visibility: collapse;*/
+    display: none;
+}
+.container .content .cards.show{
+    /*visibility: visible ;*/
+    display: block;
+}
+.container .content .cards.hide{
+    /*visibility: collapse ;*/
+    display: none;
+}
+
+.container .content .cards .cards-content{
     padding:20px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-}
-.container .content .cards.hide{
-    /*visibility: collapse ;*/
-    display: none;
 }
 
 .container .content .cards .card{
@@ -302,37 +310,40 @@ th,td{
      display: block;
 }
 
-.container .content .content-2 .recent-feedbacks{
+.container .content .recent-feedbacks{
     min-width: 55vw;
+    display: none;
     /*flex: 1;*/
     background: white;
     margin: 0 25px 25px 25px;
     box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
 }
-.container .content .content-2 .recent-feedbacks.show{
+.container .content .recent-feedbacks.show{
     /*visibility: visible;*/
     display: block;
     margin-top: 200px;
 }
 
-.container .content .content-2 .recent-feedbacks.hide{
-    visibility: collapse;
+.container .content .recent-feedbacks.hide{
+    /*visibility: collapse;*/
+    display: none;
 }
 
-.container .content .content-2 .new-users{
+.container .content .new-users{
     min-width: 55vw;
-    flex: 1;
+    display: none;
+    /*flex: 1;*/
     background: white;
     margin: 0 25px;
     box-shadow: 0 4px 8px rgba(255,255,255,0.4), 0 6px 20px 0 rgba(255,255,255,0.29);
 }
 
-.container .content .content-2 .new-users.show{
+.container .content .new-users.show{
     /*visibility: visible;*/
     display: block;
     margin-top: 200px;
 }
-.container .content .content-2 .new-users.hide{
+.container .content .new-users.hide{
      /*visibility: collapse ;*/
      display: none;
 }
