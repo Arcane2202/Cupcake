@@ -54,16 +54,14 @@ $media = new media();
     </div>
 
     <div class="container">
-        <div class="header">
-            <div class="nav">
-                <h1 style="color:brown;">WELCOME TO CUPCAKE, Admin!</h1>
-                <div class="user" style="float:right;">
-                    <a href="#" class="btn">LOG OUT</a>
-                </div>
-            </div>
-        </div>
+        
         <div class="content">
+        <div class="welcome">
+            <h1>WELCOME TO CUPCAKE, Admin!</h1>
+        </div>    
+        
             <div class="cards">
+                
                 <div class="cards-content">
                     <div class="card">
                         <div class="box">
@@ -204,6 +202,7 @@ $media = new media();
         const cards = document.querySelector(".cards");
         const feedbacks = document.querySelector(".recent-feedbacks");
         const users = document.querySelector(".new-users");
+        const welcome = document.querySelector(".welcome");
 
 
         Dashboard.onclick = () => {
@@ -217,6 +216,7 @@ $media = new media();
             feedbacks.classList.remove("show");
             users.classList.remove("show");
             users.classList.add("hide");
+            welcome.classList.add("hide");
 
         }
 
@@ -230,7 +230,7 @@ $media = new media();
             feedbacks.classList.remove("hide");
             users.classList.remove("show");
             users.classList.add("hide");
-
+            welcome.classList.add("hide");
         }
         Handle.onclick = () => {
             Dashboard.classList.remove("active");
@@ -242,6 +242,7 @@ $media = new media();
             feedbacks.classList.remove("show");
             users.classList.remove("hide");
             users.classList.add("show");
+            welcome.classList.add("hide");
         }
     </script>
 </body>
